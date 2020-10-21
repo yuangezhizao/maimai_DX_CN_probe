@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="keywords" content="maimai_DX 查分器,舞萌DX,maimai DX,yuangezhizao"/>
+    <meta name="description" content="这里是个人在用的 maimai_DX 查分器">
+    <meta name="author" content="yuangezhizao"/>
+    <meta name="Copyright" content="Copyright yuangezhizao All Rights Reserved."/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui/dist/semantic.min.css">
+    <link rel="dns-prefetch" href="//maimai.yuangezhizao.cn">
+    <link rel="dns-prefetch" href="//lab.yuangezhizao.cn">
+    <link rel="dns-prefetch" href="//www.yuangezhizao.cn">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+    {% block head %}{% endblock %}
+</head>
+<body>
+<div class="ui container">
+    <div class="ui blue pointing container menu">
+        {% block nav %}
+        <a class="active item"><i class="home icon"></i>首页</a>
+        <a class="item" href="https://github.com/yuangezhizao/maimai_DX_CN_probe" target="_blank"><i class="archive icon"></i>关于</a>
+        {% endblock %}
+    </div>
+    {% block content %}{% endblock %}
+    <div class="ui divider"></div>
+    <footer>
+        <div style="text-align: center;">
+            <h5>
+                yuangezhizao&nbsp&nbsp&nbsp&nbsp©&nbsp&nbsp&nbsp&nbsp2020<br>
+                Powered by Tencent Cloud Serverless
+            </h5>
+        </div>
+    </footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fomantic-ui/dist/semantic.min.js"></script>
+<script>
+    $('.message .close').on('click', function () {
+        $(this).closest('.message').transition('fade');
+    });
+</script>
+{% block script %}{% endblock %}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-65GFJD0XP7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-65GFJD0XP7');
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?52627b664e5a3d9647f8361d409caf63";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>
