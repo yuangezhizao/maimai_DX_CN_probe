@@ -9,7 +9,20 @@
 import os
 
 import flask
+
 from config import config
+
+
+class ReverseProxied(object):
+    # Flask url_for generating http URL instead of https
+    # https://stackoverflow.com/questions/14810795/flask-url-for-generating-http-url-instead-of-https
+
+    def __init__(self, app):
+        self.app = app
+
+    def __call__(self, environ, start_response):
+        environ['wsgi.url_scheme'] = 'https'
+        return self.app(environ, start_response)
 
 
 def create_app(config_name=None):
@@ -17,6 +30,7 @@ def create_app(config_name=None):
         config_name = os.getenv('FLASK_ENV', 'production')
 
     app = flask.Flask(__name__, static_url_path='', instance_relative_config=True)
+    app.wsgi_app = ReverseProxied(app.wsgi_app)
 
     app.config.from_object(config[config_name])
     app.config.from_pyfile(f'{config_name}.py')
