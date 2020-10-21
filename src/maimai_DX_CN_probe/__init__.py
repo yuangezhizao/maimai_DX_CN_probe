@@ -19,6 +19,7 @@ def create_app(config_name=None):
     app = flask.Flask(__name__, static_url_path='', instance_relative_config=True)
 
     app.config.from_object(config[config_name])
+    app.config.from_pyfile(f'{config_name}.py')
 
     register_extensions(app)
     register_blueprints(app)
