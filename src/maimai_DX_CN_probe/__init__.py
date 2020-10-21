@@ -62,8 +62,6 @@ def register_template_context(app):
     @app.after_request
     def after_request(response):
         if ('Content-Length' in response.headers):
-            # print 'Content-Length' in response.headers
-            # print response.headers
             response.headers.add('Uncompressed-Content-Length', response.headers['Content-Length'])
         start_to_stop_time = time.time() - flask.g.start_time
         response.headers.add('Response-Time', round(start_to_stop_time, 3))
