@@ -19,6 +19,3 @@ def create_app():
 def register_blueprints(app):
     from maimai_DX_CN_probe.views import register_views
     register_views(app)
-
-
-app = create_app()
