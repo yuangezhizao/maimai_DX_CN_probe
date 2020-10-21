@@ -1,0 +1,319 @@
+{% macro pagination_widget(pagination, endpoint) %}
+    <div style="text-align: center;">
+        <div class="ui buttons">
+            {% if pagination.has_prev %}
+                <a class="ui orange left icon button"
+                   href="{{ url_for(endpoint, page=pagination.prev_num, **kwargs) }}">
+                    <i class="angle double left icon"></i>上一页
+                </a>
+            {% else %}
+                <div class="ui disabled orange button">上一页不可用</div>
+            {% endif %}
+            {% for p in pagination.iter_pages() %}
+                {% if p %}
+                    {% if p == pagination.page %}
+                        <div class="ui black button">{{ p }}</div>
+                    {% else %}
+                        <a class="ui blue button" href="{{ url_for(endpoint, page=p, **kwargs) }}">{{ p }}</a>
+                    {% endif %}
+                {% else %}
+                    <div class="ui blue basic button">…</div>
+                {% endif %}
+            {% endfor %}
+            {% if pagination.has_next %}
+                <a class="ui green right icon button"
+                   href="{{ url_for(endpoint, page=pagination.next_num, **kwargs) }}">
+                    下一页<i class="angle double right icon"></i>
+                </a>
+            {% else %}
+                <div class="ui disabled green button">下一页不可用</div>
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro playlog_notes_detail(record_playlogDetail_data, loop) %}
+    cp~~：
+    {% if record_playlogDetail_data[loop.index0].notes_tap_cp != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_tap_cp > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_tap_cp > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_tap_cp }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_hold_cp != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_hold_cp > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_hold_cp > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_hold_cp }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_slide_cp != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_slide_cp > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_slide_cp > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_slide_cp }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_touch_cp != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_touch_cp > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_touch_cp > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_touch_cp }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_break_cp != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_break_cp > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_break_cp > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_break_cp }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}
+    <br>
+
+    p~~~：
+    {% if record_playlogDetail_data[loop.index0].notes_tap_p != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_tap_p > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_tap_p > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_tap_p }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_hold_p != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_hold_p > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_hold_p > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_hold_p }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_slide_p != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_slide_p > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_slide_p > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_slide_p }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_touch_p != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_touch_p > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_touch_p > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_touch_p }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_break_p != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_break_p > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_break_p > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_break_p }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}
+    <br>
+
+    great：
+    {% if record_playlogDetail_data[loop.index0].notes_tap_great != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_tap_great > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_tap_great > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_tap_great }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_hold_great != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_hold_great > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_hold_great > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_hold_great }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_slide_great != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_slide_great > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_slide_great > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_slide_great }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_touch_great != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_touch_great > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_touch_great > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_touch_great }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_break_great != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_break_great > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_break_great > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_break_great }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}
+    <br>
+
+    good：
+    {% if record_playlogDetail_data[loop.index0].notes_tap_good != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_tap_good > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_tap_good > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_tap_good }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_hold_good != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_hold_good > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_hold_good > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_hold_good }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_slide_good != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_slide_good > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_slide_good > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_slide_good }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_touch_good != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_touch_good > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_touch_good > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_touch_good }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_break_good != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_break_good > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_break_good > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_break_good }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}
+    <br>
+
+    miss：
+    {% if record_playlogDetail_data[loop.index0].notes_tap_miss != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_tap_miss > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_tap_miss > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_tap_miss }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_hold_miss != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_hold_miss > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_hold_miss > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_hold_miss }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_slide_miss != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_slide_miss > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_slide_miss > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_slide_miss }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_touch_miss != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_touch_miss > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_touch_miss > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_touch_miss }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}-
+
+    {% if record_playlogDetail_data[loop.index0].notes_break_miss != None %}
+        <span style="{% if record_playlogDetail_data[loop.index0].notes_break_miss > 5 %}color:blue;
+        {% elif record_playlogDetail_data[loop.index0].notes_break_miss > 0 %}color:red;font-weight:bold;
+        {% else %}color:pink;
+        {% endif %}">
+            {{ record_playlogDetail_data[loop.index0].notes_break_miss }}
+        </span>
+    {% else %}
+        <span style="color: grey">x</span>
+    {% endif %}
+{% endmacro %}
