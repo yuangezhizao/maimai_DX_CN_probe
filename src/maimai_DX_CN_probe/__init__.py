@@ -7,6 +7,7 @@
     :Copyright: © 2020 yuangezhizao <root@yuangezhizao.cn>
 """
 import os
+import time
 
 import flask
 
@@ -38,6 +39,7 @@ def create_app(config_name=None):
 
     register_extensions(app)
     register_blueprints(app)
+    register_template_context(app)
 
     return app
 
@@ -50,3 +52,19 @@ def register_extensions(app):
 def register_blueprints(app):
     from maimai_DX_CN_probe.views import register_views
     register_views(app)
+
+
+def register_template_context(app):
+    @app.before_request
+    def before_request():
+        flask.g.start_time = time.time()
+
+    @app.after_request
+    def after_request(response):
+        if ('Content-Length' in response.headers):
+            # print 'Content-Length' in response.headers
+            # print response.headers
+            response.headers.add('Uncompressed-Content-Length', response.headers['Content-Length'])
+        start_to_stop_time = time.time() - flask.g.start_time
+        response.headers.add('Response-Time', round(start_to_stop_time, 3))
+        return response
