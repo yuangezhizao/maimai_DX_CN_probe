@@ -6,11 +6,19 @@
     :Site: https://www.yuangezhizao.cn
     :Copyright: © 2020 yuangezhizao <root@yuangezhizao.cn>
 """
-from flask import Flask
+import os
+
+import flask
+from config import config
 
 
-def create_app():
-    app = Flask(__name__)
+def create_app(config_name=None):
+    if config_name is None:
+        config_name = os.getenv('FLASK_ENV', 'production')
+
+    app = flask.Flask(__name__, static_url_path='', instance_relative_config=True)
+
+    app.config.from_object(config[config_name])
 
     register_extensions(app)
     register_blueprints(app)
