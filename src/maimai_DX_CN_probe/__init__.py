@@ -68,3 +68,7 @@ def register_template_context(app):
         start_to_stop_time = time.time() - flask.g.start_time
         response.headers.add('Response-Time', round(start_to_stop_time, 3))
         return response
+
+    @app.template_filter('my_split')
+    def my_split(this, string, num):
+        return str(this).split(string)[num]
