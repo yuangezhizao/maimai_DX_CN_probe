@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes"/>
+    <script>
+        var baseW = 768;
+        var iOSW = 0;
+        var ua = navigator.userAgent.toLowerCase();
+        var isiOS = (ua.indexOf("iphone") > -1) || (ua.indexOf("ipod") > -1) || (ua.indexOf("ipad") > -1);
+        if (isiOS) {
+            iOSW = document.documentElement.clientWidth;
+        }
+        window.addEventListener("resize", updateMetaViewport, false);
+        window.addEventListener("orientationchange", updateMetaViewport, false);
+        var ev = document.createEvent("UIEvent");
+        ev.initEvent("resize", true, true)
+        window.dispatchEvent(ev);
+
+        function updateMetaViewport() {
+            var viewportContent;
+            var w = window.outerWidth;
+            if (isiOS) {
+                w = iOSW;
+            }
+            if (w < baseW) {
+                viewportContent = "width=480,initial-scale=" + w / 480 + ",user-scalable=yes,shrink-to-fit=no";
+            } else {
+                viewportContent = "width=device-width,initial-scale=1.0,user-scalable=yes,shrink-to-fit=no";
+            }
+            document.querySelector("meta[name='viewport']").setAttribute("content", viewportContent);
+        }
+    </script>
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8; IE=EmulateIE9"/>
+    {#	<meta http-equiv="Pragma" CONTENT="no-cache">#}
+    {#	<meta http-equiv="Cache-Control" CONTENT="no-cache">#}
+    {#	<meta http-equiv="Expires" CONTENT="-1">#}
+    <meta name="robots" content="INDEX, FOLLOW"/>
+    <meta name="author" content="(C) SEGA">
+    <meta name="copyright" content="&copy;SEGA">
+    <meta name="description" content="此网页可浏览SEGA(世嘉)音乐机台「舞萌DX」的个人游戏记录。">
+    <meta name="keywords" content="舞萌DX,maimai DX,maimai deluxe,sega"/>
+    <meta name="theme-color" content="#51bcf3">
+
+    <title>舞萌DX－浏览游戏数据－</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/css/maimai-mobile/common.css') }}"/>
+    <link rel="apple-touch-icon-precomposed" href="https://lab.yuangezhizao.cn/maimai-mobile/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="https://lab.yuangezhizao.cn/maimai-mobile/apple-touch-icon.png">
+    <!--
+    ここに百度統計のスクリプト追加予定
+    -->
+</head>
+<body oncontextmenu="return false;">
+<div class="wrapper t_c">
+    <div class="d_b p_5"><img src="https://lab.yuangezhizao.cn/maimai-mobile/img/logo.png" class="logo"/></div>
+</div>
+<div class="wrapper main_wrapper t_c">
+    <header class="f_0">
+        <div class="f_0">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 480 10"
+                 preserveAspectRatio="none" style="height:10px">
+                <path d="M0,10 v-5 q5,5 10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 v5 Z"
+                      fill="#7ed3ff"></path>
+            </svg>
+            <div class="menu">
+                <a href="{{ url_for('main.wechat_archive', _external=True) + '?home' }}" class="d_ib col4 p_4"><img
+                        src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_home.png" class="w_112"/></a>
+                <a href="{{ url_for('main.wechat_archive', _external=True) + '?playerData' }}" class="d_ib col4 p_4"><img
+                        src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_playerdata.png" class="w_112"/></a>
+                <a href="{{ url_for('main.wechat_archive', _external=True) + '?record' }}" class="d_ib col4 p_4"><img
+                        src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_record_on.png" class="w_112"/></a>
+                <a href="{{ url_for('main.wechat_archive', _external=True) + '?ranking' }}" class="d_ib col4 p_4"><img
+                        src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_ranking.png" class="w_112"/></a>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 480 10"
+                 preserveAspectRatio="none" style="height:10px">
+                <path d="M0,0 v5 q5,5 10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 v-5 Z"
+                      fill="#7ed3ff"></path>
+            </svg>
+        </div>
+    </header>
+
+    <div class="m_t_5 m_b_10 t_l f_0">
+        <a href="{{ url_for('main.wechat_archive', _external=True) + '?record' }}" class="p_r d_ib">
+            <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_sub_record_playlog.png?ver=1.00"
+                 class="w_120"/>
+            <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/icon_on.png" class="submenu_selected"/> </a>
+        <a href="{{ url_for('main.wechat_archive', _external=True) + '?record_musicGenre' }}" class="p_r d_ib">
+            <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_sub_record_music.png?ver=1.00" class="w_120"/>
+        </a>
+        <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_sub_record.png" class="w_120"/>
+        <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_sub_record.png" class="w_120"/>
+    </div>
+
+    <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/title_playlog.png" class="title m_10"/>
+    {% for data in record_data %}
+        <div class="p_10 t_l f_0 v_b">
+            <div class="playlog_top_container">
+                <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/{{ data.level_img_s }}.png"
+                     class="playlog_diff v_b">
+                {% if data.vs_img_s %}
+                    <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/vs.png" class="playlog_vs v_b">
+                    <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/{{ data.vs_img_s }}.png"
+                         class="playlog_vs_result v_b">
+                {% endif %}
+                <div class="sub_title t_c f_r f_11">
+                    <span class="red f_b v_b">TRACK 0{{ data.track }}</span>　<span class="v_b">{{ data.play_dt }}</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="playlog_{{ data.level_img_s | my_split('_', 1) }}_container">
+                <div class="basic_block m_5 p_5 p_l_10 f_13 break">
+                    {% if data.clear %}
+                        <img
+                                src="https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/clear.png"
+                                class="w_80 f_r">
+                    {% endif %}
+                    ID：{{ data.id }} ★ {{ data.name }}
+                </div>
+                <div class="p_r f_0">
+                    <img src="{{ data.img_s | replace("maimai.wahlap.com", "lab.yuangezhizao.cn") }}"
+                         class="music_img m_5 m_r_0 f_l">
+                    <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/{{ data.dx_img_s }}.png"
+                         class="playlog_music_kind_icon">
+                    <div class="playlog_result_block m_t_5 f_l">
+                        <div class="playlog_achievement_label_block">
+                            <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/achievement.png">
+                        </div>
+                        {% if data.score_rank_new %}
+                            <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/newrecord.png"
+                                 class="playlog_achievement_newrecord">
+                        {% endif %}
+                        <div class="playlog_achievement_txt t_r">{{ data.achievement | int }}<span
+                                class="f_20">.{{ data.achievement | my_split('.', 1) }}%</span></div>
+                        <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/{{ data.score_rank_img_s }}.png"
+                             class="playlog_scorerank">
+                        <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/line_02.png"
+                             class="playlog_scoreline f_r">
+                        <div class="playlog_result_innerblock basic_block p_5 f_13">
+                            <div class="playlog_score_block f_0">
+                                <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/deluxscore.png"
+                                     class="w_80">
+                                {% if data.delux_new %}
+                                    <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/newrecord.png"
+                                         class="playlog_deluxscore_newrecord">
+                                {% endif %}
+                                <div class="white p_r_5 f_15 f_r">{{ data.delux_score }}</div>
+                            </div>
+
+                            <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/{{ data.fc_img_s }}.png"
+                                 class="h_35 m_5 f_l">
+                            <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/{{ data.fs_img_s }}.png"
+                                 class="h_35 m_5 f_l">
+                            {% if data.rate_img_s %}
+                                <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/{{ data.rate_img_s }}.png"
+                                     class="h_35 m_5 f_r"/>
+                            {% endif %}
+                            <div class="clearfix"></div>
+                        </div>
+                        <form action="{{ url_for('main.wechat_archive', _external=True) }}" method="get"
+                              accept-charset="utf-8" class="m_t_5 t_r">
+                            <input type="hidden" name="record_playlogDetail" value="">
+                            <input type="hidden" name="idx" value="{{ data.id }}">
+                            <button type="submit" class="f_0"><img
+                                    src="https://lab.yuangezhizao.cn/maimai-mobile/img/btn_detail.png " class="w_84">
+                            </button>
+                        </form>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <footer class="f_0">
+        <div class="footer_marquee">
+            <div class="footer w_480">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 480 50"
+                     preserveAspectRatio="none" style="height:50px">
+                    <path d="M0,0 v25 q5,5 10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 v-25 Z"
+                          fill="#7cbc29"></path>
+                </svg>
+                {#                <div class="m_15 m_t_0 f_13">#}
+                {#                    <div class="m_5"><a href="https://lab.yuangezhizao.cn/maimai-mobile/termsOfService/" target="_blank"#}
+                {#                                        class="white" rel="noopener">使用条款</a></div>#}
+                {#                    <div class="m_5"><a href="https://lab.yuangezhizao.cn/maimai-mobile/sitePolicy/" target="_blank"#}
+                {#                                        class="white" rel="noopener">使用须知</a></div>#}
+                {#                    <div class="m_5"><a href="https://sega-group.co.jp/english/privacypolicy/" target="_blank"#}
+                {#                                        class="white" rel="noopener">私隐政策</a></div>#}
+                {#                </div>#}
+                {#                <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/line_02.png" class="w_430 m_b_10"/>#}
+                <div class="f_l m_15 m_l_30 p_l_10">
+                    <a href="http://sega.jp" target="_blank" rel="noopener"><img
+                            src="https://lab.yuangezhizao.cn/maimai-mobile/img/logo_sega.png"/></a>
+                    {#					<div class="f_15 p_5">© SEGA</div>#}
+                </div>
+                <div class="m_15">
+                    <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/logo_wahlap.png"/></a>
+                    {#					<div class="f_11 p_3"><a href="http://www.miitbeian.gov.cn" style="text-decoration:none; color: #fff" target="_blank" rel="noopener">粤ICP备05005783号</a></div>#}
+                </div>
+                <div class="p_10">
+                    <div class="f_12 l_h_12"></div>
+                    <div class="f_12 l_h_12">Modified for personal use，yuangezhizao © 2020</div>
+                    <div class="f_12 l_h_12"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-65GFJD0XP7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-65GFJD0XP7');
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?52627b664e5a3d9647f8361d409caf63";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

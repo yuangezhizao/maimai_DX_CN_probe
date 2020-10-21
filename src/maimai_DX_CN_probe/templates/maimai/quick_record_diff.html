@@ -1,0 +1,188 @@
+{% extends "/base.html" %}
+
+{% from 'macros.html' import pagination_widget, playlog_notes_detail with context %}
+
+{% block title %}舞萌DX－快速预览差异－{% endblock %}
+
+{% block nav %}
+    <a class="active item"><i class="circle icon"></i>舞萌DX－快速预览差异－</a>
+    <a class="item" href="{{ url_for('main.site_index') }}"><i class="arrow left icon"></i>返回首页</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="ui dividing blue header">
+        <div class="content">
+            <h2>quick_record.diff</h2>
+        </div>
+    </div>
+
+    <table id="table" class="ui compact sortable celled unstackable striped blue table">
+        <thead>
+        <tr class="positive">
+            <th>序号</th>
+            <th>次数</th>
+            <th>封面</th>
+            <th>歌曲</th>
+            <th>等级</th>
+            <th>达成率趋势</th>
+            <th>评级趋势</th>
+            <th>详细表</th>
+            <th>过快/过慢</th>
+            <th>DX 分数</th>
+            <th>游戏时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for data in record_data_paginate.items %}
+            <tr>
+                <td>
+                    {{ data.id }}
+                </td>
+                <td>
+                    {{ history_record_data[loop.index0] | length }}
+                </td>
+                <td>
+                    <img class="ui tiny image"
+                         src="{{ data.img_s | replace("maimai.wahlap.com", "lab.yuangezhizao.cn") }}">
+                </td>
+                <td>
+                    {{ data.name }}
+                </td>
+                <td>
+                    <span style="display: none">{{ data.level_img_s | my_split('_', 1) }}</span>
+                    <img class="ui tiny image"
+                         src="https://lab.yuangezhizao.cn/maimai-mobile/img/btn_music_{{ data.level_img_s | my_split('_', 1) }}.png">
+                </td>
+                <td class="
+{% if data.achievement == 101 %}
+    black
+{% elif data.achievement >= 100.5 %}
+    grey
+{% elif data.achievement >= 100 %}
+    brown
+{% elif data.achievement >= 99.5 %}
+    yellow
+{% elif data.achievement >= 99 %}
+    orange
+{% elif data.achievement >= 98 %}
+    red
+{% elif data.achievement >= 97 %}
+    pink
+{% elif data.achievement >= 94 %}
+    purple
+{% elif data.achievement >= 90 %}
+    violet
+{% elif data.achievement >= 80 %}
+    blue
+{% elif data.achievement >= 75 %}
+    teal
+{% elif data.achievement >= 70 %}
+    green
+{% elif data.achievement >= 60 %}
+    olive
+{% else %}
+{% endif %}">
+                    {% if history_record_data[loop.index0] | length != 1 %}
+                        {#                        排除初见记录#}
+                        {% if data.achievement < history_record_data[loop.index0][0].achievement %}
+                            {#                            如果当前达成率小于最高达成率，下降确信#}
+                            {{ history_record_data[loop.index0][0].achievement }}
+                            {#                            取最高达成率作对比#}
+                            <em data-emoji="arrow_heading_down"></em>
+                        {% else %}
+                            {#                            否则，上升确信（data.achievement == history_record_data[loop.index0][0].achievement#}
+                            {{ history_record_data[loop.index0][1].achievement }}
+                            {#                            取第二高达成率作对比#}
+                            <em data-emoji="arrow_heading_up"></em>
+                        {% endif %}
+                    {% endif %}
+                    {{ data.achievement }}
+                </td>
+                <td class="
+{% if data.achievement == 101 %}
+    black
+{% elif data.achievement >= 100.5 %}
+    grey
+{% elif data.achievement >= 100 %}
+    brown
+{% elif data.achievement >= 99.5 %}
+    yellow
+{% elif data.achievement >= 99 %}
+    orange
+{% elif data.achievement >= 98 %}
+    red
+{% elif data.achievement >= 97 %}
+    pink
+{% elif data.achievement >= 94 %}
+    purple
+{% elif data.achievement >= 90 %}
+    violet
+{% elif data.achievement >= 80 %}
+    blue
+{% elif data.achievement >= 75 %}
+    teal
+{% elif data.achievement >= 70 %}
+    green
+{% elif data.achievement >= 60 %}
+    olive
+{% else %}
+{% endif %}">
+                    {% if history_record_data[loop.index0] | length != 1 %}
+                        {#                        排除初见记录#}
+                        {% if data.score_rank_img_s != history_record_data[loop.index0][0].score_rank_img_s %}
+                            {#                            如果当前评级不等于最高评级，那就可能是下降了#}
+                            {% if data.achievement < history_record_data[loop.index0][0].achievement %}
+                                {#                                当前达成率小于最高达成率，下降确信#}
+                                {{ history_record_data[loop.index0][0].score_rank_img_s | upper }}
+                                {#                            取最高评级作对比#}
+                                <em data-emoji="arrow_heading_down"></em>
+                            {% endif %}
+                        {% elif data.score_rank_img_s != history_record_data[loop.index0][1].score_rank_img_s %}
+                            {#                            继续判断，如果当前评级不等于第二高评级，上升确信#}
+                            {{ history_record_data[loop.index0][1].score_rank_img_s | upper }}
+                            {#                            取第二高评级作对比#}
+                            <em data-emoji="arrow_heading_up"></em>
+                        {% endif %}
+                    {% endif %}
+                    {{ data.score_rank_img_s | upper }}
+                </td>
+                <td class="{% if data.fc_img_s == 'fc' %}yellow{% elif data.fc_img_s == 'fcplus' %}brown{% else %}{% endif %}"
+                    {% if data.fc_img_s != 'fc_dummy' %}data-tooltip="{{ data.fc_img_s | upper }}"
+                    data-inverted=""{% endif %}>
+                    {% if data.fc_img_s != 'fc_dummy' %}
+                        {{ playlog_notes_detail(record_playlogDetail_data, loop) }}
+                    {% else %}
+                        {{ playlog_notes_detail(record_playlogDetail_data, loop) }}
+                    {% endif %}
+                </td>
+                <td>
+                    <span style="color: blue">{{ record_playlogDetail_data[loop.index0].fast }}</span>/
+                    <span style="color: red">{{ record_playlogDetail_data[loop.index0].late }}</span>
+                </td>
+
+                <td>
+                    {{ data.delux_score }}
+                </td>
+                <td {% if data.play_dt %}data-tooltip="{{ data.play_dt }}" data-inverted=""{% endif %}>
+                    {% if data.play_dt %}
+                        {{ data.play_dt | my_split(' ', 0) }}
+                    {% else %}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {{ pagination_widget(record_data_paginate, 'main.wechat_archive', quick_record='', diff='') }}
+{% endblock %}
+
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/tablesorter/dist/js/jquery.tablesorter.min.js"></script>
+    <script>
+        $(document).ready(function () {
+                $("#table").tablesorter();
+            }
+        );
+    </script>
+{% endblock %}

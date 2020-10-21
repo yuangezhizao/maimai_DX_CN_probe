@@ -1,0 +1,59 @@
+{% extends "/base.html" %}
+
+{% block title %}舞萌DX－练习曲－{% endblock %}
+
+{% block nav %}
+    <a class="active item"><i class="circle icon"></i>舞萌DX－练习曲－</a>
+    <a class="item" href="{{ url_for('main.site_index') }}"><i class="arrow left icon"></i>返回首页</a>
+{% endblock %}
+
+{% block content %}
+    <div class="ui dividing blue header">
+        <div class="content">
+            <h2>舞萌DX－练习曲－</h2>
+        </div>
+    </div>
+    <table id="practice_list_table"
+           class="tablesorter ui nine column sortable unstackable celled striped blue compact table">
+        <thead>
+        <tr class="positive">
+            <th>No.</th>
+            <th>name</th>
+            <th>level_img_s</th>
+            <th>吐了个槽</th>
+            <th>数据插入时间</th>
+            <th>数据更新时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for data in practice_data %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ data.name }}</td>
+                <td>
+                    {{ data.level_img_s }}
+                </td>
+                <td>{{ data.tips }}</td>
+                <td>
+                    {% if data.insert_time %}
+                        {{ data.insert_time }}
+                    {% else %}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if data.update_time %}
+                        {{ data.update_time }}
+                    {% else %}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block script %}
+    <script src="{{ url_for('static', filename='/static/js/tablesort.min.js') }}"></script>
+    <script>
+        $('practice_list_table').tablesort();
+    </script>
+{% endblock %}
