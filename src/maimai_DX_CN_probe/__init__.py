@@ -30,7 +30,8 @@ def create_app(config_name=None):
         config_name = os.getenv('FLASK_ENV', 'production')
 
     app = flask.Flask(__name__, static_url_path='', instance_relative_config=True)
-    app.wsgi_app = ReverseProxied(app.wsgi_app)
+    if config_name == 'production':
+        app.wsgi_app = ReverseProxied(app.wsgi_app)
 
     app.config.from_object(config[config_name])
     app.config.from_pyfile(f'{config_name}.py')
