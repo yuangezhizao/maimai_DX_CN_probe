@@ -32,7 +32,7 @@ def wechat_archive():
             star_data.append(data.star)
             cache_dt_data.append(data.cache_dt.strftime('%Y-%m-%d %H:%M:%S'))
 
-        return flask.render_template('maimai/home.html', HOME_data=HOME_data, id_data=id_data, rating_data=rating_data,
+        return flask.render_template('maimai/wechat_archive/home.html', HOME_data=HOME_data, id_data=id_data, rating_data=rating_data,
                                      rating_max_data=rating_max_data, star_data=star_data, cache_dt_data=cache_dt_data)
     elif 'playerData' in flask.request.args:
         playerData = PlayerData.query.order_by(PlayerData.id.desc()).all()
@@ -63,7 +63,7 @@ def wechat_archive():
             fs_data.append(data.fs)
             cache_dt_data.append(data.cache_dt.strftime('%Y-%m-%d %H:%M:%S'))
 
-        return flask.render_template('maimai/playerData.html', playerData=playerData, id_data=id_data,
+        return flask.render_template('maimai/wechat_archive/playerData.html', playerData=playerData, id_data=id_data,
                                      music_count_data=music_count_data, total_count_data=total_count_data,
                                      sssp_data=sssp_data, sss_data=sss_data, ssp_data=ssp_data, ss_data=ss_data,
                                      sp_data=sp_data, s_data=s_data, clear_data=clear_data, app_data=app_data,
@@ -71,10 +71,10 @@ def wechat_archive():
                                      fsd_data=fsd_data, fsp_data=fsp_data, fs_data=fs_data, cache_dt_data=cache_dt_data)
     elif 'playerData_album' in flask.request.args:
         playerData_album = album.query.order_by(album.id.desc()).all()
-        return flask.render_template('maimai/playerData_album.html', playerData_album=playerData_album)
+        return flask.render_template('maimai/wechat_archive/playerData_album.html', playerData_album=playerData_album)
     elif 'record' in flask.request.args:
         record_data = Record.query.order_by(Record.id.desc()).all()
-        return flask.render_template('maimai/record.html', record_data=record_data)
+        return flask.render_template('maimai/wechat_archive/record.html', record_data=record_data)
     elif 'quick_record' in flask.request.args:
         page = int(flask.request.args.get('page', 1))
         per_page = int(flask.request.args.get('per_page', 20))
@@ -150,7 +150,7 @@ def wechat_archive():
             record_playlogDetail_history = playlogDetail.query.filter_by(id=id).all()[0]
             record_playlogDetail_history_all.append(record_playlogDetail_history)
 
-        return flask.render_template('maimai/record_playlogDetail.html', record_data=record_data,
+        return flask.render_template('maimai/wechat_archive/record_playlogDetail.html', record_data=record_data,
                                      count=len(id_all), record_playlogDetail=record_playlogDetail,
                                      record_data_history_all=record_data_history_all,
                                      record_playlogDetail_history_all=record_playlogDetail_history_all,
