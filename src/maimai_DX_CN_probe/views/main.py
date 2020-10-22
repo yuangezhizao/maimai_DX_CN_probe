@@ -122,8 +122,8 @@ def wechat_archive():
         return flask.redirect(flask.url_for('main.wechat_archive', _external=True) + '?home')
 
 
-@bp.route('/review')
-def review():
+@bp.route('/record')
+def record():
     if 'record_musicGenre' in flask.request.args:
         record_musicGenre_data = musicInfo.query.order_by(musicInfo.id.asc()).all()
         return flask.render_template('maimai/review/record_musicGenre.html',
@@ -156,7 +156,7 @@ def review():
 
                 history_record_data.append(_record_data)
 
-            return flask.render_template('maimai/review/quick_record_diff.html',
+            return flask.render_template('maimai/record/diff.html',
                                          record_data_paginate=record_data_paginate,
                                          record_playlogDetail_data=record_playlogDetail_data,
                                          history_record_data=history_record_data, page=page, per_page=per_page)
@@ -164,5 +164,5 @@ def review():
             record_data_paginate = Record.query.order_by(Record.id.desc()).paginate(page, per_page)
             # total = record_data_paginate.total
             # total_page = math.ceil(total / per_page)
-            return flask.render_template('maimai/review/quick_record.html', record_data_paginate=record_data_paginate,
+            return flask.render_template('maimai/record/index.html', record_data_paginate=record_data_paginate,
                                          page=page, per_page=per_page)
