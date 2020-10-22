@@ -32,7 +32,8 @@ def wechat_archive():
             star_data.append(data.star)
             cache_dt_data.append(data.cache_dt.strftime('%Y-%m-%d %H:%M:%S'))
 
-        return flask.render_template('maimai/wechat_archive/home.html', HOME_data=HOME_data, id_data=id_data, rating_data=rating_data,
+        return flask.render_template('maimai/wechat_archive/home.html', HOME_data=HOME_data, id_data=id_data,
+                                     rating_data=rating_data,
                                      rating_max_data=rating_max_data, star_data=star_data, cache_dt_data=cache_dt_data)
     elif 'playerData' in flask.request.args:
         playerData = PlayerData.query.order_by(PlayerData.id.desc()).all()
@@ -75,46 +76,6 @@ def wechat_archive():
     elif 'record' in flask.request.args:
         record_data = Record.query.order_by(Record.id.desc()).all()
         return flask.render_template('maimai/wechat_archive/record.html', record_data=record_data)
-    elif 'quick_record' in flask.request.args:
-        page = int(flask.request.args.get('page', 1))
-        per_page = int(flask.request.args.get('per_page', 20))
-        if 'all' in flask.request.args:
-            per_page = 334
-        if 'diff' in flask.request.args:
-            record_data_paginate = Record.query.order_by(Record.id.desc()).paginate(page, per_page)
-            history_record_data = []
-            record_playlogDetail_data = []
-            for record_data in record_data_paginate.items:
-                _id = record_data.id
-                _record_playlogDetail = playlogDetail.query.get(_id - 1)
-
-                record_playlogDetail_data.append(_record_playlogDetail)
-
-                _level_img_s = record_data.level_img_s
-                _name = record_data.name
-                _play_dt = record_data.play_dt
-                _record_data = Record.query.filter_by(name=_name, level_img_s=_level_img_s).filter(
-                    Record.play_dt <= _play_dt).order_by(
-                    Record.achievement.desc()).all()
-
-                history_record_data.append(_record_data)
-
-            return flask.render_template('maimai/quick_record_diff.html', record_data_paginate=record_data_paginate,
-                                         record_playlogDetail_data=record_playlogDetail_data,
-                                         history_record_data=history_record_data, page=page, per_page=per_page)
-        else:
-            record_data_paginate = Record.query.order_by(Record.id.desc()).paginate(page, per_page)
-            # total = record_data_paginate.total
-            # total_page = math.ceil(total / per_page)
-            return flask.render_template('maimai/quick_record.html', record_data_paginate=record_data_paginate,
-                                         page=page, per_page=per_page)
-    elif 'record_musicGenre' in flask.request.args:
-        record_musicGenre_data = musicInfo.query.order_by(musicInfo.id.asc()).all()
-        return flask.render_template('maimai/record_musicGenre.html', record_musicGenre_data=record_musicGenre_data,
-                                     size=len(record_musicGenre_data))
-    elif 'practice' in flask.request.args:
-        practice_data = practice.query.order_by(practice.id.asc()).all()
-        return flask.render_template('maimai/practice.html', practice_data=practice_data)
     elif 'record_playlogDetail' in flask.request.args:
         idx = int(flask.request.args.get('idx'))
         all_levels = flask.request.args.get('all_levels')
@@ -159,3 +120,49 @@ def wechat_archive():
                                      cache_dt_data=cache_dt_data, all_levels=all_levels)
     else:
         return flask.redirect(flask.url_for('main.wechat_archive', _external=True) + '?home')
+
+
+@bp.route('/review')
+def review():
+    if 'record_musicGenre' in flask.request.args:
+        record_musicGenre_data = musicInfo.query.order_by(musicInfo.id.asc()).all()
+        return flask.render_template('maimai/review/record_musicGenre.html',
+                                     record_musicGenre_data=record_musicGenre_data,
+                                     size=len(record_musicGenre_data))
+    elif 'practice' in flask.request.args:
+        practice_data = practice.query.order_by(practice.id.asc()).all()
+        return flask.render_template('maimai/review/practice.html', practice_data=practice_data)
+    else:
+        page = int(flask.request.args.get('page', 1))
+        per_page = int(flask.request.args.get('per_page', 20))
+        if 'all' in flask.request.args:
+            per_page = 334
+        if 'diff' in flask.request.args:
+            record_data_paginate = Record.query.order_by(Record.id.desc()).paginate(page, per_page)
+            history_record_data = []
+            record_playlogDetail_data = []
+            for record_data in record_data_paginate.items:
+                _id = record_data.id
+                _record_playlogDetail = playlogDetail.query.get(_id - 1)
+
+                record_playlogDetail_data.append(_record_playlogDetail)
+
+                _level_img_s = record_data.level_img_s
+                _name = record_data.name
+                _play_dt = record_data.play_dt
+                _record_data = Record.query.filter_by(name=_name, level_img_s=_level_img_s).filter(
+                    Record.play_dt <= _play_dt).order_by(
+                    Record.achievement.desc()).all()
+
+                history_record_data.append(_record_data)
+
+            return flask.render_template('maimai/review/quick_record_diff.html',
+                                         record_data_paginate=record_data_paginate,
+                                         record_playlogDetail_data=record_playlogDetail_data,
+                                         history_record_data=history_record_data, page=page, per_page=per_page)
+        else:
+            record_data_paginate = Record.query.order_by(Record.id.desc()).paginate(page, per_page)
+            # total = record_data_paginate.total
+            # total_page = math.ceil(total / per_page)
+            return flask.render_template('maimai/review/quick_record.html', record_data_paginate=record_data_paginate,
+                                         page=page, per_page=per_page)
