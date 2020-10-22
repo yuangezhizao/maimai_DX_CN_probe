@@ -8,7 +8,8 @@
 """
 
 from flask_sqlalchemy import SQLAlchemy
-from flask_zipper import Zipper
+
+# from flask_zipper import Zipper
 
 db = SQLAlchemy()
-zipper = Zipper()
+# zipper = Zipper()
