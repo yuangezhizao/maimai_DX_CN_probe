@@ -1,4 +1,6 @@
 Flask
 Flask-SQLAlchemy
+Flask-Zipper
+brotli
 python-dotenv
 pymysql

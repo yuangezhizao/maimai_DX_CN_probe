@@ -46,8 +46,9 @@ def create_app(config_name=None):
 
 
 def register_extensions(app):
-    from maimai_DX_CN_probe.plugins.extensions import db
+    from maimai_DX_CN_probe.plugins.extensions import db, zipper
     db.init_app(app)
+    zipper.init_app(app)
 
 
 def register_blueprints(app):
