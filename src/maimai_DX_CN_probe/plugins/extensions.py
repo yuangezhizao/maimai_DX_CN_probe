@@ -9,7 +9,7 @@
 
 from flask_sqlalchemy import SQLAlchemy
 
-from flask_zipper import Zipper
+from flask_compress import Compress
 
 db = SQLAlchemy()
-zipper = Zipper()
+compress = Compress()
