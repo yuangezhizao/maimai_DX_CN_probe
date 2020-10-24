@@ -37,20 +37,20 @@
     {#    <meta http-equiv="Pragma" CONTENT="no-cache">#}
     {#    <meta http-equiv="Cache-Control" CONTENT="no-cache">#}
     {#    <meta http-equiv="Expires" CONTENT="-1">#}
-    <meta name="robots" content="INDEX, FOLLOW"/>
-    <meta name="author" content="(C) SEGA">
-    <meta name="copyright" content="&copy;SEGA">
-    <meta name="description" content="此网页可浏览SEGA(世嘉)音乐机台「舞萌DX」的个人游戏记录。">
-    <meta name="keywords" content="舞萌DX,maimai DX,maimai deluxe,sega"/>
+    {#    <meta name="robots" content="INDEX, FOLLOW"/>#}
+    {#    <meta name="author" content="(C) SEGA">#}
+    {#    <meta name="copyright" content="&copy;SEGA">#}
+    {#    <meta name="description" content="此网页可浏览SEGA(世嘉)音乐机台「舞萌DX」的个人游戏记录。">#}
+    {#    <meta name="keywords" content="舞萌DX,maimai DX,maimai deluxe,sega"/>#}
     <meta name="theme-color" content="#51bcf3">
 
     <title>舞萌DX－玩家数据－</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='static/css/maimai-mobile/common.css') }}"/>
     <link rel="apple-touch-icon-precomposed" href="https://lab.yuangezhizao.cn/maimai-mobile/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="https://lab.yuangezhizao.cn/maimai-mobile/apple-touch-icon.png">
-    <!--
-    ここに百度統計のスクリプト追加予定
-    -->
+    {#    <!--#}
+    {#    ここに百度統計のスクリプト追加予定#}
+    {#    -->#}
     <script src="https://cdn.jsdelivr.net/npm/highcharts/highcharts.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/highcharts/modules/exporting.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/highcharts/modules/series-label.js"></script>
@@ -73,7 +73,8 @@
             <div class="menu">
                 <a href="{{ url_for('main.wechat_archive', _external=True) + '?home' }}" class="d_ib col4 p_4"><img
                         src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_home.png" class="w_112"/></a>
-                <a href="{{ url_for('main.wechat_archive', _external=True) + '?playerData' }}" class="d_ib col4 p_4"><img
+                <a href="{{ url_for('main.wechat_archive', _external=True) + '?playerData' }}"
+                   class="d_ib col4 p_4"><img
                         src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_playerdata_on.png" class="w_112"/></a>
                 <a href="{{ url_for('main.wechat_archive', _external=True) + '?record' }}" class="d_ib col4 p_4"><img
                         src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_record.png" class="w_112"/></a>
@@ -234,11 +235,11 @@
     <footer class="f_0">
         <div class="footer_marquee">
             <div class="footer w_480">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 480 50"
-                     preserveAspectRatio="none" style="height:50px">
-                    <path d="M0,0 v25 q5,5 10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 v-25 Z"
-                          fill="#7cbc29"></path>
-                </svg>
+                {#                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 480 50"#}
+                {#                     preserveAspectRatio="none" style="height:50px">#}
+                {#                    <path d="M0,0 v25 q5,5 10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 t10,0 v-25 Z"#}
+                {#                          fill="#7cbc29"></path>#}
+                {#                </svg>#}
                 {#                <div class="m_15 m_t_0 f_13">#}
                 {#                    <div class="m_5"><a href="https://lab.yuangezhizao.cn/maimai-mobile/termsOfService/" target="_blank"#}
                 {#                                        class="white" rel="noopener">使用条款</a></div>#}
@@ -248,16 +249,16 @@
                 {#                                        class="white" rel="noopener">私隐政策</a></div>#}
                 {#                </div>#}
                 {#                <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/line_02.png" class="w_430 m_b_10"/>#}
-                <div class="f_l m_15 m_l_30 p_l_10">
-                    <a href="http://sega.jp" target="_blank" rel="noopener"><img
-                            src="https://lab.yuangezhizao.cn/maimai-mobile/img/logo_sega.png"/></a>
-                    {#                    <div class="f_15 p_5">© SEGA</div>#}
-                </div>
-                <div class="m_15">
-                    <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/logo_wahlap.png"/></a>
-                    {#                    <div class="f_11 p_3"><a href="http://www.miitbeian.gov.cn"#}
-                    {#                                             style="text-decoration:none; color: #fff" target="_blank" rel="noopener">粤ICP备05005783号</a>#}
-                </div>
+                {#                <div class="f_l m_15 m_l_30 p_l_10">#}
+                {#                    <a href="http://sega.jp" target="_blank" rel="noopener"><img#}
+                {#                            src="https://lab.yuangezhizao.cn/maimai-mobile/img/logo_sega.png"/></a>#}
+                {#                    <div class="f_15 p_5">© SEGA</div>#}
+                {#                </div>#}
+                {#                <div class="m_15">#}
+                {#                    <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/logo_wahlap.png"/></a>#}
+                {#                    <div class="f_11 p_3"><a href="http://www.miitbeian.gov.cn"#}
+                {#                                             style="text-decoration:none; color: #fff" target="_blank" rel="noopener">粤ICP备05005783号</a>#}
+                {#                </div>#}
                 <div class="p_10">
                     <div class="f_12 l_h_12"></div>
                     <div class="f_12 l_h_12">Modified for personal use，yuangezhizao © 2020</div>
