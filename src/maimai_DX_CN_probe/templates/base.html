@@ -16,25 +16,27 @@
     {% block head %}{% endblock %}
 </head>
 <body>
-<div class="ui container">
-    <div class="ui blue pointing menu">
-        {% block nav %}
-            <a class="active item"><i class="home icon"></i>首页</a>
-            <a class="item" href="https://github.com/yuangezhizao/maimai_DX_CN_probe" target="_blank"><i
-                    class="archive icon"></i>关于</a>
-        {% endblock %}
-    </div>
-    {% block content %}{% endblock %}
-    <div class="ui divider"></div>
-    <footer>
-        <div style="text-align: center;">
-            <h5>
-                yuangezhizao&nbsp&nbsp&nbsp&nbsp©&nbsp&nbsp&nbsp&nbsp2020<br>
-                Powered by Tencent Cloud Serverless
-            </h5>
+{% block body %}
+    <div class="ui container">
+        <div class="ui blue pointing menu">
+            {% block nav %}
+                <a class="active item"><i class="home icon"></i>首页</a>
+                <a class="item" href="https://github.com/yuangezhizao/maimai_DX_CN_probe" target="_blank"><i
+                        class="archive icon"></i>关于</a>
+            {% endblock %}
         </div>
-    </footer>
-</div>
+        {% block content %}{% endblock %}
+        <div class="ui divider"></div>
+        <footer>
+            <div style="text-align: center;">
+                <h5>
+                    yuangezhizao&nbsp&nbsp&nbsp&nbsp©&nbsp&nbsp&nbsp&nbsp2020<br>
+                    Powered by Tencent Cloud Serverless
+                </h5>
+            </div>
+        </footer>
+    </div>
+{% endblock %}
 <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fomantic-ui/dist/semantic.min.js"></script>
 <script>

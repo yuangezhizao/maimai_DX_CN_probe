@@ -4,234 +4,247 @@
 
 {% block title %}舞萌DX－快速预览－{% endblock %}
 
-{% block nav %}
-    <a class="active item"><i class="circle icon"></i>舞萌DX－快速预览－</a>
-    <a class="item" href="{{ url_for('main.site_index') }}"><i class="arrow left icon"></i>返回首页</a>
-{% endblock %}
+{% block body %}
+    <div class="ui centered grid">
+        <div class="ten wide computer column">
+            <div class="ui blue pointing menu">
+                <a class="active item"><i class="circle icon"></i>舞萌DX－快速预览－</a>
+                <a class="item" href="{{ url_for('main.site_index') }}"><i class="arrow left icon"></i>返回首页</a>
+            </div>
 
-{% block content %}
+            <div class="ui dividing blue header">
+                <div class="content">
+                    <h2>quick_record</h2>
+                </div>
+            </div>
 
-    <div class="ui dividing blue header">
-        <div class="content">
-            <h2>quick_record</h2>
+            <table id="table" class="ui compact sortable celled unstackable striped blue table">
+                <thead>
+                <tr class="positive">
+                    <th>id</th>
+                    <th>track</th>
+                    <th>img_s</th>
+                    <th>name</th>
+                    <th>level_img_s</th>
+                    <th>achievement</th>
+                    <th>score_rank_img_s</th>
+                    <th>dx_img_s</th>
+                    <th>fc_img_s</th>
+                    <th>fs_img_s</th>
+                    <th>delux_score</th>
+                    <th>rate</th>
+                    <th>delux_new</th>
+                    <th>score_rank_new</th>
+                    <th>clear</th>
+                    <th>vs</th>
+                    <th>play_dt</th>
+                    <th>cache_dt</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in record_data_paginate.items %}
+                    {% if data.achievement == 101 %}
+                        {% set achievement_class = black %}
+                    {% elif data.achievement >= 100.5 %}
+                        {% set achievement_class = grey %}
+                    {% elif data.achievement >= 100 %}
+                        {% set achievement_class = brown %}
+                    {% elif data.achievement >= 99.5 %}
+                        {% set achievement_class = yellow %}
+                    {% elif data.achievement >= 99 %}
+                        {% set achievement_class = orange %}
+                    {% elif data.achievement >= 98 %}
+                        {% set achievement_class = red %}
+                    {% elif data.achievement >= 97 %}
+                        {% set achievement_class = pink %}
+                    {% elif data.achievement >= 94 %}
+                        {% set achievement_class = purple %}
+                    {% elif data.achievement >= 90 %}
+                        {% set achievement_class = violet %}
+                    {% elif data.achievement >= 80 %}
+                        {% set achievement_class = blue %}
+                    {% elif data.achievement >= 75 %}
+                        {% set achievement_class = teal %}
+                    {% elif data.achievement >= 70 %}
+                        {% set achievement_class = green %}
+                    {% elif data.achievement >= 60 %}
+                        {% set achievement_class = olive %}
+                    {% else %}
+                    {% endif %}
+                    <tr>
+                        <td>
+                            {{ data.id }}
+                        </td>
+                        <td>
+                            {{ data.track }}
+                        </td>
+                        <td>
+                            <img class="ui mini image"
+                                 src="{{ data.img_s | replace("maimai.wahlap.com", "lab.yuangezhizao.cn") }}">
+                        </td>
+                        <td>
+                            {{ data.name }}
+                        </td>
+                        <td>
+                            <span style="display: none">{{ data.level_img_s | my_split('_', 1) }}</span>
+                            <img class="ui tiny image"
+                                 src="https://lab.yuangezhizao.cn/maimai-mobile/img/btn_music_{{ data.level_img_s | my_split('_', 1) }}.png">
+                        </td>
+                        <td class="
+{% if data.achievement == 101 %}
+    black
+{% elif data.achievement >= 100.5 %}
+    grey
+{% elif data.achievement >= 100 %}
+    brown
+{% elif data.achievement >= 99.5 %}
+    yellow
+{% elif data.achievement >= 99 %}
+    orange
+{% elif data.achievement >= 98 %}
+    red
+{% elif data.achievement >= 97 %}
+    pink
+{% elif data.achievement >= 94 %}
+    purple
+{% elif data.achievement >= 90 %}
+    violet
+{% elif data.achievement >= 80 %}
+    blue
+{% elif data.achievement >= 75 %}
+    teal
+{% elif data.achievement >= 70 %}
+    green
+{% elif data.achievement >= 60 %}
+    olive
+{% else %}
+{% endif %}">
+                            {{ data.achievement }}
+                        </td>
+                        <td class="
+{% if data.achievement == 101 %}
+    black
+{% elif data.achievement >= 100.5 %}
+    grey
+{% elif data.achievement >= 100 %}
+    brown
+{% elif data.achievement >= 99.5 %}
+    yellow
+{% elif data.achievement >= 99 %}
+    orange
+{% elif data.achievement >= 98 %}
+    red
+{% elif data.achievement >= 97 %}
+    pink
+{% elif data.achievement >= 94 %}
+    purple
+{% elif data.achievement >= 90 %}
+    violet
+{% elif data.achievement >= 80 %}
+    blue
+{% elif data.achievement >= 75 %}
+    teal
+{% elif data.achievement >= 70 %}
+    green
+{% elif data.achievement >= 60 %}
+    olive
+{% else %}
+{% endif %}">
+                            {{ data.score_rank_img_s | upper }}
+                        </td>
+                        <td class="{% if data.dx_img_s == 'music_dx' %}orange{% elif data.dx_img_s == 'music_standard' %}blue{% else %}{% endif %}">
+                            {{ data.dx_img_s }}
+                        </td>
+                        <td>
+                            {% if data.fc_img_s != 'fc_dummy' %}
+                                <span style="display: none">{{ data.fc_img_s | upper }}</span>
+                                <img class="ui tiny image"
+                                     src="https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/{{ data.fc_img_s }}.png">
+                            {% else %}
+                                <i class="red icon close"></i>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if data.fs_img_s != 'fs_dummy' %}
+                                <span style="display: none">{{ data.fs_img_s | upper }}</span>
+                                <img class="ui tiny image"
+                                     src="https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/{{ data.fs_img_s }}.png">
+                            {% else %}
+                                <i class="red icon close"></i>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ data.delux_score }}
+                        </td>
+                        <td {% if data.rate_img_s %}class="{% if data.rate_img_s == '1st' %}positive{% elif data.rate_img_s == '2nd' %}negative{% else %}{% endif %}"{% endif %}>
+                            {% if data.rate_img_s %}
+                                <span style="display: none">{{ data.rate_img_s }}</span>
+                                {{ data.rate_img_s }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span style="display: none">{{ data.delux_new }}</span>
+                            {% if data.delux_new %}
+                                <i class="green icon checkmark"></i>
+                            {% else %}
+                                <i class="red icon close"></i>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span style="display: none">{{ data.score_rank_new }}</span>
+                            {% if data.score_rank_new %}
+                                <i class="green icon checkmark"></i>
+                            {% else %}
+                                <i class="red icon close"></i>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span style="display: none">{{ data.clear }}</span>
+                            {% if data.clear %}
+                                <i class="green icon checkmark"></i>
+                            {% else %}
+                                <i class="red icon close"></i>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if data.vs_img_s == None %}
+                            {% elif data.vs_img_s == 'win' %}
+                                <span style="display: none">{{ data.vs_img_s }}</span>
+                                <i class="green icon checkmark"></i>
+                            {% else %}
+                                <span style="display: none">{{ data.vs_img_s }}</span>
+                                <i class="red icon close"></i>
+                            {% endif %}
+                        </td>
+                        <td {% if data.play_dt %}data-tooltip="{{ data.play_dt }}" data-inverted=""{% endif %}>
+                            {% if data.play_dt %}
+                                {{ data.play_dt | my_split(' ', 0) }}
+                            {% else %}
+                            {% endif %}
+                        </td>
+                        <td {% if data.cache_dt %}data-tooltip="{{ data.cache_dt }}" data-inverted=""{% endif %}>
+                            {% if data.cache_dt %}
+                                {{ data.cache_dt | my_split(' ', 0) }}
+                            {% else %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {{ pagination_widget(record_data_paginate, 'main.wechat_archive', quick_record='') }}
+
+            <div class="ui divider"></div>
+            <footer>
+                <div style="text-align: center;">
+                    <h5>
+                        yuangezhizao&nbsp&nbsp&nbsp&nbsp©&nbsp&nbsp&nbsp&nbsp2020<br>
+                        Powered by Tencent Cloud Serverless
+                    </h5>
+                </div>
+            </footer>
         </div>
     </div>
-
-    <table id="table" class="ui compact sortable celled unstackable striped blue table">
-        <thead>
-        <tr class="positive">
-            <th>id</th>
-            <th>track</th>
-            <th>img_s</th>
-            <th>name</th>
-            <th>level_img_s</th>
-            <th>achievement</th>
-            <th>score_rank_img_s</th>
-            <th>dx_img_s</th>
-            <th>fc_img_s</th>
-            <th>fs_img_s</th>
-            <th>delux_score</th>
-            <th>rate</th>
-            <th>delux_new</th>
-            <th>score_rank_new</th>
-            <th>clear</th>
-            <th>vs</th>
-            <th>play_dt</th>
-            <th>cache_dt</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for data in record_data_paginate.items %}
-            {% if data.achievement == 101 %}
-                {% set achievement_class = black %}
-            {% elif data.achievement >= 100.5 %}
-                {% set achievement_class = grey %}
-            {% elif data.achievement >= 100 %}
-                {% set achievement_class = brown %}
-            {% elif data.achievement >= 99.5 %}
-                {% set achievement_class = yellow %}
-            {% elif data.achievement >= 99 %}
-                {% set achievement_class = orange %}
-            {% elif data.achievement >= 98 %}
-                {% set achievement_class = red %}
-            {% elif data.achievement >= 97 %}
-                {% set achievement_class = pink %}
-            {% elif data.achievement >= 94 %}
-                {% set achievement_class = purple %}
-            {% elif data.achievement >= 90 %}
-                {% set achievement_class = violet %}
-            {% elif data.achievement >= 80 %}
-                {% set achievement_class = blue %}
-            {% elif data.achievement >= 75 %}
-                {% set achievement_class = teal %}
-            {% elif data.achievement >= 70 %}
-                {% set achievement_class = green %}
-            {% elif data.achievement >= 60 %}
-                {% set achievement_class = olive %}
-            {% else %}
-            {% endif %}
-            <tr>
-                <td>
-                    {{ data.id }}
-                </td>
-                <td>
-                    {{ data.track }}
-                </td>
-                <td>
-                    <img class="ui mini image"
-                         src="{{ data.img_s | replace("maimai.wahlap.com", "lab.yuangezhizao.cn") }}">
-                </td>
-                <td>
-                    {{ data.name }}
-                </td>
-                <td>
-                    <span style="display: none">{{ data.level_img_s | my_split('_', 1) }}</span>
-                    <img class="ui tiny image"
-                         src="https://lab.yuangezhizao.cn/maimai-mobile/img/btn_music_{{ data.level_img_s | my_split('_', 1) }}.png">
-                </td>
-                <td class="
-{% if data.achievement == 101 %}
-    black
-{% elif data.achievement >= 100.5 %}
-    grey
-{% elif data.achievement >= 100 %}
-    brown
-{% elif data.achievement >= 99.5 %}
-    yellow
-{% elif data.achievement >= 99 %}
-    orange
-{% elif data.achievement >= 98 %}
-    red
-{% elif data.achievement >= 97 %}
-    pink
-{% elif data.achievement >= 94 %}
-    purple
-{% elif data.achievement >= 90 %}
-    violet
-{% elif data.achievement >= 80 %}
-    blue
-{% elif data.achievement >= 75 %}
-    teal
-{% elif data.achievement >= 70 %}
-    green
-{% elif data.achievement >= 60 %}
-    olive
-{% else %}
-{% endif %}">
-                    {{ data.achievement }}
-                </td>
-                <td class="
-{% if data.achievement == 101 %}
-    black
-{% elif data.achievement >= 100.5 %}
-    grey
-{% elif data.achievement >= 100 %}
-    brown
-{% elif data.achievement >= 99.5 %}
-    yellow
-{% elif data.achievement >= 99 %}
-    orange
-{% elif data.achievement >= 98 %}
-    red
-{% elif data.achievement >= 97 %}
-    pink
-{% elif data.achievement >= 94 %}
-    purple
-{% elif data.achievement >= 90 %}
-    violet
-{% elif data.achievement >= 80 %}
-    blue
-{% elif data.achievement >= 75 %}
-    teal
-{% elif data.achievement >= 70 %}
-    green
-{% elif data.achievement >= 60 %}
-    olive
-{% else %}
-{% endif %}">
-                    {{ data.score_rank_img_s | upper }}
-                </td>
-                <td class="{% if data.dx_img_s == 'music_dx' %}orange{% elif data.dx_img_s == 'music_standard' %}blue{% else %}{% endif %}">
-                    {{ data.dx_img_s }}
-                </td>
-                <td>
-                    {% if data.fc_img_s != 'fc_dummy' %}
-                        <span style="display: none">{{ data.fc_img_s | upper }}</span>
-                        <img class="ui tiny image"
-                             src="https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/{{ data.fc_img_s }}.png">
-                    {% else %}
-                        <i class="red icon close"></i>
-                    {% endif %}
-                </td>
-                <td>
-                    {% if data.fs_img_s != 'fs_dummy' %}
-                        <span style="display: none">{{ data.fs_img_s | upper }}</span>
-                        <img class="ui tiny image"
-                             src="https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/{{ data.fs_img_s }}.png">
-                    {% else %}
-                        <i class="red icon close"></i>
-                    {% endif %}
-                </td>
-                <td>
-                    {{ data.delux_score }}
-                </td>
-                <td {% if data.rate_img_s %}class="{% if data.rate_img_s == '1st' %}positive{% elif data.rate_img_s == '2nd' %}negative{% else %}{% endif %}"{% endif %}>
-                    {% if data.rate_img_s %}
-                        <span style="display: none">{{ data.rate_img_s }}</span>
-                        {{ data.rate_img_s }}
-                    {% endif %}
-                </td>
-                <td>
-                    <span style="display: none">{{ data.delux_new }}</span>
-                    {% if data.delux_new %}
-                        <i class="green icon checkmark"></i>
-                    {% else %}
-                        <i class="red icon close"></i>
-                    {% endif %}
-                </td>
-                <td>
-                    <span style="display: none">{{ data.score_rank_new }}</span>
-                    {% if data.score_rank_new %}
-                        <i class="green icon checkmark"></i>
-                    {% else %}
-                        <i class="red icon close"></i>
-                    {% endif %}
-                </td>
-                <td>
-                    <span style="display: none">{{ data.clear }}</span>
-                    {% if data.clear %}
-                        <i class="green icon checkmark"></i>
-                    {% else %}
-                        <i class="red icon close"></i>
-                    {% endif %}
-                </td>
-                <td>
-                    {% if data.vs_img_s == None %}
-                    {% elif data.vs_img_s == 'win' %}
-                        <span style="display: none">{{ data.vs_img_s }}</span>
-                        <i class="green icon checkmark"></i>
-                    {% else %}
-                        <span style="display: none">{{ data.vs_img_s }}</span>
-                        <i class="red icon close"></i>
-                    {% endif %}
-                </td>
-                <td {% if data.play_dt %}data-tooltip="{{ data.play_dt }}" data-inverted=""{% endif %}>
-                    {% if data.play_dt %}
-                        {{ data.play_dt | my_split(' ', 0) }}
-                    {% else %}
-                    {% endif %}
-                </td>
-                <td {% if data.cache_dt %}data-tooltip="{{ data.cache_dt }}" data-inverted=""{% endif %}>
-                    {% if data.cache_dt %}
-                        {{ data.cache_dt | my_split(' ', 0) }}
-                    {% else %}
-                    {% endif %}
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    {{ pagination_widget(record_data_paginate, 'main.wechat_archive', quick_record='') }}
 {% endblock %}
 
 {% block script %}
