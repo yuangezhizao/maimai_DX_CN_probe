@@ -9,25 +9,36 @@
         </div>
     </div>
 
-    <div class="ui doubling cards">
-        <div class="blue card">
-            <div class="content">
-                <div class="header">maimai_DX_CN_probe</div>
-                <div class="description">周常出勤记录</div>
-                <div class="ui top right attached pink label">New</div>
-            </div>
-            <a class="ui attached button"
-               href="{{ url_for('main.wechat_archive') }}"><i class="music icon"></i></a>
-        </div>
+    <h4 class="ui top attached block header">
+        wechat_archive
+    </h4>
+    <div class="ui bottom attached segment">
+        <a href="{{ url_for('main.wechat_archive') + '?home' }}">主页</a>，
+        <a href="{{ url_for('main.wechat_archive') + '?playerData' }}">游戏数据</a>，
+        <a href="{{ url_for('main.wechat_archive') + '?playerData_album' }}">相册</a>，
+        <a href="{{ url_for('main.wechat_archive') + '?record' }}">游戏记录</a>
+    </div>
 
-        <div class="blue card">
-            <div class="content">
-                <div class="header">maimai_DX_CN_saver</div>
-                <div class="description">舞萌数据存储</div>
-            </div>
-            <a class="ui attached button"
-               href="https://github.com/yuangezhizao/maimai_DX_CN_saver" target="_blank"><i
-                    class="database icon"></i></a>
-        </div>
+    <div class="ui section divider"></div>
+
+    <h4 class="ui top attached block header">
+        record
+    </h4>
+    <div class="ui attached segment">
+        <a href="{{ url_for('main.record') }}">记录（分页）</a>，
+        <a href="{{ url_for('main.record') + '?diff' }}">差异（分页）</a>
+    </div>
+    <div class="ui bottom attached segment">
+        <a href="{{ url_for('main.record') + '?all' }}">记录（全部）</a>，
+        <a href="{{ url_for('main.record')+ '?diff&all' }}">差异（全部）</a>
+    </div>
+
+    <div class="ui section divider"></div>
+
+    <h4 class="ui top attached block header">
+        maimai_DX_CN_saver
+    </h4>
+    <div class="ui bottom attached segment">
+        <a href="https://github.com/yuangezhizao/maimai_DX_CN_saver" target="_blank">数据存储</a>
     </div>
 {% endblock %}
