@@ -46,6 +46,9 @@ def create_app(config_name=None):
 
 
 def register_extensions(app):
+    app.jinja_env.trim_blocks = True
+    app.jinja_env.lstrip_blocks = True
+
     from maimai_DX_CN_probe.plugins.extensions import db, compress
 
     db.init_app(app)
