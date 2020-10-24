@@ -20,8 +20,6 @@
         <a href="{{ url_for('main.wechat_archive') + '?record' }}">游戏记录</a>
     </div>
 
-    <div class="ui section divider"></div>
-
     <h4 class="ui top attached block purple header">
         record
     </h4>
@@ -34,7 +32,12 @@
         <a href="{{ url_for('main.record')+ '?diff&all' }}">差异（全部）</a>
     </div>
 
-    <div class="ui section divider"></div>
+    <h4 class="ui top attached block brown header">
+        info
+    </h4>
+    <div class="ui bottom attached brown segment">
+        <a href="{{ url_for('main.info') }}">铺面列表</a>
+    </div>
 
     <h4 class="ui top attached block orange header">
         maimai_DX_CN_saver

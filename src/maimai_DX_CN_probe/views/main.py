@@ -124,12 +124,7 @@ def wechat_archive():
 
 @bp.route('/record')
 def record():
-    if 'record_musicGenre' in flask.request.args:
-        record_musicGenre_data = musicInfo.query.order_by(musicInfo.id.asc()).all()
-        return flask.render_template('maimai/review/record_musicGenre.html',
-                                     record_musicGenre_data=record_musicGenre_data,
-                                     size=len(record_musicGenre_data))
-    elif 'practice' in flask.request.args:
+    if 'practice' in flask.request.args:
         practice_data = practice.query.order_by(practice.id.asc()).all()
         return flask.render_template('maimai/review/practice.html', practice_data=practice_data)
     else:
@@ -166,3 +161,11 @@ def record():
             # total_page = math.ceil(total / per_page)
             return flask.render_template('maimai/record/index.html', record_data_paginate=record_data_paginate,
                                          page=page, per_page=per_page)
+
+
+@bp.route('/info')
+def info():
+    record_musicGenre_data = musicInfo.query.order_by(musicInfo.id.asc()).all()
+    return flask.render_template('maimai/info/list.html',
+                                 record_musicGenre_data=record_musicGenre_data,
+                                 size=len(record_musicGenre_data))

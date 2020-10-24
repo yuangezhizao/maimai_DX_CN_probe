@@ -2,83 +2,90 @@
 
 {% block title %}舞萌DX－所有乐曲－{% endblock %}
 
-{% block nav %}
-    <a class="active item"><i class="circle icon"></i>舞萌DX－所有乐曲－</a>
-    <a class="item" href="{{ url_for('main.site_index') }}"><i class="arrow left icon"></i>返回首页</a>
-{% endblock %}
+{% block body %}
+    <div class="ui centered grid">
+        <div class="ten wide computer column">
+            <div class="ui blue pointing menu">
+                <a class="active item"><i class="circle icon"></i>舞萌DX－所有乐曲－</a>
+                <a class="item" href="{{ url_for('main.site_index') }}"><i class="arrow left icon"></i>返回首页</a>
+            </div>
 
-{% block content %}
+            <div class="ui dividing blue header">
+                <div class="content">
+                    <h2>舞萌DX - 总计（{{ size }}）条数据</h2>
+                </div>
+            </div>
 
-    <div class="ui dividing blue header">
-        <div class="content">
-            <h2>舞萌DX - 总计（{{ size }}）条数据</h2>
+            <table id="table" class="ui compact sortable celled unstackable striped blue table">
+                <thead>
+
+                <tr class="positive">
+                    <th>id</th>
+                    <th>name</th>
+                    <th>level_img_s</th>
+                    <th>dx_img_s</th>
+                    <th>music_genre</th>
+                    <th>music_word</th>
+                    <th>music_level</th>
+                    <th>music_version</th>
+                    {#                    <th>union_lock</th>#}
+                    <th>cache_dt</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for data in record_musicGenre_data %}
+                    <tr>
+                        <td>
+                            {{ data.id }}
+                        </td>
+                        <td>
+                            {{ data.name }}
+                        </td>
+                        <td>
+                            <img class="ui mini image"
+                                 src="https://lab.yuangezhizao.cn/maimai-mobile/img/btn_music_{{ data.level_img_s | my_split('_', 1) }}.png">
+                        </td>
+                        <td>
+                            <img class="ui mini image"
+                                 src="https://lab.yuangezhizao.cn/maimai-mobile/img/{{ data.dx_img_s }}.png">
+                        </td>
+                        <td>
+                            {{ data.music_genre }}
+                        </td>
+                        <td>
+                            {{ data.music_word }}
+                        </td>
+                        <td>
+                            {{ data.music_level }}
+                        </td>
+                        <td>
+                            {{ data.music_version }}
+                        </td>
+                        {#                        <td>#}
+                        {#                            {{ data.union_lock }}#}
+                        {#                        </td>#}
+                        <td {% if data.cache_dt %}data-tooltip="{{ data.cache_dt }}" data-inverted=""{% endif %}>
+                            {% if data.cache_dt %}
+                                {{ data.cache_dt | my_split(' ', 0) }}
+                            {% else %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+            <div class="ui divider"></div>
+            <footer>
+                <div class="ui info message" style="text-align: center;">
+                    yuangezhizao&nbsp&nbsp&nbsp&nbsp©&nbsp&nbsp&nbsp&nbsp2020<br>
+                    Powered by Tencent Cloud Serverless
+                </div>
+            </footer>
         </div>
     </div>
-
-    <table id="table" class="ui compact sortable celled unstackable striped blue table">
-        <thead>
-
-        <tr class="positive">
-            <th>id</th>
-            <th>name</th>
-            <th>level_img_s</th>
-            <th>dx_img_s</th>
-            <th>music_genre</th>
-            <th>music_word</th>
-            <th>music_level</th>
-            <th>music_version</th>
-            <!--<th>union_lock</th>-->
-            <th>cache_dt</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        {% for data in record_musicGenre_data %}
-            <tr>
-                <td>
-                    {{ data.id }}
-                </td>
-                <td>
-                    {{ data.name }}
-                </td>
-                <td>
-                    <img class="ui mini image"
-                         src="https://lab.yuangezhizao.cn/maimai-mobile/img/btn_music_{{ data.level_img_s | my_split('_', 1) }}.png">
-                </td>
-                <td>
-                    <img class="ui mini image"
-                         src="https://lab.yuangezhizao.cn/maimai-mobile/img/{{ data.dx_img_s }}.png">
-                </td>
-                <td>
-                    {{ data.music_genre }}
-                </td>
-                <td>
-                    {{ data.music_word }}
-                </td>
-                <td>
-                    {{ data.music_level }}
-                </td>
-                <td>
-                    {{ data.music_version }}
-                </td>
-                <!--
-                <td>
-                    {{ data.union_lock }}
-                </td>
-                -->
-                <td {% if data.cache_dt %}data-tooltip="{{ data.cache_dt }}" data-inverted=""{% endif %}>
-                    {% if data.cache_dt %}
-                        {{ data.cache_dt | my_split(' ', 0) }}
-                    {% else %}
-                    {% endif %}
-                </td>
-            </tr>
-        {% endfor %}
-
-        </tbody>
-    </table>
-
-
 {% endblock %}
 
 {% block script %}
