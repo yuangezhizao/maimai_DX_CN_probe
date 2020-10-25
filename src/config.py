@@ -16,6 +16,8 @@ class BaseConfig:
     def init_app(app):
         pass
 
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 
 class DevelopmentConfig(BaseConfig):
     DEBUG = True
