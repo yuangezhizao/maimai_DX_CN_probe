@@ -4,3 +4,4 @@ Flask-Compress
 brotli
 python-dotenv
 pymysql
+psycopg2
