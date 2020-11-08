@@ -145,7 +145,8 @@ def record():
                 _level_img_s = record_data.level_img_s
                 _name = record_data.name
                 _play_dt = record_data.play_dt
-                _record_data = Record.query.filter_by(name=_name, level_img_s=_level_img_s).filter(
+                _dx_img_s = record_data.dx_img_s
+                _record_data = Record.query.filter_by(name=_name, level_img_s=_level_img_s, dx_img_s=_dx_img_s).filter(
                     Record.play_dt <= _play_dt).order_by(
                     Record.achievement.desc()).all()
 
