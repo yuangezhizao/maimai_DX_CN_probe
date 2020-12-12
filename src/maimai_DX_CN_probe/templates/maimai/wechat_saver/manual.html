@@ -1,0 +1,35 @@
+{% extends "/base.html" %}
+{% from 'macros.html' import message_part with context %}
+
+{% block title %}微信存档{% endblock %}
+
+{% block nav %}
+    <a class="active item"><i class="circle icon"></i>微信存档</a>
+    <a class="item" href="{{ url_for('main.site_index') }}"><i class="arrow left icon"></i>返回首页</a>
+{% endblock %}
+
+{% block content %}
+    <div class="ui dividing blue header">
+        <div class="content">
+            <h2>微信存档</h2>
+        </div>
+    </div>
+    {{ message_part() }}
+    <form class="ui form" action="{{ url_for('main.wechat_saver') }}" method="post">
+        <div class="field">
+            <label>html_type</label>
+            <select name="html_type" class="ui selection dropdown">
+                <option value="home">home</option>
+                <option value="playerData">playerData</option>
+                <option value="playerData_album" disabled>playerData_album</option>
+                <option value="record" disabled>record</option>
+                <option value="record_playlogDetail" disabled>record_playlogDetail</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>raw_html</label>
+            <textarea name="raw_html" rows="5" placeholder="输入原始网页" autofocus></textarea>
+        </div>
+        <input class="ui positive button" type="submit" value="存储">
+    </form>
+{% endblock %}

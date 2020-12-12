@@ -5,3 +5,4 @@ brotli
 python-dotenv
 pymysql
 psycopg2
+lxml
