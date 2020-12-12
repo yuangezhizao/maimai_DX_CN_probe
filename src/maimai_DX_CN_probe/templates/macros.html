@@ -1,3 +1,16 @@
+{% macro message_part() %}
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <div class="ui {{ messages[0][0] }} message">
+                <i class="close icon"></i>
+                <div class="header">
+                </div>
+                {{ messages[0][1] }}
+            </div>
+        {% endif %}
+    {% endwith %}
+{% endmacro %}
+
 {% macro pagination_widget(pagination, endpoint) %}
     <div style="text-align: center;">
         <div class="ui buttons">

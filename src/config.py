@@ -17,6 +17,7 @@ class BaseConfig:
         pass
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY = 'maimai_DX_CN_probe'
 
 
 class DevelopmentConfig(BaseConfig):
