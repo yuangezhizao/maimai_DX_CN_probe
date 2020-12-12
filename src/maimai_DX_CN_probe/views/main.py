@@ -9,7 +9,7 @@
 import flask
 
 from maimai_DX_CN_probe.models.maimai import HOME, PlayerData, album, Record, playlogDetail, musicInfo, practice
-from maimai_DX_CN_probe.plugins.wechat_saver import save_home, save_playerData, save_playerData_album
+from maimai_DX_CN_probe.plugins.wechat_saver import save_home, save_playerData, save_playerData_album, save_record
 
 app = flask.current_app
 bp = flask.Blueprint('main', __name__)
@@ -137,6 +137,9 @@ def wechat_saver():
         elif html_type == 'playerData_album':
             r = save_playerData_album(raw_html)
             flask.flash(f'[相册] 存储成功：{r}', 'success')
+        elif html_type == 'record':
+            r = save_record(raw_html)
+            flask.flash(f'[游戏记录] 存储成功：{r}', 'success')
         else:
             flask.flash(f'非法 [html_type]', 'negative')
     return flask.render_template('maimai/wechat_saver/manual.html')
