@@ -9,7 +9,8 @@
 import flask
 
 from maimai_DX_CN_probe.models.maimai import HOME, PlayerData, album, Record, playlogDetail, musicInfo, practice
-from maimai_DX_CN_probe.plugins.wechat_saver import save_home, save_playerData, save_playerData_album, save_record, save_record_playlogDetail
+from maimai_DX_CN_probe.plugins.wechat_saver import save_home, save_playerData, save_playerData_album, save_record, \
+    save_record_playlogDetail
 
 app = flask.current_app
 bp = flask.Blueprint('main', __name__)
@@ -205,9 +206,36 @@ def record():
                                          page=page, per_page=per_page)
 
 
-@bp.route('/info')
+@bp.route('/info', methods=['GET', 'POST'])
 def info():
-    record_musicGenre_data = musicInfo.query.order_by(musicInfo.id.asc()).all()
-    return flask.render_template('maimai/info/list.html',
-                                 record_musicGenre_data=record_musicGenre_data,
+    record_musicGenre_data = []
+    if flask.request.method == 'POST':
+        filters = []
+        name = flask.request.form.get('name')
+        if name:
+            filters.append(musicInfo.name.like('%' + name + '%'))
+        level_img_s = flask.request.form.get('level_img_s')
+        if level_img_s:
+            filters.append(musicInfo.level_img_s == level_img_s)
+        dx_img_s = flask.request.form.get('dx_img_s')
+        if dx_img_s:
+            filters.append(musicInfo.dx_img_s == dx_img_s)
+
+        music_genre = flask.request.form.get('music_genre')
+        if music_genre:
+            filters.append(musicInfo.music_genre == music_genre)
+        music_word = flask.request.form.get('music_word')
+        if music_word:
+            filters.append(musicInfo.music_word == music_word)
+        music_level = flask.request.form.get('music_level')
+        if music_level:
+            filters.append(musicInfo.music_level == music_level)
+        music_version = flask.request.form.get('music_version')
+        if music_version:
+            filters.append(musicInfo.music_version == music_version)
+
+        flask.flash(f'筛选：{filters}', 'success')
+
+        record_musicGenre_data = musicInfo.query.filter(*filters).order_by(musicInfo.id.asc()).all()
+    return flask.render_template('maimai/info/list.html', record_musicGenre_data=record_musicGenre_data,
                                  size=len(record_musicGenre_data))

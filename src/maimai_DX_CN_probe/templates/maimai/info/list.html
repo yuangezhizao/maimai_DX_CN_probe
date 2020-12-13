@@ -1,4 +1,5 @@
 {% extends "/base.html" %}
+{% from 'macros.html' import message_part with context %}
 
 {% block title %}舞萌DX－所有乐曲－{% endblock %}
 
@@ -9,74 +10,182 @@
                 <a class="active item"><i class="circle icon"></i>舞萌DX－所有乐曲－</a>
                 <a class="item" href="{{ url_for('main.site_index') }}"><i class="arrow left icon"></i>返回首页</a>
             </div>
-
             <div class="ui dividing blue header">
                 <div class="content">
-                    <h2>舞萌DX - 总计（{{ size }}）条数据</h2>
+                    <h2>所有乐曲{% if record_musicGenre_data %} - 总计（{{ size }}）条数据{% endif %}</h2>
                 </div>
             </div>
-
-            <table id="table" class="ui compact sortable celled unstackable striped blue table">
-                <thead>
-
-                <tr class="positive">
-                    <th>id</th>
-                    <th>name</th>
-                    <th>level_img_s</th>
-                    <th>dx_img_s</th>
-                    <th>music_genre</th>
-                    <th>music_word</th>
-                    <th>music_level</th>
-                    <th>music_version</th>
-                    {#                    <th>union_lock</th>#}
-                    <th>cache_dt</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                {% for data in record_musicGenre_data %}
-                    <tr>
-                        <td>
-                            {{ data.id }}
-                        </td>
-                        <td>
-                            {{ data.name }}
-                        </td>
-                        <td>
-                            <img class="ui mini image"
-                                 src="https://lab.yuangezhizao.cn/maimai-mobile/img/btn_music_{{ data.level_img_s | my_split('_', 1) }}.png">
-                        </td>
-                        <td>
-                            <img class="ui mini image"
-                                 src="https://lab.yuangezhizao.cn/maimai-mobile/img/{{ data.dx_img_s }}.png">
-                        </td>
-                        <td>
-                            {{ data.music_genre }}
-                        </td>
-                        <td>
-                            {{ data.music_word }}
-                        </td>
-                        <td>
-                            {{ data.music_level }}
-                        </td>
-                        <td>
-                            {{ data.music_version }}
-                        </td>
-                        {#                        <td>#}
-                        {#                            {{ data.union_lock }}#}
-                        {#                        </td>#}
-                        <td {% if data.cache_dt %}data-tooltip="{{ data.cache_dt }}" data-inverted=""{% endif %}>
-                            {% if data.cache_dt %}
-                                {{ data.cache_dt | my_split(' ', 0) }}
-                            {% else %}
-                            {% endif %}
-                        </td>
+            {{ message_part() }}
+            <div class="ui tall stacked segment">
+                <form class="ui form" action="{{ url_for('main.info') }}" method="post">
+                    <div class="fields">
+                        <div class="three wide field">
+                            <label>全文搜索</label>
+                            <input type="text" name="name" placeholder="">
+                        </div>
+                        <div class="two wide field">
+                            <label>歌曲类别</label>
+                            <select name="music_genre" class="ui selection dropdown">
+                                <option value="">全部</option>
+                                <option value="流行&动漫">流行&动漫</option>
+                                <option value="niconico＆VOCALOID">niconico＆VOCALOID</option>
+                                <option value="东方Project">东方Project</option>
+                                <option value="综艺节目">综艺节目</option>
+                                <option value="原创乐曲">原创乐曲</option>
+                            </select>
+                        </div>
+                        <div class="two wide field">
+                            <label>level_img_s</label>
+                            <select name="level_img_s" class="ui selection dropdown">
+                                <option value="">全部</option>
+                                <option value="diff_basic">Basic</option>
+                                <option value="diff_advanced">Advanced</option>
+                                <option value="diff_expert">Expert</option>
+                                <option value="diff_master">Master</option>
+                                <option value="diff_remaster">Re-Master</option>
+                            </select>
+                        </div>
+                        <div class="two wide field">
+                            <label>歌曲名称</label>
+                            <select name="music_word" class="ui selection dropdown">
+                                <option value="">全部</option>
+                                <option value="あ行">あ行</option>
+                                <option value="か行">か行</option>
+                                <option value="さ行">さ行</option>
+                                <option value="た行">た行</option>
+                                <option value="な行">な行</option>
+                                <option value="は行">は行</option>
+                                <option value="ま行">ま行</option>
+                                <option value="や行">や行</option>
+                                <option value="ら行">ら行</option>
+                                <option value="わ行">わ行</option>
+                                <option value="A～G">A～G</option>
+                                <option value="H～N">H～N</option>
+                                <option value="O～U">O～U</option>
+                                <option value="V～Z">V～Z</option>
+                                <option value="数字・その他">数字・その他</option>
+                            </select>
+                        </div>
+                        <div class="two wide field">
+                            <label>歌曲等级</label>
+                            <select name="music_level" class="ui selection dropdown">
+                                <option value="">全部</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="7+">7+</option>
+                                <option value="8">8</option>
+                                <option value="8+">8+</option>
+                                <option value="9">9</option>
+                                <option value="9+">9+</option>
+                                <option value="10">10</option>
+                                <option value="10+">10+</option>
+                                <option value="11">11</option>
+                                <option value="11+">11+</option>
+                                <option value="12">12</option>
+                                <option value="12+">12+</option>
+                                <option value="13">13</option>
+                                <option value="13+">13+</option>
+                                <option value="14">14</option>
+                            </select>
+                        </div>
+                        <div class="two wide field">
+                            <label>歌曲版本</label>
+                            <select name="music_version" class="ui selection dropdown">
+                                <option value="">全部</option>
+                                <option value="maimai">maimai</option>
+                                <option value="maimai PLUS">maimai PLUS</option>
+                                <option value="GreeN">GreeN</option>
+                                <option value="GreeN PLUS">GreeN PLUS</option>
+                                <option value="ORANGE">ORANGE</option>
+                                <option value="ORANGE PLUS">ORANGE PLUS</option>
+                                <option value="PiNK">PiNK</option>
+                                <option value="PiNK PLUS">PiNK PLUS</option>
+                                <option value="MURASAKi">MURASAKi</option>
+                                <option value="MURASAKi PLUS">MURASAKi PLUS</option>
+                                <option value="MiLK">MiLK</option>
+                                <option value="MiLK PLUS">MiLK PLUS</option>
+                                <option value="FiNALE">FiNALE</option>
+                                <option value="舞萌DX">舞萌DX</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                        <div class="two wide field">
+                            <label>dx_img_s</label>
+                            <select name="dx_img_s" class="ui selection dropdown">
+                                <option value="">全部</option>
+                                <option value="music_dx">DX 铺面</option>
+                                <option value="music_standard">标准铺面</option>
+                            </select>
+                        </div>
+                    </div>
+                    <input class="ui positive button" type="submit" value="搜索">
+                    <input class="ui negative button" type="reset" value="重置">
+                </form>
+            </div>
+            {% if record_musicGenre_data %}
+                <table id="table" class="ui compact sortable celled unstackable striped blue table">
+                    <thead>
+                    <tr class="positive">
+                        <th>id</th>
+                        <th>name</th>
+                        <th>level_img_s</th>
+                        <th>dx_img_s</th>
+                        <th>music_genre</th>
+                        <th>music_word</th>
+                        <th>music_level</th>
+                        <th>music_version</th>
+                        {#                    <th>union_lock</th>#}
+                        <th>cache_dt</th>
                     </tr>
-                {% endfor %}
-
-                </tbody>
-            </table>
-
+                    </thead>
+                    <tbody>
+                    {% for data in record_musicGenre_data %}
+                        <tr>
+                            <td>
+                                {{ data.id }}
+                            </td>
+                            <td>
+                                {{ data.name }}
+                            </td>
+                            <td>
+                                <img class="ui mini image"
+                                     src="https://lab.yuangezhizao.cn/maimai-mobile/img/btn_music_{{ data.level_img_s | my_split('_', 1) }}.png">
+                            </td>
+                            <td>
+                                <img class="ui mini image"
+                                     src="https://lab.yuangezhizao.cn/maimai-mobile/img/{{ data.dx_img_s }}.png">
+                            </td>
+                            <td>
+                                {{ data.music_genre }}
+                            </td>
+                            <td>
+                                {{ data.music_word }}
+                            </td>
+                            <td>
+                                {{ data.music_level }}
+                            </td>
+                            <td>
+                                {{ data.music_version }}
+                            </td>
+                            {#                        <td>#}
+                            {#                            {{ data.union_lock }}#}
+                            {#                        </td>#}
+                            <td {% if data.cache_dt %}data-tooltip="{{ data.cache_dt }}" data-inverted=""{% endif %}>
+                                {% if data.cache_dt %}
+                                    {{ data.cache_dt | my_split(' ', 0) }}
+                                {% else %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
             <div class="ui divider"></div>
             <footer>
                 <div class="ui info message" style="text-align: center;">
