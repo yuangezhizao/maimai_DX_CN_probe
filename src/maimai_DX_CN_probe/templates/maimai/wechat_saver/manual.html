@@ -1,17 +1,20 @@
 {% extends "/base.html" %}
 {% from 'macros.html' import message_part with context %}
 
-{% block title %}微信存档{% endblock %}
+{% block title %}微信存档[手动]{% endblock %}
 
 {% block nav %}
-    <a class="active item"><i class="circle icon"></i>微信存档</a>
+    <a class="active item"><i class="circle icon"></i>微信存档[手动]</a>
     <a class="item" href="{{ url_for('main.site_index') }}"><i class="arrow left icon"></i>返回首页</a>
 {% endblock %}
 
 {% block content %}
     <div class="ui dividing blue header">
         <div class="content">
-            <h2>微信存档</h2>
+            <h2>微信存档[手动]</h2>
+            <div class="sub header">
+                <a href="{{ url_for('main.wechat_saver') }}?auto_saver=1">切换至[自动]</a>
+            </div>
         </div>
     </div>
     {{ message_part() }}

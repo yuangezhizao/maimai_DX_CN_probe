@@ -7,10 +7,13 @@
     :Copyright: © 2020 yuangezhizao <root@yuangezhizao.cn>
 """
 import datetime
+import re
+import time
 
+import requests
 from lxml import etree
 
-from maimai_DX_CN_probe.models.maimai import HOME, PlayerData, album, Record
+from maimai_DX_CN_probe.models.maimai import HOME, PlayerData, album, Record, playlogDetail
 
 
 def save_home(raw_html):
@@ -156,3 +159,275 @@ def save_record(raw_html):
             new_count += 1
 
     return [new_count, record_count]
+
+
+def save_record_playlogDetail(userId, _t, start_posi, end_posi):
+    session = requests.Session()
+    # 下方手动指定并不会更新 cookies，因此不可多次使用
+    # cookies = requests.utils.cookiejar_from_dict(cookies)
+    # session.cookies = cookies
+
+    if end_posi < start_posi:
+        idx = list(range(start_posi, 50))
+        idx.extend(list(range(0, end_posi)))
+    else:
+        idx = range(start_posi, end_posi)
+
+    for i in idx:
+        url = f'https://maimai.wahlap.com/maimai-mobile/record/playlogDetail/?idx={i}'
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
+        }
+        cookies = {
+            'userId': userId,
+            '_t': _t
+        }
+
+        if i == idx[0]:
+            r = session.get(url, headers=headers, cookies=cookies, verify=False)
+        else:
+            # 之后 session 库自行处理 cookies
+            r = session.get(url, headers=headers, verify=False)
+        r_text = r.text
+        status_code = r.status_code
+        if status_code != 200:
+            return f'ERROR [{i}]：status_code != 200'
+        if '错误码' in r_text:
+            error_code = re.findall('错误码：(.*?)</div>', r_text, re.S)[0]
+            return f'ERROR [{i}]：error_code {error_code}'
+        parse_record_playlogDetail(r_text)
+        time.sleep(1)
+    return idx
+
+
+def parse_record_playlogDetail(raw_html):
+    selector = etree.HTML(raw_html)
+
+    vsUser = len(selector.xpath('//div[@class="see_through_block m_10 m_t_0  p_l_10 t_l f_0 break"]'))
+    if vsUser:
+        vs_rank = selector.xpath('/html/body/div[2]/div[3]/span/div[1]/text()')[0]
+        vs_achievement = selector.xpath('/html/body/div[2]/div[3]/span/div[1]/span/text()')[0][:-1]
+        vs_rating = selector.xpath('/html/body/div[2]/div[3]/span/div[2]/span/text()')[0]
+        vs_grade = selector.xpath('/html/body/div[2]/div[3]/span/img[2]/@src')[0].split('/')[-1].split('.')[0]
+
+        # [【爬虫】使用xpath与lxml移除特定标签](https://blog.csdn.net/aqua75836/article/details/101355869)
+        for bad in selector.xpath("/html/body/div[2]/div[3]"):
+            bad.getparent().remove(bad)
+    else:
+        vs_rank = None
+        vs_achievement = None
+        vs_rating = None
+        vs_grade = None
+    try:
+        chara_0_img_s = selector.xpath('/html/body/div[2]/div[3]/div[2]/div[1]/div/img/@src')[0] \
+            .split('/')[-1].split('.')[0]
+        chara_0_star = selector.xpath('/html/body/div[2]/div[3]/div[2]/div[2]/text()')[0][1:]
+        chara_0_lv = selector.xpath('/html/body/div[2]/div[3]/div[2]/div[3]/text()')[0][2:]
+    except Exception as e:
+        chara_0_img_s = ''
+        chara_0_star = 0
+        chara_0_lv = 0
+    try:
+        chara_1_img_s = selector.xpath('/html/body/div[2]/div[3]/div[3]/div[1]/div/img/@src')[0] \
+            .split('/')[-1].split('.')[0]
+        chara_1_star = selector.xpath('/html/body/div[2]/div[3]/div[3]/div[2]/text()')[0][1:]
+        chara_1_lv = selector.xpath('/html/body/div[2]/div[3]/div[3]/div[3]/text()')[0][2:]
+    except Exception as e:
+        chara_1_img_s = ''
+        chara_1_star = 0
+        chara_1_lv = 0
+    try:
+        chara_2_img_s = selector.xpath('/html/body/div[2]/div[3]/div[4]/div[1]/div/img/@src')[0] \
+            .split('/')[-1].split('.')[0]
+        chara_2_star = selector.xpath('/html/body/div[2]/div[3]/div[4]/div[2]/text()')[0][1:]
+        chara_2_lv = selector.xpath('/html/body/div[2]/div[3]/div[4]/div[3]/text()')[0][2:]
+    except Exception as e:
+        chara_2_img_s = ''
+        chara_2_star = 0
+        chara_2_lv = 0
+    try:
+        chara_3_img_s = selector.xpath('/html/body/div[2]/div[3]/div[5]/div[1]/div/img/@src')[0] \
+            .split('/')[-1].split('.')[0]
+        chara_3_star = selector.xpath('/html/body/div[2]/div[3]/div[5]/div[2]/text()')[0][1:]
+        chara_3_lv = selector.xpath('/html/body/div[2]/div[3]/div[5]/div[3]/text()')[0][2:]
+    except Exception as e:
+        chara_3_img_s = ''
+        chara_3_star = 0
+        chara_3_lv = 0
+    try:
+        chara_4_img_s = selector.xpath('/html/body/div[2]/div[3]/div[6]/div[1]/div/img/@src')[0] \
+            .split('/')[-1].split('.')[0]
+        chara_4_star = selector.xpath('/html/body/div[2]/div[3]/div[6]/div[2]/text()')[0][1:]
+        chara_4_lv = selector.xpath('/html/body/div[2]/div[3]/div[6]/div[3]/text()')[0][2:]
+    except Exception as e:
+        chara_4_img_s = ''
+        chara_4_star = 0
+        chara_4_lv = 0
+
+    try:
+        fast = selector.xpath('/html/body/div[2]/div[3]/div[7]/div[1]/div/text()')[0]
+    except Exception as e:
+        print('【ERROR】fast')
+        fast = 0
+        print(e)
+
+    try:
+        late = selector.xpath('/html/body/div[2]/div[3]/div[7]/div[2]/div/text()')[0]
+    except Exception as e:
+        print('【ERROR】late')
+        late = 0
+        print(e)
+
+    # grade = selector.xpath('/html/body/div[2]/div[3]/div[9]/div[1]/table/tbody/tr[1]/td[2]/div/text()')[0]
+    # [xpath解析网页中tbody问题](https://web.archive.org/web/20200621034512/https://blog.csdn.net/qq_32590631/article/details/76064127)，移除 tbody
+
+    grade = selector.xpath('/html/body/div[2]/div[3]/div[9]/div[1]/table/tr[1]/td[2]/div/text()')[0]
+    # grade = selector.xpath('//div[@class="playlog_rating_val_block"]/text()')[0]
+
+    grade_diff = selector.xpath('/html/body/div[2]/div[3]/div[9]/div[1]/table/tr[1]/td[2]/span/text()')[0]
+    # grade_diff = selector.xpath('//span[@class="f_11"]/text()')[0]
+
+    rating = selector.xpath('/html/body/div[2]/div[3]/div[9]/div[1]/table/tr[2]/td[2]/div/text()')[0]
+    # rating = selector.xpath('//div[@class="playlog_rating_val_block"]/text()')[1]
+
+    try:
+        delux_rating = selector.xpath('/html/body/div[2]/div[3]/div[9]/div[1]/div[1]/span/text()')[0]
+    except Exception as e:
+        print('【ERROR】delux_rating')
+        delux_rating = 0
+        print(e)
+    try:
+        delux_rating_diff = selector.xpath('/html/body/div[2]/div[3]/div[9]/div[1]/div[1]/img[2]/@src')[0] \
+            .split('/')[-1].split('.')[0]
+    except Exception as e:
+        print('【ERROR】delux_rating_diff')
+        delux_rating_diff = ''
+        print(e)
+    try:
+        grade_pic_s = selector.xpath('/html/body/div[2]/div[3]/div[9]/div[1]/div[2]/img/@src')[0] \
+            .split('/')[-1].split('.')[0]
+    except Exception as e:
+        print('【ERROR】grade_pic_s')
+        grade_pic_s = ''
+        print(e)
+
+    empty_calu = lambda count: count[0] if count else None
+
+    notes_tap_cp = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[2]/td[1]/text()')
+    notes_tap_cp = empty_calu(notes_tap_cp)
+
+    notes_tap_p = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[2]/td[2]/text()')
+    notes_tap_p = empty_calu(notes_tap_p)
+
+    notes_tap_great = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[2]/td[3]/text()')
+    notes_tap_great = empty_calu(notes_tap_great)
+
+    notes_tap_good = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[2]/td[4]/text()')
+    notes_tap_good = empty_calu(notes_tap_good)
+
+    notes_tap_miss = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[2]/td[5]/text()')
+    notes_tap_miss = empty_calu(notes_tap_miss)
+
+    notes_hold_cp = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[3]/td[1]/text()')
+    notes_hold_cp = empty_calu(notes_hold_cp)
+    if notes_hold_cp == '\u3000':
+        notes_hold_cp = None
+
+    notes_hold_p = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[3]/td[2]/text()')
+    notes_hold_p = empty_calu(notes_hold_p)
+
+    notes_hold_great = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[3]/td[3]/text()')
+    notes_hold_great = empty_calu(notes_hold_great)
+
+    notes_hold_good = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[3]/td[4]/text()')
+    notes_hold_good = empty_calu(notes_hold_good)
+
+    notes_hold_miss = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[3]/td[5]/text()')
+    notes_hold_miss = empty_calu(notes_hold_miss)
+
+    notes_slide_cp = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[4]/td[1]/text()')
+    notes_slide_cp = empty_calu(notes_slide_cp)
+
+    notes_slide_p = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[4]/td[2]/text()')
+    notes_slide_p = empty_calu(notes_slide_p)
+
+    notes_slide_great = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[4]/td[3]/text()')
+    notes_slide_great = empty_calu(notes_slide_great)
+
+    notes_slide_good = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[4]/td[4]/text()')
+    notes_slide_good = empty_calu(notes_slide_good)
+
+    notes_slide_miss = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[4]/td[5]/text()')
+    notes_slide_miss = empty_calu(notes_slide_miss)
+
+    notes_touch_cp = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[5]/td[1]/text()')
+    notes_touch_cp = empty_calu(notes_touch_cp)
+    if notes_touch_cp == '\u3000':
+        notes_touch_cp = None
+
+    notes_touch_p = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[5]/td[2]/text()')
+    notes_touch_p = empty_calu(notes_touch_p)
+
+    notes_touch_great = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[5]/td[3]/text()')
+    notes_touch_great = empty_calu(notes_touch_great)
+
+    notes_touch_good = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[5]/td[4]/text()')
+    notes_touch_good = empty_calu(notes_touch_good)
+
+    notes_touch_miss = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[5]/td[5]/text()')
+    notes_touch_miss = empty_calu(notes_touch_miss)
+
+    notes_break_cp = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[6]/td[1]/text()')
+    notes_break_cp = empty_calu(notes_break_cp)
+
+    notes_break_p = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[6]/td[2]/text()')
+    notes_break_p = empty_calu(notes_break_p)
+
+    notes_break_great = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[6]/td[3]/text()')
+    notes_break_great = empty_calu(notes_break_great)
+
+    notes_break_good = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[6]/td[4]/text()')
+    notes_break_good = empty_calu(notes_break_good)
+
+    notes_break_miss = selector.xpath('/html/body/div[2]/div[3]/div[9]/table/tr[6]/td[5]/text()')
+    notes_break_miss = empty_calu(notes_break_miss)
+
+    try:
+        maxcombo = selector.xpath('/html/body/div[2]/div[3]/div[9]/div[3]/div/div/text()')[0]
+    except Exception as e:
+        print('【ERROR】maxcombo')
+        maxcombo = 0
+        print(e)
+    try:
+        maxsync = selector.xpath('/html/body/div[2]/div[3]/div[9]/div[4]/div/div/text()')[0]
+    except Exception as e:
+        print('【ERROR】maxsync')
+        maxsync = 0
+        print(e)
+    try:
+        level_img_s = selector.xpath('//*[@id="matching"]/span[1]/img[1]/@src')[0].split('/')[-1].split('.')[0]
+        name = selector.xpath('//*[@id="matching"]/span[1]/div/text()')[0]
+    except Exception as e:
+        # 单人模式
+        level_img_s = None
+        name = None
+    cache_dt = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+
+    new_maimai_playlogDetail = playlogDetail(vs_rank, vs_achievement, vs_rating, vs_grade, chara_0_img_s, chara_0_star,
+                                             chara_0_lv,
+                                             chara_1_img_s, chara_1_star, chara_1_lv, chara_2_img_s,
+                                             chara_2_star, chara_2_lv, chara_3_img_s, chara_3_star, chara_3_lv,
+                                             chara_4_img_s, chara_4_star,
+                                             chara_4_lv, fast, late, grade, grade_diff, rating, delux_rating,
+                                             delux_rating_diff, grade_pic_s,
+                                             notes_tap_cp, notes_tap_p, notes_tap_great, notes_tap_good, notes_tap_miss,
+                                             notes_hold_cp,
+                                             notes_hold_p, notes_hold_great, notes_hold_good, notes_hold_miss,
+                                             notes_slide_cp,
+                                             notes_slide_p, notes_slide_great, notes_slide_good, notes_slide_miss,
+                                             notes_touch_cp, notes_touch_p,
+                                             notes_touch_great, notes_touch_good, notes_touch_miss, notes_break_cp,
+                                             notes_break_p,
+                                             notes_break_great, notes_break_good, notes_break_miss, maxcombo, maxsync,
+                                             level_img_s, name, cache_dt)
+    new_maimai_playlogDetail.save()
