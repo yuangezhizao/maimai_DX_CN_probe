@@ -8,7 +8,8 @@
 """
 import flask
 
-from maimai_DX_CN_probe.models.maimai import HOME, PlayerData, album, Record, playlogDetail, musicInfo, practice
+from maimai_DX_CN_probe.models.maimai import HOME, PlayerData, album, Record, playlogDetail, musicInfo, \
+    practice
 from maimai_DX_CN_probe.plugins.wechat_saver import save_home, save_playerData, save_playerData_album, save_record, \
     save_record_playlogDetail
 
@@ -234,6 +235,9 @@ def info():
         if music_version:
             filters.append(musicInfo.music_version == music_version)
 
+        ver = flask.request.form.get('ver')
+        if ver:
+            filters.append(musicInfo.ver == ver)
         flask.flash(f'筛选：{filters}', 'success')
 
         record_musicGenre_data = musicInfo.query.filter(*filters).order_by(musicInfo.id.asc()).all()

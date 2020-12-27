@@ -122,6 +122,15 @@
                                 <option value="music_standard">标准铺面</option>
                             </select>
                         </div>
+                        <div class="two wide field">
+                            <label>ver</label>
+                            <select name="ver" class="ui selection dropdown">
+                                <option value="">全部</option>
+                                <option value="Ver.CH1.01-D">Ver.CH1.01-D</option>
+                                <option value="Ver.CH1.01-C">Ver.CH1.01-C</option>
+                                <option value="Ver.CH1.01-B">Ver.CH1.01-B</option>
+                            </select>
+                        </div>
                     </div>
                     <input class="ui positive button" type="submit" value="搜索">
                     <input class="ui negative button" type="reset" value="重置">
@@ -139,7 +148,7 @@
                         <th>music_word</th>
                         <th>music_level</th>
                         <th>music_version</th>
-                        {#                    <th>union_lock</th>#}
+                        <th>ver</th>
                         <th>cache_dt</th>
                     </tr>
                     </thead>
@@ -172,9 +181,9 @@
                             <td>
                                 {{ data.music_version }}
                             </td>
-                            {#                        <td>#}
-                            {#                            {{ data.union_lock }}#}
-                            {#                        </td>#}
+                            <td>
+                                {{ data.ver }}
+                            </td>
                             <td {% if data.cache_dt %}data-tooltip="{{ data.cache_dt }}" data-inverted=""{% endif %}>
                                 {% if data.cache_dt %}
                                     {{ data.cache_dt | my_split(' ', 0) }}
