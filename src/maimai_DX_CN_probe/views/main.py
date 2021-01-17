@@ -243,3 +243,56 @@ def info():
         record_musicGenre_data = musicInfo.query.filter(*filters).order_by(musicInfo.id.asc()).all()
     return flask.render_template('maimai/info/list.html', record_musicGenre_data=record_musicGenre_data,
                                  size=len(record_musicGenre_data))
+
+
+@bp.route('/rating')
+def rating():
+    coefficient_dict = {
+        'sssplus': 15,
+        'sss': 14,
+        'ssplus': 13,
+        'ss': 12,
+        'splus': 11,
+        's': 10,
+        'aaa': 9.4,
+    }
+    single_rating_calc = 0
+    music_dx_standard_record_data = []
+    music_dx_record_data = Record.query.filter_by(dx_img_s='music_dx').order_by(Record.single_rating.desc()).limit(15)
+    music_standard_record_data = Record.query.filter_by(dx_img_s='music_standard').order_by(
+        Record.single_rating.desc()).limit(25)
+    for music_dx_record in music_dx_record_data:
+        _music_dx_info = musicInfo.query.filter_by(name=music_dx_record.name, level_img_s=music_dx_record.level_img_s,
+                                                   dx_img_s='music_dx').first()
+        # TODO：曲名有重复
+        _constant = _music_dx_info.constant  # 定数
+        music_dx_record.constant = _constant
+        _music_level = _music_dx_info.music_level  # 等级
+        music_dx_record.music_level = _music_level
+        _coefficient = coefficient_dict[music_dx_record.score_rank_img_s]  # 系数
+        music_dx_record.coefficient = _coefficient
+
+        _achievement = music_dx_record.achievement / 100 if music_dx_record.achievement / 100 <= 1.005 else 1.005  # 上限 100.5%
+        music_dx_record._achievement = _achievement
+
+        single_rating_calc = single_rating_calc + int(music_dx_record.single_rating)  # 单曲 RATING 累加
+        music_dx_standard_record_data.append(music_dx_record)
+    for music_standard_record in music_standard_record_data:
+        _music_standard_info = musicInfo.query.filter_by(name=music_standard_record.name,
+                                                         level_img_s=music_standard_record.level_img_s,
+                                                         dx_img_s='music_standard').first()
+        # TODO：曲名有重复
+        _constant = _music_standard_info.constant  # 定数
+        music_standard_record.constant = _constant
+        _music_level = _music_standard_info.music_level  # 等级
+        music_standard_record.music_level = _music_level
+        _coefficient = coefficient_dict[music_standard_record.score_rank_img_s]  # 系数
+        music_standard_record.coefficient = _coefficient
+
+        _achievement = music_standard_record.achievement / 100 if music_standard_record.achievement / 100 <= 1.005 else 1.005  # 上限 100.5%
+        music_standard_record._achievement = _achievement
+
+        single_rating_calc = single_rating_calc + int(music_standard_record.single_rating)  # 单曲 RATING 累加
+        music_dx_standard_record_data.append(music_standard_record)
+    return flask.render_template('maimai/rating/calc.html', music_dx_standard_record_data=music_dx_standard_record_data,
+                                 single_rating_calc=single_rating_calc)
