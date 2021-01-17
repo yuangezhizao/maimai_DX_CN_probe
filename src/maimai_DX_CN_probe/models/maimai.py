@@ -563,6 +563,7 @@ class musicInfo(db.Model):
     music_version = db.Column(db.VARCHAR(50))
 
     ver = db.Column(db.VARCHAR(50))
+    constant = db.Column(db.FLOAT(2))
 
     cache_dt = db.Column(db.DateTime, nullable=False)
 
