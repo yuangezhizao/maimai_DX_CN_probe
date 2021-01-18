@@ -286,10 +286,14 @@ def rating():
         return '单曲 RATING 计算存储完成'
     single_rating_calc = 0
     music_dx_standard_record_data = []
-    music_dx_record_data = Record.query.filter_by(dx_img_s='music_dx').order_by(Record.single_rating.desc()).limit(15)
+    music_dx_record_data = Record.query.filter_by(dx_img_s='music_dx').order_by(Record.single_rating.desc()).limit(
+        15 + 1)
     music_standard_record_data = Record.query.filter_by(dx_img_s='music_standard').order_by(
-        Record.single_rating.desc()).limit(25)
+        Record.single_rating.desc()).limit(25 + 8)
     for music_dx_record in music_dx_record_data:
+        if music_dx_record.id in [521]:
+            # 手动去重
+            continue
         _music_dx_info = musicInfo.query.filter_by(name=music_dx_record.name, level_img_s=music_dx_record.level_img_s,
                                                    dx_img_s='music_dx').first()
         # TODO：曲名有重复
@@ -306,6 +310,9 @@ def rating():
         single_rating_calc = single_rating_calc + int(music_dx_record.single_rating)  # 单曲 RATING 累加
         music_dx_standard_record_data.append(music_dx_record)
     for music_standard_record in music_standard_record_data:
+        if music_standard_record.id in [175, 182, 201, 205, 213, 310, 453,238]:
+            # 手动去重
+            continue
         _music_standard_info = musicInfo.query.filter_by(name=music_standard_record.name,
                                                          level_img_s=music_standard_record.level_img_s,
                                                          dx_img_s='music_standard').first()
