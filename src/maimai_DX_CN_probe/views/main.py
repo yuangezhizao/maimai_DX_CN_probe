@@ -256,6 +256,34 @@ def rating():
         's': 10,
         'aaa': 9.4,
     }
+    if 'calc' in flask.request.args:
+        music_record_data = Record.query.filter_by(single_rating=0).all()
+
+        for music_record in music_record_data:
+            if music_record.name == 'FREEDOM DiVE (tpz Overcute Remix)':
+                continue
+            _music_info = musicInfo.query.filter_by(name=music_record.name,
+                                                    level_img_s=music_record.level_img_s,
+                                                    dx_img_s=music_record.dx_img_s).first()
+            print(_music_info)
+
+            # TODO：曲名有重复
+            _constant = _music_info.constant  # 定数
+            _music_level = _music_info.music_level  # 等级
+            try:
+                _coefficient = coefficient_dict[music_record.score_rank_img_s]  # 系数
+            except Exception as e:
+                _coefficient = -1
+
+            _achievement = music_record.achievement / 100 if music_record.achievement / 100 <= 1.005 else 1.005  # 上限 100.5%
+            music_record._achievement = _achievement
+
+            _single_rating = _constant * _coefficient * _achievement  # 单曲 RATING
+
+            music_record.single_rating = _single_rating
+            music_record.update()
+
+        return '单曲 RATING 计算存储完成'
     single_rating_calc = 0
     music_dx_standard_record_data = []
     music_dx_record_data = Record.query.filter_by(dx_img_s='music_dx').order_by(Record.single_rating.desc()).limit(15)
