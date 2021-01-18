@@ -243,6 +243,7 @@ class Record(db.Model):
     fs_img_s = db.Column(db.VARCHAR(50))
     rate_img_s = db.Column(db.VARCHAR(50))
 
+    single_rating = db.Column(db.FLOAT(4), default=0)
     cache_dt = db.Column(db.DateTime, nullable=False)
 
     def __init__(self, level_img_s, vs_img_s, track, play_dt, play_dt_utc, clear, name, img_s, dx_img_s, achievement,
@@ -268,12 +269,12 @@ class Record(db.Model):
         self.cache_dt = cache_dt,
 
     def __repr__(self):
-        return '<PlayerData (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, )>' % (
+        return '<PlayerData (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)>' % (
             self.level_img_s, self.vs_img_s, self.track, self.play_dt, self.play_dt_utc, self.clear, self.name,
             self.img_s,
             self.dx_img_s,
             self.achievement, self.score_rank_new, self.score_rank_img_s, self.delux_score, self.delux_new,
-            self.fc_img_s, self.fs_img_s, self.rate_img_s, self.cache_dt)
+            self.fc_img_s, self.fs_img_s, self.rate_img_s, self.single_rating, self.cache_dt)
 
     def to_json(self):
         num = {
@@ -295,6 +296,7 @@ class Record(db.Model):
             'fc_img_s': self.fc_img_s,
             'fs_img_s': self.fs_img_s,
             'rate_img_s': self.rate_img_s,
+            'single_rating': self.single_rating,
             'cache_dt': self.cache_dt,
         }
         return num
