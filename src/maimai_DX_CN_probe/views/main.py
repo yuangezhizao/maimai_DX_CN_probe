@@ -287,11 +287,11 @@ def rating():
     single_rating_calc = 0
     music_dx_standard_record_data = []
     music_dx_record_data = Record.query.filter_by(dx_img_s='music_dx').order_by(Record.single_rating.desc()).limit(
-        15 + 2)
+        15 + 4)
     music_standard_record_data = Record.query.filter_by(dx_img_s='music_standard').order_by(
         Record.single_rating.desc()).limit(25 + 10)
     for music_dx_record in music_dx_record_data:
-        if music_dx_record.id in [521, 568]:
+        if music_dx_record.id in [279, 313, 521, 568]:
             # 手动去重
             continue
         _music_dx_info = musicInfo.query.filter_by(name=music_dx_record.name, level_img_s=music_dx_record.level_img_s,
