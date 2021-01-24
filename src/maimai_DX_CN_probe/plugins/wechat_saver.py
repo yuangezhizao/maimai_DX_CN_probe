@@ -167,7 +167,7 @@ def save_record_playlogDetail(userId, _t, start_posi, end_posi):
     # cookies = requests.utils.cookiejar_from_dict(cookies)
     # session.cookies = cookies
 
-    if end_posi < start_posi:
+    if end_posi <= start_posi:
         idx = list(range(start_posi, 50))
         idx.extend(list(range(0, end_posi)))
     else:
