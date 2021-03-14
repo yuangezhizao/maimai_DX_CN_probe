@@ -46,8 +46,8 @@
 
     <title>微信存档 - 主页</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='static/css/maimai-mobile/common.css') }}"/>
-    <link rel="apple-touch-icon-precomposed" href="https://lab.yuangezhizao.cn/maimai-mobile/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="https://lab.yuangezhizao.cn/maimai-mobile/apple-touch-icon.png">
+    <link rel="apple-touch-icon-precomposed" href="https://i1.yuangezhizao.cn/maimai-mobile/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="https://i1.yuangezhizao.cn/maimai-mobile/apple-touch-icon.png">
     <script src="https://cdn.jsdelivr.net/npm/highcharts/highcharts.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/highcharts/modules/exporting.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/highcharts/modules/series-label.js"></script>
@@ -71,14 +71,14 @@
             </svg>
             <div class="menu">
                 <a href="{{ url_for('main.wechat_archive', _external=True) + '?home' }}" class="d_ib col4 p_4"><img
-                        src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_home_on.png" class="w_112"/></a>
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_home_on.png" class="w_112"/></a>
                 <a href="{{ url_for('main.wechat_archive', _external=True) + '?playerData' }}"
                    class="d_ib col4 p_4"><img
-                        src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_playerdata.png" class="w_112"/></a>
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_playerdata.png" class="w_112"/></a>
                 <a href="{{ url_for('main.wechat_archive', _external=True) + '?record' }}" class="d_ib col4 p_4"><img
-                        src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_record.png" class="w_112"/></a>
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_record.png" class="w_112"/></a>
                 <a href="{{ url_for('main.wechat_archive', _external=True) + '?ranking' }}" class="d_ib col4 p_4"><img
-                        src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_ranking.png" class="w_112"/></a>
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_ranking.png" class="w_112"/></a>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 10"
                  preserveAspectRatio="none" style="height:10px">
@@ -90,12 +90,12 @@
 
     <div class="m_t_5 m_b_10 t_l f_0">
         <a href="{{ url_for('main.wechat_archive', _external=True) + '?home' }}" class="p_r d_ib">
-            <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_sub_home_home.png?ver=1.00" class="w_120"/>
-            <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/icon_on.png" class="submenu_selected"/>
+            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_sub_home_home.png?ver=1.00" class="w_120"/>
+            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_on.png" class="submenu_selected"/>
         </a>
-        <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_sub_home.png" class="w_120"/>
-        <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_sub_home.png" class="w_120"/>
-        <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_sub_home.png" class="w_120"/>
+        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_sub_home.png" class="w_120"/>
+        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_sub_home.png" class="w_120"/>
+        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_sub_home.png" class="w_120"/>
     </div>
 
     <div id="container"></div>
@@ -125,13 +125,13 @@
                             </div>
                             <div class="clearfix"></div>
                         </div>
-                        <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/line_01.png"
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/line_01.png"
                              class="user_data_block_line"/>
                         <div class="clearfix"></div>
                         <img src="{{ data.grade_img | replace("maimai.wahlap.com", "lab.yuangezhizao.cn") }}"
                              class="h_25 f_l"/>
                         <div class="p_l_10 f_l f_14"><img
-                                src="https://lab.yuangezhizao.cn/maimai-mobile/img/icon_star.png"
+                                src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_star.png"
                                 class="h_20 v_b"/>×{{ data.star }}
                         </div>
                     </div>
@@ -150,17 +150,17 @@
     {#<div class="container p_10">#}
     {#	<div class="w_430 m_15 m_t_0 m_b_0 f_14">#}
     {#		<div class="w_112 f_l f_0">#}
-    {#			<a href="https://maimai.wahlap.com/maimai-mobile/home/"><img src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_home.png" class="w_112"></a>#}
+    {#			<a href="https://maimai.wahlap.com/maimai-mobile/home/"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_home.png" class="w_112"></a>#}
     {#		</div>#}
     {#		<div class="p_10 f_l t_l v_t">#}
     {#			<a href="https://maimai.wahlap.com/maimai-mobile/home/" class="d_b m_b_5">主页</a>#}
     {#		</div>#}
     {#		<div class="clearfix"></div>#}
     {#	</div>#}
-    {#	<img src="https://lab.yuangezhizao.cn/maimai-mobile/img/line_01.png" class="w_430"/>#}
+    {#	<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/line_01.png" class="w_430"/>#}
     {#	<div class="w_430 m_15 m_t_0 m_b_0 f_14">#}
     {#		<div class="w_112 f_l f_0">#}
-    {#			<a href="https://maimai.wahlap.com/maimai-mobile/playerData/"><img src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_playerdata.png" class="w_112"></a>#}
+    {#			<a href="https://maimai.wahlap.com/maimai-mobile/playerData/"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_playerdata.png" class="w_112"></a>#}
     {#		</div>#}
     {#		<div class="p_10 f_l t_l v_t">#}
     {#			<a href="https://maimai.wahlap.com/maimai-mobile/playerData/" class="d_b m_b_5">玩家数据</a>#}
@@ -168,10 +168,10 @@
     {#		</div>#}
     {#		<div class="clearfix"></div>#}
     {#	</div>#}
-    {#	<img src="https://lab.yuangezhizao.cn/maimai-mobile/img/line_01.png" class="w_430"/>#}
+    {#	<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/line_01.png" class="w_430"/>#}
     {#	<div class="w_430 m_15 m_t_0 m_b_0 f_14">#}
     {#		<div class="w_112 f_l f_0">#}
-    {#			<a href="https://maimai.wahlap.com/maimai-mobile/record/"><img src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_record.png" class="w_112"></a>#}
+    {#			<a href="https://maimai.wahlap.com/maimai-mobile/record/"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_record.png" class="w_112"></a>#}
     {#		</div>#}
     {#		<div class="p_10 f_l t_l v_t">#}
     {#			<a href="https://maimai.wahlap.com/maimai-mobile/record/" class="d_b m_b_5">游戏历史记录</a>#}
@@ -179,10 +179,10 @@
     {#		</div>#}
     {#		<div class="clearfix"></div>#}
     {#	</div>#}
-    {#	<img src="https://lab.yuangezhizao.cn/maimai-mobile/img/line_01.png" class="w_430"/>#}
+    {#	<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/line_01.png" class="w_430"/>#}
     {#	<div class="w_430 m_15 m_t_0 m_b_0 f_14">#}
     {#		<div class="w_112 f_l f_0">#}
-    {#			<a href="https://maimai.wahlap.com/maimai-mobile/ranking/"><img src="https://lab.yuangezhizao.cn/maimai-mobile/img/menu_ranking.png" class="w_112"></a>#}
+    {#			<a href="https://maimai.wahlap.com/maimai-mobile/ranking/"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_ranking.png" class="w_112"></a>#}
     {#		</div>#}
     {#		<div class="p_10 f_l t_l v_t">#}
     {#			<a href="https://maimai.wahlap.com/maimai-mobile/ranking/" class="d_b m_b_5">按乐曲区分</a>#}
@@ -198,7 +198,7 @@
     {#<div class="m_15 p_10">#}
     {#	<form action="https://maimai.wahlap.com/maimai-mobile/home/homeIndex/logout" method="get" accept-charset="utf-8" class="f_0">#}
     {#		<input type="hidden" name="idx" value="0">#}
-    {#		<button type="submit" class="f_0"><img src="https://lab.yuangezhizao.cn/maimai-mobile/img/btn_home_logout.png" class="w_80 pointer"></button>#}
+    {#		<button type="submit" class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/btn_home_logout.png" class="w_80 pointer"></button>#}
     {#	</form>#}
     {#</div>#}
 
@@ -212,26 +212,26 @@
                 {#                          fill="#7cbc29"></path>#}
                 {#                </svg>#}
                 {#				<div class="m_15 m_t_0 f_13">#}
-                {#					<div class="m_5"><a href="https://lab.yuangezhizao.cn/maimai-mobile/termsOfService/" target="_blank" class="white" rel="noopener">使用条款</a></div>#}
-                {#					<div class="m_5"><a href="https://lab.yuangezhizao.cn/maimai-mobile/sitePolicy/" target="_blank" class="white" rel="noopener">使用须知</a></div>#}
+                {#					<div class="m_5"><a href="https://i1.yuangezhizao.cn/maimai-mobile/termsOfService/" target="_blank" class="white" rel="noopener">使用条款</a></div>#}
+                {#					<div class="m_5"><a href="https://i1.yuangezhizao.cn/maimai-mobile/sitePolicy/" target="_blank" class="white" rel="noopener">使用须知</a></div>#}
                 {#					<div class="m_5"><a href="https://sega-group.co.jp/english/privacypolicy/" target="_blank" class="white" rel="noopener">私隐政策</a></div>#}
                 {#				</div>#}
-                {#				<img src="https://lab.yuangezhizao.cn/maimai-mobile/img/line_02.png" class="w_430 m_b_10" />#}
+                {#				<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/line_02.png" class="w_430 m_b_10" />#}
                 {#                <div class="f_l m_15 m_l_30 p_l_10">#}
                 {#                    <a href="http://sega.jp" target="_blank" rel="noopener"><img#}
-                {#                            src="https://lab.yuangezhizao.cn/maimai-mobile/img/logo_sega.png"/></a>#}
+                {#                            src="https://i1.yuangezhizao.cn/maimai-mobile/img/logo_sega.png"/></a>#}
                 {#					<div class="f_15 p_5">© SEGA</div>#}
                 {#                </div>#}
                 {#                <div class="m_15">#}
-                {#                    <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/logo_wahlap.png"/></a>#}
+                {#                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/logo_wahlap.png"/></a>#}
                 {#					<div class="f_11 p_3"><a href="http://www.miitbeian.gov.cn" style="text-decoration:none; color: #fff" target="_blank" rel="noopener">粤ICP备05005783号</a></div>#}
                 {#                </div>#}
                 <div class="p_10">
                     <div class="f_12 l_h_12">© SEGA & WAHLAP</div>
                     <div class="f_12 l_h_12">Modified for personal use，yuangezhizao © 2020~2021</div>
                     <div class="f_12 l_h_12"></div>
-                    {#					<div class="f_12 l_h_12">© Crypton Future Media, INC. www.piapro.net <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/piapro.png" style="width:38px"/></div>#}
-                    {#					<div class="f_12 l_h_12">© Crypton Future Media, INC. www.piapro.net <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/piapro.png" style="width:38px"/> GUMI(Megpoid)©INTERNET Co., LTD.</div>#}
+                    {#					<div class="f_12 l_h_12">© Crypton Future Media, INC. www.piapro.net <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/piapro.png" style="width:38px"/></div>#}
+                    {#					<div class="f_12 l_h_12">© Crypton Future Media, INC. www.piapro.net <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/piapro.png" style="width:38px"/> GUMI(Megpoid)©INTERNET Co., LTD.</div>#}
                     {#					<div class="f_12 l_h_12">© TAITO CORP.1996</div>#}
                     {#					<div class="f_12 l_h_12">© TAITO CORP.1996 ©SEGA</div>#}
                     {#					<div class="f_12 l_h_12">©1st PLACE Co., Ltd. / IA PROJECT</div>#}
@@ -267,7 +267,7 @@
                     {#					<div class="f_12 l_h_12">designed by HaltquinZ♠♥♣♦(ましろま+Rinne.6)</div>#}
                     {#					<div class="f_12 l_h_12">GUMI(Megpoid)©INTERNET Co., LTD.</div>#}
                     {#					<div class="f_12 l_h_12">illustろこる(@tuno901)</div>#}
-                    {#					<div class="f_12 l_h_12">Licensed by REISSUE RECORDS inc. © Crypton Future Media, INC. www.piapro.net <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/piapro.png" style="width:38px"/></div>#}
+                    {#					<div class="f_12 l_h_12">Licensed by REISSUE RECORDS inc. © Crypton Future Media, INC. www.piapro.net <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/piapro.png" style="width:38px"/></div>#}
                     {#					<div class="f_12 l_h_12">Licensed by TOY'S FACTORY INC.</div>#}
                     {#					<div class="f_12 l_h_12">ⓟ2015 SPACE SHOWER NETWORKS INC. ©2015 SPACE SHOWER NETWORKS INC.</div>#}
                     {#					<div class="f_12 l_h_12">TVアニメ『Hi☆sCoool! セハガール』ⓒSEGA/セハガガ学園理事会</div>#}
@@ -278,7 +278,7 @@
                     {#					<div class="f_12 l_h_12">U.S.A. Music by Claudio Accatino, Donatella Cirelli & Anna Maria Gioco  Words by Donatella Cirelli & Severino Lombardoni © by THE SAIFAM GROUP SRL © by EDIZIONI ZYX MUSIC S.R.L. All rights reserved. Used by permission. Rights for Japan administered by NICHION, INC. Licensed by Avex Music Publishing Inc.</div>#}
                     {#					<div class="f_12 l_h_12">©2019 VOCALOMAKETS Powered by Bumpy Factory Corporation. 結月ゆかりは株式会社バンピーファクトリーの登録商標です。</div>#}
                     {#					<div class="f_12 l_h_12">©2019 VOCALOMAKETS Powered by Bumpy Factory Corporation. 紲星あかりは株式会社バンピーファクトリーの登録商標です。</div>#}
-                    {#					<div class="f_12 l_h_12">© Crypton Future Media, INC. www.piapro.net <img src="https://lab.yuangezhizao.cn/maimai-mobile/img/piapro.png" style="width:38px"/> 2012 by FUJIPACIFIC MUSIC INC. & DWANGO Co., Ltd.</div>#}
+                    {#					<div class="f_12 l_h_12">© Crypton Future Media, INC. www.piapro.net <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/piapro.png" style="width:38px"/> 2012 by FUJIPACIFIC MUSIC INC. & DWANGO Co., Ltd.</div>#}
                     {#					<div class="f_12 l_h_12">©2015 by HIP LAND MUSIC CORPORATION INC. Licensed by Victor Entertainment</div>#}
                 </div>
             </div>
@@ -286,7 +286,7 @@
     </footer>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-<script src="https://lab.yuangezhizao.cn/maimai-mobile/js/jquery.marquee.js"></script>
+<script src="https://i1.yuangezhizao.cn/maimai-mobile/js/jquery.marquee.js"></script>
 {#<script>#}
 {#    $(function () {#}
 {#        // 許容幅#}
