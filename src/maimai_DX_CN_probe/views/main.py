@@ -174,7 +174,7 @@ def record():
         page = int(flask.request.args.get('page', 1))
         per_page = int(flask.request.args.get('per_page', 20))
         if 'all' in flask.request.args:
-            per_page = 334
+            per_page = 10000
         if 'diff' in flask.request.args:
             record_data_paginate = Record.query.order_by(Record.id.desc()).paginate(page, per_page)
             history_record_data = []
