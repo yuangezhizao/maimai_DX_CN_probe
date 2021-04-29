@@ -44,8 +44,9 @@ def get_wx_data_musicGenre():
         101: '流行&动漫',
         102: 'niconico＆VOCALOID',
         103: '东方Project',
-        104: '综艺节目',
-        105: '原创乐曲'
+        104: '其他游戏',
+        105: '舞萌',
+        106: '音击/中二节奏',
     }
     diff_dict = {
         0: 'basic',
@@ -153,7 +154,8 @@ def update_wx_data_musicVersion():
         11: 'MiLK PLUS',
         12: 'FiNALE',
         13: '舞萌DX',
-        14: '其他',  # 暂无铺面
+        # 14: '其他',  # 暂无铺面
+        15: '舞萌DX 2021'
     }
     diff_dict = {
         0: 'basic',
@@ -211,7 +213,7 @@ def get_music_info(raw, music_genre):
         music_version = None
 
         cache_dt = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
-        ver = 'Ver.CH1.01-D'
+        ver = 'Ver.CH1.11'
         new_maimai_Record = musicInfo(name, level_img_s, dx_img_s, music_genre, music_word, music_level, music_version,
                                       ver, cache_dt)
         r = new_maimai_Record.save()
@@ -219,6 +221,7 @@ def get_music_info(raw, music_genre):
 
 
 def update_music_info_musicWord(raw, music_word):
+    # TODO：增量更新待适配
     flag = False
     selector = etree.HTML(raw)
     record_count = len(selector.xpath('//div[@class="w_450 m_15 p_r f_0"]'))
@@ -254,6 +257,7 @@ def update_music_info_musicWord(raw, music_word):
 
 
 def update_music_info_musicVersion(raw, music_version, music_diff):
+    # TODO：增量更新待适配
     flag = False
     selector = etree.HTML(raw)
     record_count = len(selector.xpath(f'//div[@class="music_{music_diff}_score_back pointer w_450 m_15 p_3 f_0"]'))
