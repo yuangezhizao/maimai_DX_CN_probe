@@ -8,7 +8,7 @@
 """
 import flask
 
-from maimai_DX_CN_probe.models.maimai import HOME, PlayerData, album, Record, playlogDetail, musicInfo, \
+from maimai_DX_CN_probe.models.maimai import HOME, PlayerData, album, Record, playlogDetail, musicInfo_2021, \
     practice
 from maimai_DX_CN_probe.plugins.wechat_saver import save_home, save_playerData, save_playerData_album, save_record, \
     save_record_playlogDetail
@@ -214,33 +214,33 @@ def info():
         filters = []
         name = flask.request.form.get('name')
         if name:
-            filters.append(musicInfo.name.like('%' + name + '%'))
+            filters.append(musicInfo_2021.name.like('%' + name + '%'))
         level_img_s = flask.request.form.get('level_img_s')
         if level_img_s:
-            filters.append(musicInfo.level_img_s == level_img_s)
+            filters.append(musicInfo_2021.level_img_s == level_img_s)
         dx_img_s = flask.request.form.get('dx_img_s')
         if dx_img_s:
-            filters.append(musicInfo.dx_img_s == dx_img_s)
+            filters.append(musicInfo_2021.dx_img_s == dx_img_s)
 
         music_genre = flask.request.form.get('music_genre')
         if music_genre:
-            filters.append(musicInfo.music_genre == music_genre)
+            filters.append(musicInfo_2021.music_genre == music_genre)
         music_word = flask.request.form.get('music_word')
         if music_word:
-            filters.append(musicInfo.music_word == music_word)
+            filters.append(musicInfo_2021.music_word == music_word)
         music_level = flask.request.form.get('music_level')
         if music_level:
-            filters.append(musicInfo.music_level == music_level)
+            filters.append(musicInfo_2021.music_level == music_level)
         music_version = flask.request.form.get('music_version')
         if music_version:
-            filters.append(musicInfo.music_version == music_version)
+            filters.append(musicInfo_2021.music_version == music_version)
 
         ver = flask.request.form.get('ver')
         if ver:
-            filters.append(musicInfo.ver == ver)
+            filters.append(musicInfo_2021.ver == ver)
         flask.flash(f'筛选：{filters}', 'success')
 
-        record_musicGenre_data = musicInfo.query.filter(*filters).order_by(musicInfo.id.asc()).all()
+        record_musicGenre_data = musicInfo_2021.query.filter(*filters).order_by(musicInfo_2021.id.asc()).all()
     return flask.render_template('maimai/info/list.html', record_musicGenre_data=record_musicGenre_data,
                                  size=len(record_musicGenre_data))
 
@@ -262,9 +262,9 @@ def rating():
         for music_record in music_record_data:
             if music_record.name == 'FREEDOM DiVE (tpz Overcute Remix)':
                 continue
-            _music_info = musicInfo.query.filter_by(name=music_record.name,
-                                                    level_img_s=music_record.level_img_s,
-                                                    dx_img_s=music_record.dx_img_s).first()
+            _music_info = musicInfo_2021.query.filter_by(name=music_record.name,
+                                                         level_img_s=music_record.level_img_s,
+                                                         dx_img_s=music_record.dx_img_s).first()
             print(_music_info)
 
             # TODO：曲名有重复
@@ -294,8 +294,9 @@ def rating():
         if music_dx_record.id in [279, 313, 521, 568, 622]:
             # 手动去重
             continue
-        _music_dx_info = musicInfo.query.filter_by(name=music_dx_record.name, level_img_s=music_dx_record.level_img_s,
-                                                   dx_img_s='music_dx').first()
+        _music_dx_info = musicInfo_2021.query.filter_by(name=music_dx_record.name,
+                                                        level_img_s=music_dx_record.level_img_s,
+                                                        dx_img_s='music_dx').first()
         # TODO：曲名有重复
         _constant = _music_dx_info.constant  # 定数
         music_dx_record.constant = _constant
@@ -313,9 +314,9 @@ def rating():
         if music_standard_record.id in [175, 182, 201, 205, 213, 310, 453, 245, 554, 578, 696, 713, 717, 719, 744]:
             # 手动去重
             continue
-        _music_standard_info = musicInfo.query.filter_by(name=music_standard_record.name,
-                                                         level_img_s=music_standard_record.level_img_s,
-                                                         dx_img_s='music_standard').first()
+        _music_standard_info = musicInfo_2021.query.filter_by(name=music_standard_record.name,
+                                                              level_img_s=music_standard_record.level_img_s,
+                                                              dx_img_s='music_standard').first()
         # TODO：曲名有重复
         _constant = _music_standard_info.constant  # 定数
         music_standard_record.constant = _constant
@@ -331,3 +332,26 @@ def rating():
         music_dx_standard_record_data.append(music_standard_record)
     return flask.render_template('maimai/rating/calc.html', music_dx_standard_record_data=music_dx_standard_record_data,
                                  single_rating_calc=single_rating_calc)
+
+
+@bp.route('/test')
+def test():
+    return '1'
+    from maimai_DX_CN_probe.plugins.music_genre import get_wx_data_musicGenre, update_wx_data_musicWord, \
+        update_wx_data_musicVersion
+    cookies = {
+        'userId': '',
+        '_t': 'f3349161266657b57ffb0b565e3eb39f'
+    }
+    get_wx_data_musicGenre(cookies)
+    update_wx_data_musicWord(cookies)
+    update_wx_data_musicVersion(cookies)
+    # new_info = musicInfo.query.all()
+    # for info in new_info:
+    #     old_info = musicInfo_old.query.filter_by(name=info.name, level_img_s=info.level_img_s, dx_img_s=info.dx_img_s,
+    #                                              music_genre=info.music_genre, music_level=info.music_level).first()
+    #     print(info)
+    #     if old_info:
+    #         info.ver = old_info.ver
+    #         info.cache_dt = old_info.cache_dt
+    #         info.update()

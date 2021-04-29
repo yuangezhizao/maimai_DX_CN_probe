@@ -13,33 +13,12 @@ import time
 import requests
 from lxml import etree
 
-from maimai_DX_CN_probe.models.maimai import musicInfo
-
-# @bp.route('/test')
-# def test():
-#     # update_wx_data_musicVersion()
-#
-#     new_info = musicInfo.query.all()
-#     for info in new_info:
-#         old_info = musicInfo_old.query.filter_by(name=info.name, level_img_s=info.level_img_s, dx_img_s=info.dx_img_s,
-#                                                               music_genre=info.music_genre,music_level=info.music_level).first()
-#         print(info)
-#         if old_info:
-#             info.ver = old_info.ver
-#             info.cache_dt = old_info.cache_dt
-#             info.update()
-#
-#     return '1'
-#     # musicInfo_old
+from maimai_DX_CN_probe.models.maimai import musicInfo_2021
 
 session = requests.Session()
-cookies = {
-    'userId': '',
-    '_t': 'f3349161266657b57ffb0b565e3eb39f'
-}
 
 
-def get_wx_data_musicGenre():
+def get_wx_data_musicGenre(cookies):
     genre_dict = {
         101: '流行&动漫',
         102: 'niconico＆VOCALOID',
@@ -82,9 +61,10 @@ def get_wx_data_musicGenre():
 
             time.sleep(1)
             # 防止限频
+    print(session.cookies.get_dict())
 
 
-def update_wx_data_musicWord():
+def update_wx_data_musicWord(cookies):
     word_dict = {
         0: 'あ行',
         1: 'か行',
@@ -136,9 +116,10 @@ def update_wx_data_musicWord():
 
             time.sleep(1)
             # 防止限频
+    print(session.cookies.get_dict())
 
 
-def update_wx_data_musicVersion():
+def update_wx_data_musicVersion(cookies):
     version_dict = {
         0: 'maimai',
         1: 'maimai PLUS',
@@ -193,6 +174,7 @@ def update_wx_data_musicVersion():
 
             time.sleep(1)
             # 防止限频
+    print(session.cookies.get_dict())
 
 
 def get_music_info(raw, music_genre):
@@ -214,14 +196,14 @@ def get_music_info(raw, music_genre):
 
         cache_dt = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
         ver = 'Ver.CH1.11'
-        new_maimai_Record = musicInfo(name, level_img_s, dx_img_s, music_genre, music_word, music_level, music_version,
-                                      ver, cache_dt)
+        new_maimai_Record = musicInfo_2021(name, level_img_s, dx_img_s, music_genre, music_word, music_level,
+                                           music_version,
+                                           ver, cache_dt)
         r = new_maimai_Record.save()
         print(r)
 
 
 def update_music_info_musicWord(raw, music_word):
-    # TODO：增量更新待适配
     flag = False
     selector = etree.HTML(raw)
     record_count = len(selector.xpath('//div[@class="w_450 m_15 p_r f_0"]'))
@@ -239,15 +221,17 @@ def update_music_info_musicWord(raw, music_word):
         if (name == 'Link') & (level_img_s == 'diff_advanced'):
             if not flag:
                 flag = True
-                old_maimai_Record = musicInfo.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
-                                                              music_level=music_level).first()
+                old_maimai_Record = musicInfo_2021.query.filter_by(name=name, level_img_s=level_img_s,
+                                                                   dx_img_s=dx_img_s,
+                                                                   music_level=music_level).first()
             else:
-                old_maimai_Record = musicInfo.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
-                                                              music_level=music_level).all()[1]
+                old_maimai_Record = \
+                    musicInfo_2021.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
+                                                   music_level=music_level).all()[1]
         # Bug need fixed
         else:
-            old_maimai_Record = musicInfo.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
-                                                          music_level=music_level).first()
+            old_maimai_Record = musicInfo_2021.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
+                                                               music_level=music_level).first()
         if old_maimai_Record is not None:
             old_maimai_Record.music_word = music_word
             r = old_maimai_Record.update()
@@ -257,7 +241,6 @@ def update_music_info_musicWord(raw, music_word):
 
 
 def update_music_info_musicVersion(raw, music_version, music_diff):
-    # TODO：增量更新待适配
     flag = False
     selector = etree.HTML(raw)
     record_count = len(selector.xpath(f'//div[@class="music_{music_diff}_score_back pointer w_450 m_15 p_3 f_0"]'))
@@ -269,7 +252,7 @@ def update_music_info_musicVersion(raw, music_version, music_diff):
         name = selector.xpath(f'/html/body/div[2]/div[{i}]/form/div[3]/text()')[0]
         # 容错 +1
 
-        if music_version == '舞萌DX':
+        if music_version in ['舞萌DX', '舞萌DX 2021']:
             # DX only
             dx_img_s = 'music_dx'
         else:
@@ -278,15 +261,17 @@ def update_music_info_musicVersion(raw, music_version, music_diff):
         if (name == 'Link') & (level_img_s == 'diff_advanced'):
             if not flag:
                 flag = True
-                old_maimai_Record = musicInfo.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
-                                                              music_level=music_level).first()
+                old_maimai_Record = musicInfo_2021.query.filter_by(name=name, level_img_s=level_img_s,
+                                                                   dx_img_s=dx_img_s,
+                                                                   music_level=music_level).first()
             else:
-                old_maimai_Record = musicInfo.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
-                                                              music_level=music_level).all()[1]
+                old_maimai_Record = \
+                    musicInfo_2021.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
+                                                   music_level=music_level).all()[1]
         # Bug need fixed
         else:
-            old_maimai_Record = musicInfo.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
-                                                          music_level=music_level).first()
+            old_maimai_Record = musicInfo_2021.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
+                                                               music_level=music_level).first()
         if old_maimai_Record is not None:
             old_maimai_Record.music_version = music_version
             r = old_maimai_Record.update()
