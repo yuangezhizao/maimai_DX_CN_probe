@@ -615,6 +615,71 @@ class musicInfo(db.Model):
         return self
 
 
+class musicInfo_2021(db.Model):
+    __bind_key__ = 'maimai'
+    __tablename__ = 'musicinfo_2021'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.VARCHAR(50), nullable=False)
+    level_img_s = db.Column(db.VARCHAR(50), nullable=False)
+    dx_img_s = db.Column(db.VARCHAR(50))
+
+    music_genre = db.Column(db.VARCHAR(50))
+    music_word = db.Column(db.VARCHAR(50))
+    music_level = db.Column(db.VARCHAR(50), nullable=False)
+    music_version = db.Column(db.VARCHAR(50))
+
+    ver = db.Column(db.VARCHAR(50))
+    constant = db.Column(db.FLOAT(2))
+
+    cache_dt = db.Column(db.DateTime, nullable=False)
+
+    def __init__(self, name, level_img_s, dx_img_s, music_genre, music_word, music_level, music_version, ver,
+                 cache_dt):
+        self.name = name,
+        self.level_img_s = level_img_s,
+        self.dx_img_s = dx_img_s,
+        self.music_genre = music_genre,
+        self.music_word = music_word,
+        self.music_level = music_level,
+        self.music_version = music_version,
+        self.ver = ver,
+        self.cache_dt = cache_dt
+
+    def __repr__(self):
+        return '<musicInfo_2021 (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,)>' % (
+            self.id, self.name, self.level_img_s, self.dx_img_s, self.music_genre, self.music_word, self.music_level,
+            self.music_version, self.ver, self.cache_dt)
+
+    def to_json(self):
+        num = {
+            'id': self.id,
+            'name': self.name,
+            'level_img_s': self.level_img_s,
+            'dx_img_s': self.dx_img_s,
+            'music_genre': self.music_genre,
+            'music_word': self.music_word,
+            'music_level': self.music_level,
+            'music_version': self.music_version,
+            'ver': self.ver,
+            'cache_dt': self.cache_dt
+        }
+        return num
+
+    def save(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+        except Exception as e:
+            print(e)
+            db.session.rollback()
+        return self
+
+    def update(self):
+        db.session.commit()
+        return self
+
+
 class practice(db.Model):
     __bind_key__ = 'maimai'
     __tablename__ = 'practice'
