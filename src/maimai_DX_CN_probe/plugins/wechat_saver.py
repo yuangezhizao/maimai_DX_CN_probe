@@ -197,6 +197,7 @@ def save_record_playlogDetail(userId, _t, start_posi, end_posi):
             return f'ERROR [{i}]：error_code {error_code}'
         parse_record_playlogDetail(r_text)
         time.sleep(1)
+    print(session.cookies.get_dict())
     return idx
 
 
