@@ -183,7 +183,10 @@ def record():
                 _id = record_data.id
                 _record_playlogDetail = playlogDetail.query.get(_id - 1)
 
-                record_playlogDetail_data.append(_record_playlogDetail)
+                if _record_playlogDetail and (_record_playlogDetail.notes_tap_p is not None):
+                    record_playlogDetail_data.append(_record_playlogDetail)
+                else:
+                    continue
 
                 _level_img_s = record_data.level_img_s
                 _name = record_data.name
