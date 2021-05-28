@@ -31,6 +31,7 @@
                     <th>详细表</th>
                     <th>过快/过慢</th>
                     <th>DX 分数</th>
+                    <th>和☆您☆拼机</th>
                     <th>游戏时间</th>
                 </tr>
                 </thead>
@@ -161,9 +162,15 @@
                             <span style="color: blue">{{ record_playlogDetail_data[loop.index0].fast }}</span>/
                             <span style="color: red">{{ record_playlogDetail_data[loop.index0].late }}</span>
                         </td>
-
                         <td>
                             {{ data.delux_score }}
+                        </td>
+                        <td>
+                            {% if record_playlogDetail_data[loop.index0].name %}
+                                {{ record_playlogDetail_data[loop.index0].name }}
+                            {% else %}
+                                -
+                            {% endif %}
                         </td>
                         <td {% if data.play_dt %}data-tooltip="{{ data.play_dt }}" data-inverted=""{% endif %}>
                             {% if data.play_dt %}
