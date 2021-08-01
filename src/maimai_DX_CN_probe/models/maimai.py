@@ -46,22 +46,8 @@ class HOME(db.Model):
             self.grade_img,
             self.star, self.chara, self.comment, self.cache_dt)
 
-    def to_json(self):
-        num = {
-            'id': self.id,
-            'basic_img': self.basic_img,
-            'trophy': self.trophy,
-            'name': self.name,
-            'rating': self.rating,
-            'rating_max': self.rating_max,
-            'rating_img': self.rating_img,
-            'grade_img': self.grade_img,
-            'star': self.star,
-            'chara': self.chara,
-            'comment': self.comment,
-            'cache_dt': self.cache_dt
-        }
-        return num
+    def to_dict(self):
+        return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
 
     def save(self):
         db.session.add(self)
@@ -129,32 +115,8 @@ class PlayerData(db.Model):
             self.clear, self.app,
             self.ap, self.fcp, self.fc, self.fsdp, self.fsd, self.fsp, self.fs, self.cache_dt)
 
-    def to_json(self):
-        num = {
-            'id': self.id,
-
-            'music_count': self.music_count,
-            'total_count': self.total_count,
-
-            'sssp': self.sssp,
-            'sss': self.sss,
-            'ssp': self.ssp,
-            'ss': self.ss,
-            'sp': self.sp,
-            's': self.s,
-            'clear': self.clear,
-
-            'app': self.app,
-            'ap': self.ap,
-            'fcp': self.fcp,
-            'fc': self.fc,
-            'fsdp': self.fsdp,
-            'fsd': self.fsd,
-            'fsp': self.fsp,
-            'fs': self.fs,
-            'cache_dt': self.cache_dt,
-        }
-        return num
+    def to_dict(self):
+        return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
 
     def save(self):
         db.session.add(self)
@@ -195,18 +157,8 @@ class album(db.Model):
             self.id, self.dx_img_s, self.play_dt, self.play_dt_utc, self.level_img_s, self.name, self.img,
             self.cache_dt)
 
-    def to_json(self):
-        num = {
-            'id': self.id,
-            'dx_img_s': self.dx_img_s,
-            'play_dt': self.play_dt,
-            'play_dt_utc': self.play_dt_utc,
-            'level_img_s': self.level_img_s,
-            'name': self.name,
-            'img': self.img,
-            'cache_dt': self.cache_dt
-        }
-        return num
+    def to_dict(self):
+        return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
 
     def save(self):
         db.session.add(self)
@@ -276,30 +228,8 @@ class Record(db.Model):
             self.achievement, self.score_rank_new, self.score_rank_img_s, self.delux_score, self.delux_new,
             self.fc_img_s, self.fs_img_s, self.rate_img_s, self.single_rating, self.cache_dt)
 
-    def to_json(self):
-        num = {
-            'id': self.id,
-            'level_img_s': self.level_img_s,
-            'vs_img_s': self.vs_img_s,
-            'track': self.track,
-            'play_dt': self.play_dt,
-            'play_dt_utc': self.play_dt_utc,
-            'clear': self.clear,
-            'name': self.name,
-            'img_s': self.img_s,
-            'dx_img_s': self.dx_img_s,
-            'achievement': self.achievement,
-            'score_rank_new': self.score_rank_new,
-            'score_rank_img_s': self.score_rank_img_s,
-            'delux_score': self.delux_score,
-            'delux_new': self.delux_new,
-            'fc_img_s': self.fc_img_s,
-            'fs_img_s': self.fs_img_s,
-            'rate_img_s': self.rate_img_s,
-            'single_rating': self.single_rating,
-            'cache_dt': self.cache_dt,
-        }
-        return num
+    def to_dict(self):
+        return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
 
     def save(self):
         db.session.add(self)
@@ -468,77 +398,8 @@ class playlogDetail(db.Model):
             self.grade_pic_s, self.maxcombo, self.maxsync,
             self.level_img_s, self.name, self.cache_dt)
 
-    def to_json(self):
-        num = {
-            'id': self.id,
-            'vs_rank': self.vs_rank,
-            'vs_achievement': self.vs_achievement,
-            'vs_rating': self.vs_rating,
-            'vs_grade': self.vs_grade,
-            'chara_0_img_s': self.chara_0_img_s,
-            'chara_0_star': self.chara_0_star,
-            'chara_0_lv': self.chara_0_lv,
-            'chara_1_img_s': self.chara_1_img_s,
-            'chara_1_star': self.chara_1_star,
-            'chara_1_lv': self.chara_1_lv,
-            'chara_2_img_s': self.chara_2_img_s,
-            'chara_2_star': self.chara_2_star,
-            'chara_2_lv': self.chara_2_lv,
-            'chara_3_img_s': self.chara_3_img_s,
-            'chara_3_star': self.chara_3_star,
-            'chara_3_lv': self.chara_3_lv,
-            'chara_4_img_s': self.chara_4_img_s,
-            'chara_4_star': self.chara_4_star,
-            'chara_4_lv': self.chara_4_lv,
-
-            'fast': self.fast,
-            'late': self.late,
-            'grade': self.grade,
-            'grade_diff': self.grade_diff,
-            'rating': self.rating,
-            'delux_rating': self.delux_rating,
-
-            'delux_rating_diff': self.delux_rating_diff,
-            'grade_pic_s': self.grade_pic_s,
-
-            'notes_tap_cp': self.notes_tap_cp,
-            'notes_tap_p': self.notes_tap_p,
-            'notes_tap_great': self.notes_tap_great,
-            'notes_tap_good': self.notes_tap_good,
-            'notes_tap_miss': self.notes_tap_miss,
-
-            'notes_hold_cp': self.notes_hold_cp,
-            'notes_hold_p': self.notes_hold_p,
-            'notes_hold_great': self.notes_hold_great,
-            'notes_hold_good': self.notes_hold_good,
-            'notes_hold_miss': self.notes_hold_miss,
-
-            'notes_slide_cp': self.notes_slide_cp,
-            'notes_slide_p': self.notes_slide_p,
-            'notes_slide_great': self.notes_slide_great,
-            'notes_slide_good': self.notes_slide_good,
-            'notes_slide_miss': self.notes_slide_miss,
-
-            'notes_touch_cp': self.notes_touch_cp,
-            'notes_touch_p': self.notes_touch_p,
-            'notes_touch_great': self.notes_touch_great,
-            'notes_touch_good': self.notes_touch_good,
-            'notes_touch_miss': self.notes_touch_miss,
-
-            'notes_break_cp': self.notes_break_cp,
-            'notes_break_p': self.notes_break_p,
-            'notes_break_great': self.notes_break_great,
-            'notes_break_good': self.notes_break_good,
-            'notes_break_miss': self.notes_break_miss,
-
-            'maxcombo': self.maxcombo,
-            'maxsync': self.maxsync,
-            'level_img_s': self.level_img_s,
-            'name': self.name,
-
-            'cache_dt': self.cache_dt,
-        }
-        return num
+    def to_dict(self):
+        return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
 
     def save(self):
         db.session.add(self)
@@ -586,20 +447,8 @@ class musicInfo(db.Model):
             self.id, self.name, self.level_img_s, self.dx_img_s, self.music_genre, self.music_word, self.music_level,
             self.music_version, self.ver, self.cache_dt)
 
-    def to_json(self):
-        num = {
-            'id': self.id,
-            'name': self.name,
-            'level_img_s': self.level_img_s,
-            'dx_img_s': self.dx_img_s,
-            'music_genre': self.music_genre,
-            'music_word': self.music_word,
-            'music_level': self.music_level,
-            'music_version': self.music_version,
-            'ver': self.ver,
-            'cache_dt': self.cache_dt
-        }
-        return num
+    def to_dict(self):
+        return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
 
     def save(self):
         try:
@@ -651,20 +500,8 @@ class musicInfo_2021(db.Model):
             self.id, self.name, self.level_img_s, self.dx_img_s, self.music_genre, self.music_word, self.music_level,
             self.music_version, self.ver, self.cache_dt)
 
-    def to_json(self):
-        num = {
-            'id': self.id,
-            'name': self.name,
-            'level_img_s': self.level_img_s,
-            'dx_img_s': self.dx_img_s,
-            'music_genre': self.music_genre,
-            'music_word': self.music_word,
-            'music_level': self.music_level,
-            'music_version': self.music_version,
-            'ver': self.ver,
-            'cache_dt': self.cache_dt
-        }
-        return num
+    def to_dict(self):
+        return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
 
     def save(self):
         try:
@@ -695,6 +532,9 @@ class practice(db.Model):
         self.name = name
         self.level_img_s = level_img_s
         self.tips = tips
+
+    def to_dict(self):
+        return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
 
     def save(self):
         db.session.add(self)
