@@ -176,7 +176,14 @@ def record():
         if 'all' in flask.request.args:
             per_page = 10000
         if 'diff' in flask.request.args:
-            record_data_paginate = Record.query.order_by(Record.id.desc()).paginate(page, per_page)
+            if 'name' in flask.request.args:
+                _name = flask.request.args.get('name')
+                record_data_paginate = Record.query.filter_by(name=_name) \
+                    .order_by(Record.id.desc()) \
+                    .paginate(page, per_page)
+            else:
+                record_data_paginate = Record.query.order_by(Record.id.desc()) \
+                    .paginate(page, per_page)
             history_record_data = []
             record_playlogDetail_data = []
             for record_data in record_data_paginate.items:
