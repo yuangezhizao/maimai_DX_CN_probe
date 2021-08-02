@@ -203,6 +203,12 @@ def record():
                     Record.play_dt <= _play_dt).order_by(
                     Record.achievement.desc()).all()
 
+                _lv = musicInfo_2021.query.filter_by(name=_name, level_img_s=_level_img_s,
+                                                     dx_img_s=_dx_img_s).first().music_level
+                # https://web.archive.org/web/20210802143823/https://stackoverflow.com/questions/8542343/object-does-not-support-item-assignment-error
+                for each in _record_data:
+                    setattr(each, 'music_level', _lv)
+
                 history_record_data.append(_record_data)
 
             return flask.render_template('maimai/record/diff.html',

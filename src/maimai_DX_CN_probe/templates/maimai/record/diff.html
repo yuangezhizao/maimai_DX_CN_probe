@@ -52,9 +52,9 @@
                             {{ data.name }}
                         </td>
                         <td>
-                            <span style="display: none">{{ data.level_img_s | my_split('_', 1) }}</span>
                             <img class="ui tiny image"
                                  src="https://i1.yuangezhizao.cn/maimai-mobile/img/btn_music_{{ data.level_img_s | my_split('_', 1) }}.png">
+                            {{ data.music_level }}
                         </td>
                         <td class="
 {% if data.achievement == 101 %}
