@@ -137,10 +137,10 @@ def wechat_saver():
                 start_posi = int(flask.request.form.get('start_posi'))
                 end_posi = int(flask.request.form.get('end_posi'))
                 r = save_record_playlogDetail(userId, _t, start_posi, end_posi)
-                if 'ERROR' not in r:
-                    flask.flash(f'[详细] 存储成功：{r}', 'success')
+                if 'ERROR' not in r[0]:
+                    flask.flash(f'[详细] 存储成功：{r[0]}，Cookies：{r[1]}', 'success')
                 else:
-                    flask.flash(f'[详细] 存储失败：{r}', 'negative')
+                    flask.flash(f'[详细] 存储失败：{r[0]}，Cookies：{r[1]}', 'negative')
             else:
                 flask.flash(f'非法 [func_type]', 'negative')
         return flask.render_template('maimai/wechat_saver/auto.html')
