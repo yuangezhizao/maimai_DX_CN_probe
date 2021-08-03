@@ -2,10 +2,14 @@
 
 舞萌查分器
 
-# Installation
+### Introduction
 
-[mitmproxy](https://docs.mitmproxy.org/stable/overview-installation/)
+【1024，Serverless】maimai_DX 查分器：https://www.yuangezhizao.cn/articles/python/flask/serverless/maimai_DX_CN_probe.html
 
-# Usage
+### Preview
 
-[Configure your browser or device](https://docs.mitmproxy.org/stable/overview-getting-started/#configure-your-browser-or-device)
+maimai_DX 查分器：https://maimai.yuangezhizao.cn
+
+### Related
+
+舞萌数据存储：https://github.com/yuangezhizao/maimai_DX_CN_saver
