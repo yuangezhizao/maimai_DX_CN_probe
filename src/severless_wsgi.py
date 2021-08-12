@@ -8,13 +8,15 @@ Inspired by: https://github.com/miserlou/zappa
 Author: Logan Raarup <logan@logan.dk>
 """
 import base64
+import json
 import os
 import sys
-from werkzeug.datastructures import Headers, MultiDict
-from werkzeug.wrappers import Response
-from werkzeug.urls import url_encode, url_unquote
-from werkzeug.http import HTTP_STATUS_CODES
+
 from werkzeug._compat import BytesIO, string_types, to_bytes, wsgi_encoding_dance
+from werkzeug.datastructures import Headers, MultiDict
+from werkzeug.http import HTTP_STATUS_CODES
+from werkzeug.urls import url_encode, url_unquote
+from werkzeug.wrappers import Response
 
 # List of MIME types that should not be base64 encoded. MIME types within `text/*`
 # are included by default.
@@ -61,7 +63,7 @@ def split_headers(headers):
             for value, casing in zip(values, all_casings(key)):
                 new_headers[casing] = value
         elif key.lower() == 'set-cookie':
-          new_headers[key] = values
+            new_headers[key] = values
         elif len(values) == 1:
             new_headers[key] = values[0]
 
@@ -83,6 +85,18 @@ def encode_query_string(event):
         return url_encode(MultiDict((i, j) for i in multi for j in multi[i]))
     else:
         return url_encode(event.get(u"queryString") or {})
+
+
+def setup_environ_items(environ, headers):
+    for key, value in environ.items():
+        if isinstance(value, string_types):
+            environ[key] = wsgi_encoding_dance(value)
+
+    for key, value in headers.items():
+        key = "HTTP_" + key.upper().replace("-", "_")
+        if key not in ("HTTP_CONTENT_TYPE", "HTTP_CONTENT_LENGTH"):
+            environ[key] = value
+    return environ
 
 
 def handle_request(app, event, context):
@@ -117,7 +131,7 @@ def handle_request(app, event, context):
         script_name = "/" + base_path
 
         if path_info.startswith(script_name):
-            path_info = path_info[len(script_name) :] or "/"
+            path_info = path_info[len(script_name):] or "/"
 
     if u"body" in event:
         body = event[u"body"] or ""
@@ -135,11 +149,11 @@ def handle_request(app, event, context):
         "PATH_INFO": url_unquote(path_info),
         "QUERY_STRING": encode_query_string(event),
         "REMOTE_ADDR": event["requestContext"]
-        .get(u"identity", {})
-        .get(u"sourceIp", ""),
+            .get(u"identity", {})
+            .get(u"sourceIp", ""),
         "REMOTE_USER": event["requestContext"]
-        .get(u"authorizer", {})
-        .get(u"principalId", ""),
+            .get(u"authorizer", {})
+            .get(u"principalId", ""),
         "REQUEST_METHOD": event["httpMethod"],
         "SCRIPT_NAME": script_name,
         "SERVER_NAME": headers.get(u"Host", "lambda"),
@@ -167,15 +181,10 @@ def handle_request(app, event, context):
         "context": context,
     }
 
-    for key, value in environ.items():
-        if isinstance(value, string_types):
-            environ[key] = wsgi_encoding_dance(value)
+    os.environ["__SLS_EVENT__"] = json.dumps(event)
+    os.environ["__SLS_CONTEXT__"] = json.dumps(context)
 
-    for key, value in headers.items():
-        key = "HTTP_" + key.upper().replace("-", "_")
-        if key not in ("HTTP_CONTENT_TYPE", "HTTP_CONTENT_LENGTH"):
-            environ[key] = value
-
+    environ = setup_environ_items(environ, headers)
     response = Response.from_app(app, environ)
 
     returndict = {u"statusCode": response.status_code}
@@ -195,7 +204,7 @@ def handle_request(app, event, context):
     if response.data:
         mimetype = response.mimetype or "text/plain"
         if (
-            mimetype.startswith("text/") or mimetype in TEXT_MIME_TYPES
+                mimetype.startswith("text/") or mimetype in TEXT_MIME_TYPES
         ) and not response.headers.get("Content-Encoding", ""):
             returndict["body"] = response.get_data(as_text=True)
             returndict["isBase64Encoded"] = False
