@@ -55,11 +55,13 @@ def split_headers(headers):
     """
     new_headers = {}
 
-    for key in headers.keys():
+    for key in set(headers.keys()):
         values = headers.get_all(key)
-        if len(values) > 1:
+        if len(values) > 1 and key.lower() != 'set-cookie':
             for value, casing in zip(values, all_casings(key)):
                 new_headers[casing] = value
+        elif key.lower() == 'set-cookie':
+          new_headers[key] = values
         elif len(values) == 1:
             new_headers[key] = values[0]
 
