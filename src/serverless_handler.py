@@ -6,7 +6,7 @@
     :Site: https://www.yuangezhizao.cn
     :Copyright: © 2020 yuangezhizao <root@yuangezhizao.cn>
 """
-import severless_wsgi
+import serverless_wsgi
 from maimai_DX_CN_probe import create_app  # Replace with your actual application
 
 
@@ -16,4 +16,4 @@ from maimai_DX_CN_probe import create_app  # Replace with your actual applicatio
 # serverless_wsgi.TEXT_MIME_TYPES.append("application/custom+json")
 
 def handler(event, context):
-    return severless_wsgi.handle_request(create_app(), event, context)
+    return serverless_wsgi.handle_request(create_app(), event, context)
