@@ -1,0 +1,2 @@
+SQLALCHEMY_BINDS:
+  maimai: mysql+pymysql://@10.0.2.11/maimai
