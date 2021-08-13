@@ -50,10 +50,13 @@ def register_extensions(app):
     app.jinja_env.trim_blocks = True
     app.jinja_env.lstrip_blocks = True
 
-    from maimai_DX_CN_probe.plugins.extensions import db, compress
+    from maimai_DX_CN_probe.plugins.extensions import db, compress, cache
 
     db.init_app(app)
     compress.init_app(app)
+    cache.init_app(app)
+    with app.app_context():
+        cache.clear()
 
 
 def register_blueprints(app):

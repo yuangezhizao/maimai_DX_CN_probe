@@ -6,10 +6,10 @@
     :Site: https://www.yuangezhizao.cn
     :Copyright: © 2019 yuangezhizao <root@yuangezhizao.cn>
 """
-
-from flask_sqlalchemy import SQLAlchemy
-
+from flask_caching import Cache
 from flask_compress import Compress
+from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 compress = Compress()
+cache = Cache()

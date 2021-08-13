@@ -7,3 +7,4 @@ pymysql
 psycopg2
 lxml
 PyYAML
+Flask-Caching
