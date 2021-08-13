@@ -1,5 +1,6 @@
 SQLALCHEMY_BINDS:
   maimai: mysql+pymysql://<rm>:<rm>@10.0.2.11/maimai
-CACHE_TYPE: redis
-CACHE_REDIS_URL: redis://<rm>:<rm>@10.0.2.11:6379/0
+CACHE_TYPE: RedisCache
 CACHE_DEFAULT_TIMEOUT: 86400
+CACHE_KEY_PREFIX: maimai_DX_CN_probe
+CACHE_REDIS_URL: redis://<rm>:<rm>@10.0.2.11:6379/0
