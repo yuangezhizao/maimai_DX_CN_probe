@@ -6,14 +6,14 @@
     :Site: https://www.yuangezhizao.cn
     :Copyright: © 2020 yuangezhizao <root@yuangezhizao.cn>
 """
-import serverless_wsgi
+import sl_wsgi
 from maimai_DX_CN_probe import create_app  # Replace with your actual application
 
 
 # If you need to send additional content types as text, add then directly
 # to the whitelist:
 #
-# serverless_wsgi.TEXT_MIME_TYPES.append("application/custom+json")
+# sl_wsgi.TEXT_MIME_TYPES.append("application/custom+json")
 
 def handler(event, context):
-    return serverless_wsgi.handle_request(create_app(), event, context)
+    return sl_wsgi.handle_request(create_app(), event, context)
