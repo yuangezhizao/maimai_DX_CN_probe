@@ -10,9 +10,12 @@ import datetime
 import re
 import time
 
+import pymongo
 import requests
+from flask import current_app
 from lxml import etree
 
+from maimai_DX_CN_probe.models.aqua import MaiMai2UserMusicDetail
 from maimai_DX_CN_probe.models.maimai import HOME, PlayerData, album, Record, playlogDetail
 
 
@@ -432,3 +435,122 @@ def parse_record_playlogDetail(raw_html):
                                              notes_break_great, notes_break_good, notes_break_miss, maxcombo, maxsync,
                                              level_img_s, name, cache_dt)
     new_maimai_playlogDetail.save()
+
+
+def get_music_id(name):
+    MONGODB_QCLOUD_STRING = current_app.config['MONGODB_QCLOUD_STRING']
+    music_coll = pymongo.MongoClient(MONGODB_QCLOUD_STRING)['maimai']['music']
+    query = {
+        'name.str': name
+    }
+    result = music_coll.find_one(query)
+    if result:
+        return result['music_id']
+    else:
+        return 0
+
+
+def save_to_aqua(raw_html):
+    diff_img_table = {
+        'diff_basic': 0,
+        'diff_advanced': 1,
+        'diff_expert': 2,
+        'diff_master': 3,
+        'diff_remaster': 4,
+    }
+    fs_img_table = {
+        'music_icon_back': 0,
+        'music_icon_fs': 1,
+        'music_icon_fsp': 2,
+        'music_icon_fsd': 3,
+        'music_icon_fsdp': 4
+    }
+    fc_img_s_table = {
+        'music_icon_back': 0,
+        'music_icon_fc': 1,
+        'music_icon_fcp': 2
+    }
+    score_rank_img_s_table = {
+        'music_icon_d': 0,
+        'music_icon_c': 1,
+        'music_icon_b': 2,
+        'music_icon_bb': 3,
+        'music_icon_bbb': 4,
+        'music_icon_a': 5,
+        'music_icon_aa': 6,
+        'music_icon_aaa': 7,
+        'music_icon_s': 8,
+        'music_icon_sp': 9,
+        'music_icon_ss': 10,
+        'music_icon_ssp': 11,
+        'music_icon_sss': 12,
+        'music_icon_sssp': 13
+    }
+    dx_img_s_table = {
+        'music_standard': 0,
+        'music_dx': 1
+    }
+    selector = etree.HTML(raw_html)
+    link = False
+    for i in range(1, 700):
+        try:
+            diff_img = selector.xpath(f'/html/body/div[2]/div[{i}]/div/form/img[1]/@src')[0].split('/')[-1].split('.')[
+                0
+            ]
+            level = diff_img_table[diff_img]
+            music_lv = selector.xpath(f'/html/body/div[2]/div[{i}]/div/form/div[2]/text()')[0]
+
+            name = selector.xpath(f'/html/body/div[2]/div[{i}]/div/form/div[3]/text()')[0]
+            # 参考：https://github.com/Diving-Fish/maimaidx-prober/blob/cb626494e3929e368c74e0eb83850d442609def7/page-parser/index.js
+            if name == 'Link':
+                if not link:
+                    name = 'Link(CoF)'
+                    link = True
+                    music_id = 383
+                else:
+                    music_id = 131
+            else:
+                music_id = get_music_id(name)
+                if not music_id:
+                    print(f'{name} 反查 id 失败')
+                    continue
+
+            achievement = int(
+                selector.xpath(f'/html/body/div[2]/div[{i}]/div/form/div[4]/text()')[0][:-1].replace('.', '')
+            )
+            delux_score = int(
+                selector.xpath(f'/html/body/div[2]/div[{i}]/div/form/div[5]/text()')[0].replace(',', '')
+            )
+
+            fs_img_s = selector.xpath(f'/html/body/div[2]/div[{i}]/div/form/img[2]/@src')[0].split('/')[-1].split('.')[
+                0]
+            fs = fs_img_table[fs_img_s]
+
+            fc_img_s = selector.xpath(f'/html/body/div[2]/div[{i}]/div/form/img[3]/@src')[0].split('/')[
+                -1].split('.')[0]
+            fc = fc_img_s_table[fc_img_s]
+
+            score_rank_img_s = selector.xpath(f'/html/body/div[2]/div[{i}]/div/form/img[4]/@src')[0].split('/')[
+                -1].split('.')[0]
+            score_rank = score_rank_img_s_table[score_rank_img_s]
+
+            dx_img_s = selector.xpath(f'/html/body/div[2]/div[{i}]/img/@src')[0].split('/')[-1].split('.')[0]
+            dx = dx_img_s_table[dx_img_s]
+
+            print(diff_img, level, music_lv, name, music_id, achievement, delux_score, fs, fc, score_rank, dx)
+
+            new_MaiMai2UserMusicDetail = MaiMai2UserMusicDetail(
+                music_id=music_id,
+                level=level,
+                play_count=0,  # TODO
+                achievement=achievement,
+                combo_status=fc,
+                sync_status=fs,
+                deluxscore_max=delux_score,
+                score_rank=score_rank,
+                user_id=1
+            )
+            new_MaiMai2UserMusicDetail.save()
+        except IndexError:
+            pass
+    return music_id
