@@ -11,4 +11,4 @@ from maimai_DX_CN_probe import create_app
 flask_app = create_app()
 
 if __name__ == '__main__':
-    flask_app.run(host='127.0.0.1', port=5000, threaded=True)
+    flask_app.run(host='127.0.0.1', port=4000, threaded=True)
