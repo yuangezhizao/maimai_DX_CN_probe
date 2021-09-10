@@ -179,7 +179,6 @@ class Record(db.Model):
     vs_img_s = db.Column(db.VARCHAR(50))
     track = db.Column(db.Integer)
     play_dt = db.Column(db.DateTime, nullable=False)
-    play_dt_utc = db.Column(db.DateTime, nullable=False)
 
     clear = db.Column(db.Boolean)
     name = db.Column(db.VARCHAR(50))
@@ -198,14 +197,12 @@ class Record(db.Model):
     single_rating = db.Column(db.FLOAT(4), default=0)
     cache_dt = db.Column(db.DateTime, nullable=False)
 
-    def __init__(self, level_img_s, vs_img_s, track, play_dt, play_dt_utc, clear, name, img_s, dx_img_s, achievement,
-                 score_rank_new,
+    def __init__(self, level_img_s, vs_img_s, track, play_dt, clear, name, img_s, dx_img_s, achievement, score_rank_new,
                  score_rank_img_s, delux_score, delux_new, fc_img_s, fs_img_s, rate_img_s, cache_dt):
         self.level_img_s = level_img_s,
         self.vs_img_s = vs_img_s,
         self.track = track,
         self.play_dt = play_dt,
-        self.play_dt_utc = play_dt_utc,
         self.clear = clear
         self.name = name,
         self.img_s = img_s,
@@ -221,12 +218,11 @@ class Record(db.Model):
         self.cache_dt = cache_dt,
 
     def __repr__(self):
-        return '<PlayerData (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)>' % (
-            self.level_img_s, self.vs_img_s, self.track, self.play_dt, self.play_dt_utc, self.clear, self.name,
-            self.img_s,
-            self.dx_img_s,
+        return '<PlayerData (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)>' % (
+            self.level_img_s, self.vs_img_s, self.track, self.play_dt, self.clear, self.name, self.img_s, self.dx_img_s,
             self.achievement, self.score_rank_new, self.score_rank_img_s, self.delux_score, self.delux_new,
-            self.fc_img_s, self.fs_img_s, self.rate_img_s, self.single_rating, self.cache_dt)
+            self.fc_img_s, self.fs_img_s, self.rate_img_s, self.single_rating, self.cache_dt
+        )
 
     def to_dict(self):
         return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
