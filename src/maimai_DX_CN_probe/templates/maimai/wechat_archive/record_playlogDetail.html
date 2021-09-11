@@ -868,19 +868,14 @@
     var achievement_data = {{ achievement_data | safe }};
     var delux_score_data = {{ delux_score_data | safe }};
     var fc_img_s_data = {{ fc_img_s_data | safe }};
-    var cache_dt_data = {{ cache_dt_data | safe }};
+    var play_dt_data = {{ play_dt_data | safe }};
 
-    function convert_date_from_string(datetime) {
-        var split_date = datetime.split(" ")[0].split('-');
-        var date = new Date(split_date[0], split_date[1] - 1, split_date[2]);
-        return date.getTime();
-    }
 
     function final_convert(music_count_data) {
         var music_count_data_new = [];
-        for (var i = 0; i < cache_dt_data.length; i++) {
+        for (var i = 0; i < play_dt_data.length; i++) {
             music_count_data_new.push([
-                convert_date_from_string(cache_dt_data[i]),
+                new Date(play_dt_data[i]).getTime(),
                 music_count_data[i]
             ]);
         }
@@ -889,7 +884,7 @@
 
     var chart = Highcharts.chart('container', {
         global: {
-            useUTC: true
+            useUTC: false
         },
         chart: {
             zoomType: "x",

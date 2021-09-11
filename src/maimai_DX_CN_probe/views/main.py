@@ -100,7 +100,7 @@ def wechat_archive():
 
         # 历史 record id 提取
         id_all, record_playlogDetail_history_all = [], []
-        achievement_data, delux_score_data, fc_img_s_data, fs_img_s_data, cache_dt_data = [], [], [], [], []
+        achievement_data, delux_score_data, fc_img_s_data, fs_img_s_data, play_dt_data = [], [], [], [], []
 
         for record_data_history in record_data_history_all:
             id_all.append(record_data_history.id - 1)
@@ -108,7 +108,7 @@ def wechat_archive():
             delux_score_data.append(record_data_history.delux_score)
             fc_img_s_data.append(100 if record_data_history.fc_img_s != 'fc_dummy' else 99)
             fs_img_s_data.append(100 if record_data_history.fs_img_s != 'fs_dummy' else 99)
-            cache_dt_data.append(record_data_history.cache_dt.strftime('%Y-%m-%d %H:%M:%S'))
+            play_dt_data.append(record_data_history.play_dt.strftime('%Y-%m-%d %H:%M:%S'))
 
         # 历史 record_playlogDetail 查询
         for id in id_all:
@@ -121,7 +121,7 @@ def wechat_archive():
                                      record_playlogDetail_history_all=record_playlogDetail_history_all,
                                      achievement_data=achievement_data, delux_score_data=delux_score_data,
                                      fc_img_s_data=fc_img_s_data, fs_img_s_data=fs_img_s_data,
-                                     cache_dt_data=cache_dt_data, all_levels=all_levels)
+                                     play_dt_data=play_dt_data, all_levels=all_levels)
     else:
         return flask.redirect(flask.url_for('main.wechat_archive', _external=True) + '?home')
 
