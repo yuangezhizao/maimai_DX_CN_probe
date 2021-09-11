@@ -33,7 +33,7 @@ def wechat_archive():
             rating_data.append(data.rating / 100)
             rating_max_data.append(data.rating_max / 100)
             star_data.append(data.star)
-            create_time_data.append(data.create_time)
+            create_time_data.append(data.create_time.strftime('%Y-%m-%d %H:%M:%S'))
 
         return flask.render_template('maimai/wechat_archive/home.html', HOME_data=HOME_data, id_data=id_data,
                                      rating_data=rating_data, rating_max_data=rating_max_data, star_data=star_data,
@@ -65,7 +65,7 @@ def wechat_archive():
             fsd_data.append(data.fsd)
             fsp_data.append(data.fsp)
             fs_data.append(data.fs)
-            create_time_data.append(data.create_time)
+            create_time_data.append(data.create_time.strftime('%Y-%m-%d %H:%M:%S'))
 
         return flask.render_template('maimai/wechat_archive/playerData.html', playerData=playerData, id_data=id_data,
                                      music_count_data=music_count_data, total_count_data=total_count_data,
