@@ -27,17 +27,17 @@ def wechat_archive():
     if 'home' in flask.request.args:
         HOME_data = HOME.query.order_by(HOME.id.desc()).all()
 
-        id_data, rating_data, rating_max_data, star_data, cache_dt_data = [], [], [], [], []
+        id_data, rating_data, rating_max_data, star_data, create_time_data = [], [], [], [], []
         for data in HOME_data:
             id_data.append(data.id)
             rating_data.append(data.rating / 100)
             rating_max_data.append(data.rating_max / 100)
             star_data.append(data.star)
-            cache_dt_data.append(data.cache_dt.strftime('%Y-%m-%d %H:%M:%S'))
+            create_time_data.append(data.create_time)
 
         return flask.render_template('maimai/wechat_archive/home.html', HOME_data=HOME_data, id_data=id_data,
-                                     rating_data=rating_data,
-                                     rating_max_data=rating_max_data, star_data=star_data, cache_dt_data=cache_dt_data)
+                                     rating_data=rating_data, rating_max_data=rating_max_data, star_data=star_data,
+                                     create_time_data=create_time_data)
     elif 'playerData' in flask.request.args:
         playerData = PlayerData.query.order_by(PlayerData.id.desc()).all()
 

@@ -141,7 +141,7 @@
                      class="w_120 m_t_10 f_r"/>
                 <div class="comment_block f_l f_12">
                     ID：{{ data.id }}<br>
-                    缓存时间：{{ data.cache_dt }}
+                    缓存时间：{{ data.create_time }}
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -305,7 +305,7 @@
     var rating_data = {{ rating_data | safe }};
     var rating_max_data = {{ rating_max_data | safe }};
     var star_data = {{ star_data | safe }};
-    var cache_dt_data = {{ cache_dt_data | safe }};
+    var create_time_data = {{ create_time_data | safe }};
 
     function convert_date_from_string(datetime) {
         var split_date = datetime.split(" ")[0].split('-');
@@ -315,9 +315,9 @@
 
     function final_convert(music_count_data) {
         var music_count_data_new = [];
-        for (var i = 0; i < cache_dt_data.length; i++) {
+        for (var i = 0; i < create_time_data.length; i++) {
             music_count_data_new.push([
-                convert_date_from_string(cache_dt_data[i]),
+                convert_date_from_string(create_time_data[i]),
                 music_count_data[i]
             ]);
         }
