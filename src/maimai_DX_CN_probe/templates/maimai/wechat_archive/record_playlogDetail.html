@@ -700,7 +700,7 @@
                     <tr>
                         <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/touch.png"/>
                         </th>
-                        <td>{{ record_playlogDetail_history.notes_touch_cp if record_playlogDetail_history.notes_touch_cp != None }}</td>
+                        <td>{{ record_playlogDetail_history.notes_touch_cp if record_playlogDetail_history.notes_touch_cp != None else '\u3000' }}</td>
                         <td>{{ record_playlogDetail_history.notes_touch_p if record_playlogDetail_history.notes_touch_p != None }}</td>
                         <td>{{ record_playlogDetail_history.notes_touch_great if record_playlogDetail_history.notes_touch_great != None }}</td>
                         <td>{{ record_playlogDetail_history.notes_touch_good if record_playlogDetail_history.notes_touch_good != None }}</td>
