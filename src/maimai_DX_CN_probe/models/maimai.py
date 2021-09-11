@@ -35,7 +35,7 @@ class HOME(db.Model, HasId, HasTime):
         self.grade_img = grade_img,
         self.star = star,
         self.chara = chara,
-        self.comment = comment,
+        self.comment = comment
 
     def __repr__(self):
         return '<HOME (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)>' % (
@@ -100,7 +100,7 @@ class PlayerData(db.Model, HasId, HasTime):
         self.fsdp = fsdp,
         self.fsd = fsd,
         self.fsp = fsp,
-        self.fs = fs,
+        self.fs = fs
 
     def __repr__(self):
         return '<PlayerData (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)>' % (
@@ -121,7 +121,7 @@ class PlayerData(db.Model, HasId, HasTime):
         return self
 
 
-class album(db.Model):
+class album(db.Model, HasId, HasTime):
     __bind_key__ = 'maimai'
     __tablename__ = 'album'
 
@@ -129,26 +129,21 @@ class album(db.Model):
 
     dx_img_s = db.Column(db.VARCHAR(50))
     play_dt = db.Column(db.DateTime, nullable=False)
-    play_dt_utc = db.Column(db.DateTime, nullable=False)
     level_img_s = db.Column(db.VARCHAR(50))
     name = db.Column(db.VARCHAR(50))
     img = db.Column(db.VARCHAR(50), nullable=False)
 
-    cache_dt = db.Column(db.DateTime, nullable=False)
-
-    def __init__(self, dx_img_s, play_dt, play_dt_utc, level_img_s, name, img, cache_dt):
+    def __init__(self, dx_img_s, play_dt, level_img_s, name, img):
         self.dx_img_s = dx_img_s,
         self.play_dt = play_dt,
-        self.play_dt_utc = play_dt_utc,
         self.level_img_s = level_img_s,
         self.name = name,
-        self.img = img,
-        self.cache_dt = cache_dt
+        self.img = img
 
     def __repr__(self):
-        return '<album (%s, %s, %s, %s, %s, %s, %s, %s)>' % (
-            self.id, self.dx_img_s, self.play_dt, self.play_dt_utc, self.level_img_s, self.name, self.img,
-            self.cache_dt)
+        return '<album (%s, %s, %s, %s, %s, %s)>' % (
+            self.id, self.dx_img_s, self.play_dt, self.level_img_s, self.name, self.img
+        )
 
     def to_dict(self):
         return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}

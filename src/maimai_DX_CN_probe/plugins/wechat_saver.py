@@ -76,13 +76,11 @@ def save_playerData_album(raw_html):
     for i in range(album_count + 1, 1, -1):
         dx_img_s = selector.xpath(f'/html/body/div[2]/div[{i}]/div/img[1]/@src')[0].split('/')[-1].split('.')[0]
         play_dt = selector.xpath(f'/html/body/div[2]/div[{i}]/div/div[1]/text()')[0]
-        play_dt_utc = datetime.datetime.strptime(play_dt, '%Y/%m/%d %H:%M') - datetime.timedelta(hours=8)
         level_img_s = selector.xpath(f'/html/body/div[2]/div[{i}]/div/img[2]/@src')[0].split('/')[-1].split('.')[0]
         name = selector.xpath(f'/html/body/div[2]/div[{i}]/div/div[3]/text()')[0]
         img = selector.xpath(f'/html/body/div[2]/div[{i}]/div/img[3]/@src')[0].split('/')[-1]
-        cache_dt = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
         if not album.query.filter(album.play_dt == play_dt).first():
-            new_maimai_album = album(dx_img_s, play_dt, play_dt_utc, level_img_s, name, img, cache_dt)
+            new_maimai_album = album(dx_img_s, play_dt, level_img_s, name, img)
             new_maimai_album.save()
             new_count += 1
 
