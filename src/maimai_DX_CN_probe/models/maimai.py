@@ -158,11 +158,10 @@ class album(db.Model, HasId, HasTime):
         return self
 
 
-class Record(db.Model):
+class Record(db.Model, HasId, HasTime):
     __bind_key__ = 'maimai'
     __tablename__ = 'record'
 
-    id = db.Column(db.Integer, primary_key=True)
     level_img_s = db.Column(db.VARCHAR(50))
     vs_img_s = db.Column(db.VARCHAR(50))
     track = db.Column(db.Integer)
@@ -183,10 +182,9 @@ class Record(db.Model):
     rate_img_s = db.Column(db.VARCHAR(50))
 
     single_rating = db.Column(db.FLOAT(4), default=0)
-    cache_dt = db.Column(db.DateTime, nullable=False)
 
     def __init__(self, level_img_s, vs_img_s, track, play_dt, clear, name, img_s, dx_img_s, achievement, score_rank_new,
-                 score_rank_img_s, delux_score, delux_new, fc_img_s, fs_img_s, rate_img_s, cache_dt):
+                 score_rank_img_s, delux_score, delux_new, fc_img_s, fs_img_s, rate_img_s):
         self.level_img_s = level_img_s,
         self.vs_img_s = vs_img_s,
         self.track = track,
@@ -202,14 +200,13 @@ class Record(db.Model):
         self.delux_new = delux_new
         self.fc_img_s = fc_img_s,
         self.fs_img_s = fs_img_s,
-        self.rate_img_s = rate_img_s,
-        self.cache_dt = cache_dt,
+        self.rate_img_s = rate_img_s
 
     def __repr__(self):
-        return '<PlayerData (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)>' % (
+        return '<PlayerData (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)>' % (
             self.level_img_s, self.vs_img_s, self.track, self.play_dt, self.clear, self.name, self.img_s, self.dx_img_s,
             self.achievement, self.score_rank_new, self.score_rank_img_s, self.delux_score, self.delux_new,
-            self.fc_img_s, self.fs_img_s, self.rate_img_s, self.single_rating, self.cache_dt
+            self.fc_img_s, self.fs_img_s, self.rate_img_s, self.single_rating
         )
 
     def to_dict(self):

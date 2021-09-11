@@ -141,12 +141,11 @@ def save_record(raw_html):
                 .split('/')[-1].split('.')[0]
         except Exception as e:
             rate_img_s = None
-        cache_dt = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 
         if not Record.query.filter(Record.play_dt == play_dt).first():
             new_maimai_Record = Record(level_img_s, vs_img_s, track, play_dt, clear, name, img_s, dx_img_s, achievement,
                                        score_rank_new, score_rank_img_s, delux_score, delux_new, fc_img_s, fs_img_s,
-                                       rate_img_s, cache_dt)
+                                       rate_img_s)
             new_maimai_Record.save()
             new_count += 1
 
