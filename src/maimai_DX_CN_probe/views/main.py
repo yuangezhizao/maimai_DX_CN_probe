@@ -33,7 +33,7 @@ def wechat_archive():
             rating_data.append(data.rating / 100)
             rating_max_data.append(data.rating_max / 100)
             star_data.append(data.star)
-            create_time_data.append(data.create_time.strftime('%Y-%m-%d %H:%M:%S'))
+            create_time_data.append(data.create_time.strftime('%Y/%m/%d %H:%M:%S'))
 
         return flask.render_template('maimai/wechat_archive/home.html', HOME_data=HOME_data, id_data=id_data,
                                      rating_data=rating_data, rating_max_data=rating_max_data, star_data=star_data,
@@ -72,7 +72,8 @@ def wechat_archive():
                                      sssp_data=sssp_data, sss_data=sss_data, ssp_data=ssp_data, ss_data=ss_data,
                                      sp_data=sp_data, s_data=s_data, clear_data=clear_data, app_data=app_data,
                                      ap_data=ap_data, fcp_data=fcp_data, fc_data=fc_data, fsdp_data=fsdp_data,
-                                     fsd_data=fsd_data, fsp_data=fsp_data, fs_data=fs_data, create_time_data=create_time_data)
+                                     fsd_data=fsd_data, fsp_data=fsp_data, fs_data=fs_data,
+                                     create_time_data=create_time_data)
     elif 'playerData_album' in flask.request.args:
         playerData_album = album.query.order_by(album.id.desc()).all()
         return flask.render_template('maimai/wechat_archive/playerData_album.html', playerData_album=playerData_album)
