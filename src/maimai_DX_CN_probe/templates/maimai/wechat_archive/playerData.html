@@ -307,8 +307,7 @@
     var create_time_data = {{ create_time_data | safe }};
 
     function convert_date_from_string(datetime) {
-        var split_date = datetime.split(" ")[0].split('-');
-        var date = new Date(split_date[0], split_date[1] - 1, split_date[2]);
+        var date = new Date(datetime);
         return date.getTime();
     }
 
@@ -325,7 +324,7 @@
 
     var chart = Highcharts.chart('container', {
         global: {
-            useUTC: true
+            useUTC: false
         },
         chart: {
             zoomType: "x",

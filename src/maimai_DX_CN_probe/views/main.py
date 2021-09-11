@@ -65,7 +65,7 @@ def wechat_archive():
             fsd_data.append(data.fsd)
             fsp_data.append(data.fsp)
             fs_data.append(data.fs)
-            create_time_data.append(data.create_time.strftime('%Y-%m-%d %H:%M:%S'))
+            create_time_data.append(data.create_time.strftime('%Y/%m/%d %H:%M:%S'))
 
         return flask.render_template('maimai/wechat_archive/playerData.html', playerData=playerData, id_data=id_data,
                                      music_count_data=music_count_data, total_count_data=total_count_data,
