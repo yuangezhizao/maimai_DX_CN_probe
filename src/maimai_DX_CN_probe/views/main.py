@@ -42,7 +42,7 @@ def wechat_archive():
         playerData = PlayerData.query.order_by(PlayerData.id.desc()).all()
 
         id_data, music_count_data, total_count_data, sssp_data, sss_data, ssp_data, ss_data, sp_data, s_data, clear_data = [], [], [], [], [], [], [], [], [], []
-        app_data, ap_data, fcp_data, fc_data, fsdp_data, fsd_data, fsp_data, fs_data, cache_dt_data = [], [], [], [], [], [], [], [], []
+        app_data, ap_data, fcp_data, fc_data, fsdp_data, fsd_data, fsp_data, fs_data, create_time_data = [], [], [], [], [], [], [], [], []
 
         for data in playerData:
             id_data.append(data.id)
@@ -65,14 +65,14 @@ def wechat_archive():
             fsd_data.append(data.fsd)
             fsp_data.append(data.fsp)
             fs_data.append(data.fs)
-            cache_dt_data.append(data.cache_dt.strftime('%Y-%m-%d %H:%M:%S'))
+            create_time_data.append(data.create_time)
 
         return flask.render_template('maimai/wechat_archive/playerData.html', playerData=playerData, id_data=id_data,
                                      music_count_data=music_count_data, total_count_data=total_count_data,
                                      sssp_data=sssp_data, sss_data=sss_data, ssp_data=ssp_data, ss_data=ss_data,
                                      sp_data=sp_data, s_data=s_data, clear_data=clear_data, app_data=app_data,
                                      ap_data=ap_data, fcp_data=fcp_data, fc_data=fc_data, fsdp_data=fsdp_data,
-                                     fsd_data=fsd_data, fsp_data=fsp_data, fs_data=fs_data, cache_dt_data=cache_dt_data)
+                                     fsd_data=fsd_data, fsp_data=fsp_data, fs_data=fs_data, create_time_data=create_time_data)
     elif 'playerData_album' in flask.request.args:
         playerData_album = album.query.order_by(album.id.desc()).all()
         return flask.render_template('maimai/wechat_archive/playerData_album.html', playerData_album=playerData_album)

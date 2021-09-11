@@ -143,7 +143,7 @@
                 {#                </div>#}
                 <div class="clearfix"></div>
                 <div class="m_5 m_t_10 t_r f_12">
-                    ID：{{ data.id }}，缓存时间：{{ data.cache_dt }}，游戏次数：{{ data.music_count }}</div>
+                    ID：{{ data.id }}，缓存时间：{{ data.create_time }}，游戏次数：{{ data.music_count }}</div>
                 <div class="musiccount_block t_r f_l f_0">
                     <div class="musiccount_img_block p_5 f_l"><img
                             src="https://i1.yuangezhizao.cn/maimai-mobile/img/music_icon_sssp.png"/></div>
@@ -304,7 +304,7 @@
     var fsp_data = {{ fsp_data | safe }};
     var fs_data = {{ fs_data | safe }};
 
-    var cache_dt_data = {{ cache_dt_data | safe }};
+    var create_time_data = {{ create_time_data | safe }};
 
     function convert_date_from_string(datetime) {
         var split_date = datetime.split(" ")[0].split('-');
@@ -314,9 +314,9 @@
 
     function final_convert(music_count_data) {
         var music_count_data_new = [];
-        for (var i = 0; i < cache_dt_data.length; i++) {
+        for (var i = 0; i < create_time_data.length; i++) {
             music_count_data_new.push([
-                convert_date_from_string(cache_dt_data[i]),
+                convert_date_from_string(create_time_data[i]),
                 music_count_data[i]
             ]);
         }

@@ -56,11 +56,10 @@ class HOME(db.Model, HasId, HasTime):
         return self
 
 
-class PlayerData(db.Model):
+class PlayerData(db.Model, HasId, HasTime):
     __bind_key__ = 'maimai'
     __tablename__ = 'playerdata'
 
-    id = db.Column(db.Integer, primary_key=True)
     music_count = db.Column(db.Integer)
     total_count = db.Column(db.Integer)
 
@@ -81,10 +80,8 @@ class PlayerData(db.Model):
     fsp = db.Column(db.Integer)
     fs = db.Column(db.Integer)
 
-    cache_dt = db.Column(db.DateTime, nullable=False)
-
-    def __init__(self, music_count, total_count, sssp, sss, ssp, ss, sp, s, clear, app, ap, fcp, fc, fsdp, fsd, fsp, fs,
-                 cache_dt):
+    def __init__(self, music_count, total_count, sssp, sss, ssp, ss, sp, s, clear, app, ap, fcp, fc, fsdp, fsd, fsp,
+                 fs):
         self.music_count = music_count,
         self.total_count = total_count,
 
@@ -104,13 +101,12 @@ class PlayerData(db.Model):
         self.fsd = fsd,
         self.fsp = fsp,
         self.fs = fs,
-        self.cache_dt = cache_dt
 
     def __repr__(self):
-        return '<PlayerData (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,)>' % (
+        return '<PlayerData (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)>' % (
             self.id, self.music_count, self.total_count, self.sssp, self.sss, self.ssp, self.ss, self.sp, self.s,
-            self.clear, self.app,
-            self.ap, self.fcp, self.fc, self.fsdp, self.fsd, self.fsp, self.fs, self.cache_dt)
+            self.clear, self.app, self.ap, self.fcp, self.fc, self.fsdp, self.fsd, self.fsp, self.fs
+        )
 
     def to_dict(self):
         return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
