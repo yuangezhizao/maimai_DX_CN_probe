@@ -6,14 +6,14 @@
     :Site: https://www.yuangezhizao.cn
     :Copyright: © 2020 yuangezhizao <root@yuangezhizao.cn>
 """
+from maimai_DX_CN_probe.models.common import HasId, HasTime
 from maimai_DX_CN_probe.plugins.extensions import db
 
 
-class HOME(db.Model):
+class HOME(db.Model, HasId, HasTime):
     __bind_key__ = 'maimai'
     __tablename__ = 'home'
 
-    id = db.Column(db.Integer, primary_key=True)
     basic_img = db.Column(db.VARCHAR(255))
     trophy = db.Column(db.VARCHAR(50))
     name = db.Column(db.VARCHAR(50))
@@ -24,10 +24,8 @@ class HOME(db.Model):
     star = db.Column(db.Integer)
     chara = db.Column(db.VARCHAR(255))
     comment = db.Column(db.VARCHAR(255))
-    cache_dt = db.Column(db.DateTime, nullable=False)
 
-    def __init__(self, basic_img, trophy, name, rating, rating_max, rating_img, grade_img, star, chara, comment,
-                 cache_dt):
+    def __init__(self, basic_img, trophy, name, rating, rating_max, rating_img, grade_img, star, chara, comment):
         self.basic_img = basic_img,
         self.trophy = trophy,
         self.name = name,
@@ -38,13 +36,12 @@ class HOME(db.Model):
         self.star = star,
         self.chara = chara,
         self.comment = comment,
-        self.cache_dt = cache_dt
 
     def __repr__(self):
-        return '<HOME (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, )>' % (
+        return '<HOME (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)>' % (
             self.id, self.basic_img, self.trophy, self.name, self.rating, self.rating_max, self.rating_img,
-            self.grade_img,
-            self.star, self.chara, self.comment, self.cache_dt)
+            self.grade_img, self.star, self.chara, self.comment
+        )
 
     def to_dict(self):
         return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
