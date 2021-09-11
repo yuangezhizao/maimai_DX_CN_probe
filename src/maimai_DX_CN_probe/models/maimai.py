@@ -453,11 +453,10 @@ class musicInfo(db.Model):
         return self
 
 
-class musicInfo_2021(db.Model):
+class musicInfo_2021(db.Model, HasId, HasTime):
     __bind_key__ = 'maimai'
-    __tablename__ = 'musicinfo_2021'
+    __tablename__ = 'musicinfo_Ver.CH1.11-B'
 
-    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.VARCHAR(50), nullable=False)
     level_img_s = db.Column(db.VARCHAR(50), nullable=False)
     dx_img_s = db.Column(db.VARCHAR(50))
@@ -470,10 +469,7 @@ class musicInfo_2021(db.Model):
     ver = db.Column(db.VARCHAR(50))
     constant = db.Column(db.FLOAT(2))
 
-    cache_dt = db.Column(db.DateTime, nullable=False)
-
-    def __init__(self, name, level_img_s, dx_img_s, music_genre, music_word, music_level, music_version, ver,
-                 cache_dt):
+    def __init__(self, name, level_img_s, dx_img_s, music_genre, music_word, music_level, music_version, ver):
         self.name = name,
         self.level_img_s = level_img_s,
         self.dx_img_s = dx_img_s,
@@ -482,12 +478,12 @@ class musicInfo_2021(db.Model):
         self.music_level = music_level,
         self.music_version = music_version,
         self.ver = ver,
-        self.cache_dt = cache_dt
 
     def __repr__(self):
-        return '<musicInfo_2021 (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,)>' % (
+        return '<musicInfo_2021 (%s, %s, %s, %s, %s, %s, %s, %s, %s)>' % (
             self.id, self.name, self.level_img_s, self.dx_img_s, self.music_genre, self.music_word, self.music_level,
-            self.music_version, self.ver, self.cache_dt)
+            self.music_version, self.ver
+        )
 
     def to_dict(self):
         return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
