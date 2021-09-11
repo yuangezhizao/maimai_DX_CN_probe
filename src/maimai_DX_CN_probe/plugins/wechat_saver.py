@@ -32,10 +32,8 @@ def save_home(raw_html):
     star = selector.xpath('/html/body/div[2]/div[2]/div[1]/div[1]/div[4]/text()')[0][1:]
     chara = selector.xpath('/html/body/div[2]/div[2]/img/@src')[0]
     comment = selector.xpath('/html/body/div[2]/div[2]/div[2]/text()')[0]
-    cache_dt = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 
-    new_maimai_HOME = HOME(basic_img, trophy, name, rating, rating_max, rating_img, grade_img, star, chara, comment,
-                           cache_dt)
+    new_maimai_HOME = HOME(basic_img, trophy, name, rating, rating_max, rating_img, grade_img, star, chara, comment)
     r = new_maimai_HOME.save()
     return r
 
@@ -63,11 +61,8 @@ def save_playerData(raw_html):
     fsp = selector.xpath('/html/body/div[2]/div[2]/div[23]/div[2]/text()')[0].split('/')[0]
     fs = selector.xpath('/html/body/div[2]/div[2]/div[25]/div[2]/text()')[0].split('/')[0]
 
-    cache_dt = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
-
     new_maimai_PlayerData = PlayerData(music_count, total_count, sssp, sss, ssp, ss, sp, s, clear, app, ap, fcp, fc,
-                                       fsdp, fsd, fsp, fs,
-                                       cache_dt)
+                                       fsdp, fsd, fsp, fs)
     r = new_maimai_PlayerData.save()
     return r
 
