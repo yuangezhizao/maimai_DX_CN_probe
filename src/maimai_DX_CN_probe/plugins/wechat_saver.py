@@ -425,16 +425,27 @@ def parse_record_playlogDetail(raw_html):
     new_maimai_playlogDetail.save()
 
 
-def get_music_id(name):
+def get_music_id(name, dx):
     MONGODB_QCLOUD_STRING = current_app.config['MONGODB_QCLOUD_STRING']
     music_coll = pymongo.MongoClient(MONGODB_QCLOUD_STRING)['maimai']['music']
     query = {
         'name.str': name
     }
-    result = music_coll.find_one(query)
-    if result:
-        return result['music_id']
+    sort = [('music_id', 1)]
+    result = music_coll.find(query, sort=sort)
+    all_data = [data for data in result]
+    music_count = len(all_data)
+    if music_count == 0:
+        return 0
+    elif music_count == 1:
+        return all_data[0]
+    elif music_count == 2:
+        if dx:
+            return all_data[1]
+        else:
+            return all_data[0]
     else:
+        print(f'NotImplemented：{name} {dx}')
         return 0
 
 
@@ -488,6 +499,9 @@ def save_to_aqua(raw_html):
             level = diff_img_table[diff_img]
             music_lv = selector.xpath(f'/html/body/div[2]/div[{i}]/div/form/div[2]/text()')[0]
 
+            dx_img_s = selector.xpath(f'/html/body/div[2]/div[{i}]/img/@src')[0].split('/')[-1].split('.')[0]
+            dx = dx_img_s_table[dx_img_s]
+
             name = selector.xpath(f'/html/body/div[2]/div[{i}]/div/form/div[3]/text()')[0]
             # 参考：https://github.com/Diving-Fish/maimaidx-prober/blob/cb626494e3929e368c74e0eb83850d442609def7/page-parser/index.js
             if name == 'Link':
@@ -498,7 +512,7 @@ def save_to_aqua(raw_html):
                 else:
                     music_id = 131
             else:
-                music_id = get_music_id(name)
+                music_id = get_music_id(name, dx)
                 if not music_id:
                     print(f'{name} 反查 id 失败')
                     continue
@@ -521,16 +535,12 @@ def save_to_aqua(raw_html):
             score_rank_img_s = selector.xpath(f'/html/body/div[2]/div[{i}]/div/form/img[4]/@src')[0].split('/')[
                 -1].split('.')[0]
             score_rank = score_rank_img_s_table[score_rank_img_s]
-
-            dx_img_s = selector.xpath(f'/html/body/div[2]/div[{i}]/img/@src')[0].split('/')[-1].split('.')[0]
-            dx = dx_img_s_table[dx_img_s]
-
             print(diff_img, level, music_lv, name, music_id, achievement, delux_score, fs, fc, score_rank, dx)
 
             new_MaiMai2UserMusicDetail = MaiMai2UserMusicDetail(
                 music_id=music_id,
                 level=level,
-                play_count=0,  # TODO
+                play_count=1,  # TODO
                 achievement=achievement,
                 combo_status=fc,
                 sync_status=fs,
