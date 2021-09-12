@@ -431,19 +431,21 @@ def get_music_id(name, dx):
     query = {
         'name.str': name
     }
+    projection = {}
+    projection['music_id'] = 1
     sort = [('music_id', 1)]
-    result = music_coll.find(query, sort=sort)
+    result = music_coll.find(query, projection=projection, sort=sort)
     all_data = [data for data in result]
     music_count = len(all_data)
     if music_count == 0:
         return 0
     elif music_count == 1:
-        return all_data[0]
+        return all_data[0]['music_id']
     elif music_count == 2:
         if dx:
-            return all_data[1]
+            return all_data[1]['music_id']
         else:
-            return all_data[0]
+            return all_data[0]['music_id']
     else:
         print(f'NotImplemented：{name} {dx}')
         return 0
