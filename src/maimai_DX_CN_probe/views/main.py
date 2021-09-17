@@ -258,7 +258,8 @@ def info():
         ver = flask.request.form.get('ver')
         if ver:
             filters.append(musicInfo_2021.ver == ver)
-        flask.flash(f'筛选：{filters}', 'success')
+        filters_fmt = [str(each) for each in filters]
+        flask.flash(f'筛选：{filters_fmt}', 'success')
 
         record_musicGenre_data = musicInfo_2021.query.filter(*filters).order_by(musicInfo_2021.id.asc()).all()
     return flask.render_template('maimai/info/list.html', record_musicGenre_data=record_musicGenre_data,
