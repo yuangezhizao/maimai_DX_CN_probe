@@ -447,7 +447,7 @@ class musicInfo(db.Model):
 
 class musicInfo_2021(db.Model, HasId, HasTime):
     __bind_key__ = 'maimai'
-    __tablename__ = 'musicinfo_Ver.CH1.11-B'
+    __tablename__ = 'musicinfo_Ver.CH1.11-C'
 
     name = db.Column(db.VARCHAR(50), nullable=False)
     level_img_s = db.Column(db.VARCHAR(50), nullable=False)
@@ -469,7 +469,7 @@ class musicInfo_2021(db.Model, HasId, HasTime):
         self.music_word = music_word,
         self.music_level = music_level,
         self.music_version = music_version,
-        self.ver = ver,
+        self.ver = ver
 
     def __repr__(self):
         return '<musicInfo_2021 (%s, %s, %s, %s, %s, %s, %s, %s, %s)>' % (
