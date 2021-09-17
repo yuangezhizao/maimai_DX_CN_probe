@@ -193,7 +193,7 @@ def get_music_info(raw, music_genre):
         music_word = None
         music_version = None
 
-        ver = 'Ver.CH1.11-B'
+        ver = 'Ver.CH1.11-C'
         new_maimai_Record = musicInfo_2021(name, level_img_s, dx_img_s, music_genre, music_word, music_level,
                                            music_version, ver)
         r = new_maimai_Record.save()
