@@ -447,7 +447,7 @@ class musicInfo(db.Model):
 
 class musicInfo_2021(db.Model, HasId, HasTime):
     __bind_key__ = 'maimai'
-    __tablename__ = 'musicinfo_Ver.CH1.11-C'
+    __tablename__ = 'musicinfo_Ver.CH1.11-D'
 
     name = db.Column(db.VARCHAR(50), nullable=False)
     level_img_s = db.Column(db.VARCHAR(50), nullable=False)
