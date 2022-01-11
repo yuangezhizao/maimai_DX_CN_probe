@@ -8,8 +8,7 @@
 """
 import flask
 
-from maimai_DX_CN_probe.models.maimai import HOME, PlayerData, album, Record, playlogDetail, musicInfo_2021, \
-    practice
+from maimai_DX_CN_probe.models.maimai import HOME, PlayerData, album, Record, playlogDetail, musicInfo_2021, musicInfo
 from maimai_DX_CN_probe.plugins.wechat_saver import save_home, save_playerData, save_playerData_album, save_record, \
     save_record_playlogDetail, save_to_aqua
 
@@ -171,60 +170,56 @@ def wechat_saver():
 
 @bp.route('/record')
 def record():
-    if 'practice' in flask.request.args:
-        practice_data = practice.query.order_by(practice.id.asc()).all()
-        return flask.render_template('maimai/review/practice.html', practice_data=practice_data)
-    else:
-        page = int(flask.request.args.get('page', 1))
-        per_page = int(flask.request.args.get('per_page', 20))
-        if 'all' in flask.request.args:
-            per_page = 10000
-        if 'diff' in flask.request.args:
-            if 'name' in flask.request.args:
-                _name = flask.request.args.get('name')
-                record_data_paginate = Record.query.filter_by(name=_name) \
-                    .order_by(Record.id.desc()) \
-                    .paginate(page, per_page)
-            else:
-                record_data_paginate = Record.query.order_by(Record.id.desc()) \
-                    .paginate(page, per_page)
-            history_record_data = []
-            record_playlogDetail_data = []
-            for record_data in record_data_paginate.items:
-                _id = record_data.id
-                _record_playlogDetail = playlogDetail.query.get(_id - 1)
-
-                if _record_playlogDetail and (_record_playlogDetail.notes_tap_p is not None):
-                    record_playlogDetail_data.append(_record_playlogDetail)
-                else:
-                    continue
-
-                _level_img_s = record_data.level_img_s
-                _name = record_data.name
-                _play_dt = record_data.play_dt
-                _dx_img_s = record_data.dx_img_s
-                _record_data = Record.query.filter_by(name=_name, level_img_s=_level_img_s, dx_img_s=_dx_img_s).filter(
-                    Record.play_dt <= _play_dt).order_by(
-                    Record.achievement.desc()).all()
-
-                _lv = musicInfo_2021.query.filter_by(name=_name, level_img_s=_level_img_s,
-                                                     dx_img_s=_dx_img_s).first().music_level
-                # https://web.archive.org/web/20210802143823/https://stackoverflow.com/questions/8542343/object-does-not-support-item-assignment-error
-                for each in _record_data:
-                    setattr(each, 'music_level', _lv)
-
-                history_record_data.append(_record_data)
-
-            return flask.render_template('maimai/record/diff.html',
-                                         record_data_paginate=record_data_paginate,
-                                         record_playlogDetail_data=record_playlogDetail_data,
-                                         history_record_data=history_record_data, page=page, per_page=per_page)
+    page = int(flask.request.args.get('page', 1))
+    per_page = int(flask.request.args.get('per_page', 20))
+    if 'all' in flask.request.args:
+        per_page = 10000
+    if 'diff' in flask.request.args:
+        if 'name' in flask.request.args:
+            _name = flask.request.args.get('name')
+            record_data_paginate = Record.query.filter_by(name=_name) \
+                .order_by(Record.id.desc()) \
+                .paginate(page, per_page)
         else:
-            record_data_paginate = Record.query.order_by(Record.id.desc()).paginate(page, per_page)
-            # total = record_data_paginate.total
-            # total_page = math.ceil(total / per_page)
-            return flask.render_template('maimai/record/index.html', record_data_paginate=record_data_paginate,
-                                         page=page, per_page=per_page)
+            record_data_paginate = Record.query.order_by(Record.id.desc()) \
+                .paginate(page, per_page)
+        history_record_data = []
+        record_playlogDetail_data = []
+        for record_data in record_data_paginate.items:
+            _id = record_data.id
+            _record_playlogDetail = playlogDetail.query.get(_id - 1)
+
+            if _record_playlogDetail and (_record_playlogDetail.notes_tap_p is not None):
+                record_playlogDetail_data.append(_record_playlogDetail)
+            else:
+                continue
+
+            _level_img_s = record_data.level_img_s
+            _name = record_data.name
+            _play_dt = record_data.play_dt
+            _dx_img_s = record_data.dx_img_s
+            _record_data = Record.query.filter_by(name=_name, level_img_s=_level_img_s, dx_img_s=_dx_img_s).filter(
+                Record.play_dt <= _play_dt).order_by(
+                Record.achievement.desc()).all()
+
+            _lv = musicInfo_2021.query.filter_by(name=_name, level_img_s=_level_img_s,
+                                                 dx_img_s=_dx_img_s).first().music_level
+            # https://web.archive.org/web/20210802143823/https://stackoverflow.com/questions/8542343/object-does-not-support-item-assignment-error
+            for each in _record_data:
+                setattr(each, 'music_level', _lv)
+
+            history_record_data.append(_record_data)
+
+        return flask.render_template('maimai/record/diff.html',
+                                     record_data_paginate=record_data_paginate,
+                                     record_playlogDetail_data=record_playlogDetail_data,
+                                     history_record_data=history_record_data, page=page, per_page=per_page)
+    else:
+        record_data_paginate = Record.query.order_by(Record.id.desc()).paginate(page, per_page)
+        # total = record_data_paginate.total
+        # total_page = math.ceil(total / per_page)
+        return flask.render_template('maimai/record/index.html', record_data_paginate=record_data_paginate,
+                                     page=page, per_page=per_page)
 
 
 @bp.route('/info', methods=['GET', 'POST'])

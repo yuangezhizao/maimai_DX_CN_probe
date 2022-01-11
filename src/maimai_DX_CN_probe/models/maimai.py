@@ -492,32 +492,3 @@ class musicInfo_2021(db.Model, HasId, HasTime):
     def update(self):
         db.session.commit()
         return self
-
-
-class practice(db.Model):
-    __bind_key__ = 'maimai'
-    __tablename__ = 'practice'
-
-    id = db.Column(db.Integer, primary_key=True, nullable=True)
-    name = db.Column(db.VARCHAR(255), nullable=False)
-    level_img_s = db.Column(db.VARCHAR(50))
-    tips = db.Column(db.VARCHAR(255))
-    insert_time = db.Column(db.DateTime)
-    update_time = db.Column(db.DateTime)
-
-    def __init__(self, name, level_img_s, tips):
-        self.name = name
-        self.level_img_s = level_img_s
-        self.tips = tips
-
-    def to_dict(self):
-        return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
-
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
-        return self
-
-    def update(self):
-        db.session.commit()
-        return self
