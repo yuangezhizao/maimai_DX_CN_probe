@@ -394,7 +394,7 @@ class playlogDetail(db.Model):
 
 class musicInfo(db.Model):
     __bind_key__ = 'maimai'
-    __tablename__ = 'musicinfo_Ver.CH1.11-D'
+    __tablename__ = 'musicinfo_Ver.CH1.11-E'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.VARCHAR(50), nullable=False)
@@ -447,7 +447,7 @@ class musicInfo(db.Model):
 
 class musicInfo_2021(db.Model, HasId, HasTime):
     __bind_key__ = 'maimai'
-    __tablename__ = 'musicinfo_Ver.CH1.11-E'
+    __tablename__ = 'musicinfo_Ver.CH1.11-F'
 
     name = db.Column(db.VARCHAR(50), nullable=False)
     level_img_s = db.Column(db.VARCHAR(50), nullable=False)
