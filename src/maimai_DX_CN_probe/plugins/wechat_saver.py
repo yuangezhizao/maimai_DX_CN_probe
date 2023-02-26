@@ -173,12 +173,7 @@ def save_record_playlogDetail(userId, _t, start_posi, end_posi):
             'userId': userId,
             '_t': _t
         }
-
-        if i == idx[0]:
-            r = session.get(url, headers=headers, cookies=cookies, verify=False)
-        else:
-            # 之后 session 库自行处理 cookies
-            r = session.get(url, headers=headers, verify=False)
+        r = session.get(url, headers=headers, cookies=cookies, verify=False)
         r_text = r.text
         status_code = r.status_code
         if status_code != 200:

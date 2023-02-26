@@ -42,11 +42,7 @@ def get_wx_data_musicGenre(cookies):
             headers = {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36',
             }
-            if params == 'genre=101&diff=0':
-                r = session.get(url, headers=headers, cookies=cookies)
-            else:
-                # 之后 session 库自行处理 cookies
-                r = session.get(url, headers=headers)
+            r = session.get(url, headers=headers, cookies=cookies)
             r_text = r.text
             status_code = r.status_code
             if status_code != 200:
@@ -97,11 +93,7 @@ def update_wx_data_musicWord(cookies):
             headers = {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36',
             }
-            if params == 'word=0&diff=0':
-                r = session.get(url, headers=headers, cookies=cookies)
-            else:
-                # 之后 session 库自行处理 cookies
-                r = session.get(url, headers=headers)
+            r = session.get(url, headers=headers, cookies=cookies)
             r_text = r.text
             status_code = r.status_code
             if status_code != 200:
@@ -135,7 +127,8 @@ def update_wx_data_musicVersion(cookies):
         12: 'FiNALE',
         13: '舞萌DX',
         # 14: '其他',  # 暂无铺面
-        15: '舞萌DX 2021'
+        15: '舞萌DX 2021',
+        17: '舞萌DX 2022'
     }
     diff_dict = {
         0: 'basic',
@@ -153,11 +146,7 @@ def update_wx_data_musicVersion(cookies):
             headers = {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36',
             }
-            if params == 'version=0&diff=0':
-                r = session.get(url, headers=headers, cookies=cookies, verify=0)
-            else:
-                # 之后 session 库自行处理 cookies
-                r = session.get(url, headers=headers)
+            r = session.get(url, headers=headers, cookies=cookies, verify=False)
             r_text = r.text
             status_code = r.status_code
             if status_code != 200:
@@ -249,7 +238,7 @@ def update_music_info_musicVersion(raw, music_version, music_diff):
         name = selector.xpath(f'/html/body/div[2]/div[{i}]/form/div[3]/text()')[0]
         # 容错 +1
 
-        if music_version in ['舞萌DX', '舞萌DX 2021']:
+        if music_version in ['舞萌DX', '舞萌DX 2021', '舞萌DX 2022']:
             # DX only
             dx_img_s = 'music_dx'
         else:
