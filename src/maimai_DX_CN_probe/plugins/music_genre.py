@@ -12,7 +12,7 @@ import time
 import requests
 from lxml import etree
 
-from maimai_DX_CN_probe.models.maimai import musicInfo_2021
+from maimai_DX_CN_probe.models.maimai import musicInfo_2022
 
 session = requests.Session()
 
@@ -182,8 +182,8 @@ def get_music_info(raw, music_genre):
         music_word = None
         music_version = None
 
-        ver = 'Ver.CH1.11-F'
-        new_maimai_Record = musicInfo_2021(name, level_img_s, dx_img_s, music_genre, music_word, music_level,
+        ver = 'Ver.CH1.20-H'
+        new_maimai_Record = musicInfo_2022(name, level_img_s, dx_img_s, music_genre, music_word, music_level,
                                            music_version, ver)
         r = new_maimai_Record.save()
         print(r)
@@ -207,16 +207,16 @@ def update_music_info_musicWord(raw, music_word):
         if (name == 'Link') & (level_img_s == 'diff_advanced'):
             if not flag:
                 flag = True
-                old_maimai_Record = musicInfo_2021.query.filter_by(name=name, level_img_s=level_img_s,
+                old_maimai_Record = musicInfo_2022.query.filter_by(name=name, level_img_s=level_img_s,
                                                                    dx_img_s=dx_img_s,
                                                                    music_level=music_level).first()
             else:
                 old_maimai_Record = \
-                    musicInfo_2021.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
+                    musicInfo_2022.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
                                                    music_level=music_level).all()[1]
         # Bug need fixed
         else:
-            old_maimai_Record = musicInfo_2021.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
+            old_maimai_Record = musicInfo_2022.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
                                                                music_level=music_level).first()
         if old_maimai_Record is not None:
             old_maimai_Record.music_word = music_word
@@ -247,20 +247,23 @@ def update_music_info_musicVersion(raw, music_version, music_diff):
         if (name == 'Link') & (level_img_s == 'diff_advanced'):
             if not flag:
                 flag = True
-                old_maimai_Record = musicInfo_2021.query.filter_by(name=name, level_img_s=level_img_s,
+                old_maimai_Record = musicInfo_2022.query.filter_by(name=name, level_img_s=level_img_s,
                                                                    dx_img_s=dx_img_s,
                                                                    music_level=music_level).first()
             else:
                 old_maimai_Record = \
-                    musicInfo_2021.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
+                    musicInfo_2022.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
                                                    music_level=music_level).all()[1]
         # Bug need fixed
         else:
-            old_maimai_Record = musicInfo_2021.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
+            old_maimai_Record = musicInfo_2022.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
                                                                music_level=music_level).first()
         if old_maimai_Record is not None:
             old_maimai_Record.music_version = music_version
             r = old_maimai_Record.update()
             print(r)
         else:
-            raise Exception('404')
+            # raise Exception('404')
+            print(f'{name},{level_img_s},{dx_img_s},{music_level} not found?')
+            # Technicians High,diff_basic,music_dx,4 not found?
+            # Technicians High,diff_advanced,music_dx,7+ not found?

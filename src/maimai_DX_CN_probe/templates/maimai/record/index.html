@@ -38,7 +38,6 @@
                     <th>clear</th>
                     <th>vs</th>
                     <th>play_dt</th>
-                    <th>cache_dt</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -219,12 +218,6 @@
                         <td {% if data.play_dt %}data-tooltip="{{ data.play_dt }}" data-inverted=""{% endif %}>
                             {% if data.play_dt %}
                                 {{ data.play_dt | my_split(' ', 0) }}
-                            {% else %}
-                            {% endif %}
-                        </td>
-                        <td {% if data.cache_dt %}data-tooltip="{{ data.cache_dt }}" data-inverted=""{% endif %}>
-                            {% if data.cache_dt %}
-                                {{ data.cache_dt | my_split(' ', 0) }}
                             {% else %}
                             {% endif %}
                         </td>
