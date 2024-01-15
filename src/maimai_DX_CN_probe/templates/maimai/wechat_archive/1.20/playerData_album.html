@@ -45,9 +45,9 @@
     <meta name="theme-color" content="#51bcf3">
 
     <title>微信存档 - 相册</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='static/css/maimai-mobile/common.css') }}"/>
-    <link rel="apple-touch-icon-precomposed" href="https://i1.yuangezhizao.cn/maimai-mobile/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="https://i1.yuangezhizao.cn/maimai-mobile/apple-touch-icon.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/css/maimai-mobile/1.20/common.css') }}"/>
+    <link rel="apple-touch-icon-precomposed" href="https://i1.yuangezhizao.cn/maimai-mobile/1.20/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="https://i1.yuangezhizao.cn/maimai-mobile/1.20/apple-touch-icon.png">
 </head>
 <body>
 <div class="wrapper t_c">
@@ -64,15 +64,18 @@
                       fill="#7ed3ff"></path>
             </svg>
             <div class="menu">
-                <a href="{{ url_for('main.wechat_archive', _external=True) + '?home' }}" class="d_ib col4 p_4"><img
-                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_home.png" class="w_112"/></a>
-                <a href="{{ url_for('main.wechat_archive', _external=True) + '?playerData' }}"
+                <a href="{{ url_for('main.wechat_archive_1_20', _external=True) + '?home' }}" class="d_ib col4 p_4"><img
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_home.png" class="w_112"/></a>
+                <a href="{{ url_for('main.wechat_archive_1_20', _external=True) + '?playerData' }}"
                    class="d_ib col4 p_4"><img
-                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_playerdata_on.png" class="w_112"/></a>
-                <a href="{{ url_for('main.wechat_archive', _external=True) + '?record' }}" class="d_ib col4 p_4"><img
-                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_record.png" class="w_112"/></a>
-                <a href="{{ url_for('main.wechat_archive', _external=True) + '?ranking' }}" class="d_ib col4 p_4"><img
-                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_ranking.png" class="w_112"/></a>
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_playerdata_on.png"
+                        class="w_112"/></a>
+                <a href="{{ url_for('main.wechat_archive_1_20', _external=True) + '?record' }}"
+                   class="d_ib col4 p_4"><img
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_record.png" class="w_112"/></a>
+                <a href="{{ url_for('main.wechat_archive_1_20', _external=True) + '?ranking' }}"
+                   class="d_ib col4 p_4"><img
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_ranking.png" class="w_112"/></a>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 480 10"
                  preserveAspectRatio="none" style="height:10px">
@@ -83,31 +86,31 @@
     </header>
 
     <div class="m_t_5 m_b_10 t_l f_0">
-        <a href="{{ url_for('main.wechat_archive', _external=True) + '?playerData' }}" class="p_r d_ib">
-            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_sub_playerdata_playerdata.png?ver=1.00"
+        <a href="{{ url_for('main.wechat_archive_1_20', _external=True) + '?playerData' }}" class="p_r d_ib">
+            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_sub_playerdata_playerdata.png?ver=1.00"
                  class="w_120"/>
         </a>
-        <a href="{{ url_for('main.wechat_archive', _external=True) + '?playerData_album' }}" class="p_r d_ib">
-            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_sub_playerdata_album.png?ver=1.00"
+        <a href="{{ url_for('main.wechat_archive_1_20', _external=True) + '?playerData_album' }}" class="p_r d_ib">
+            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_sub_playerdata_album.png?ver=1.00"
                  class="w_120"/>
-            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_on.png" class="submenu_selected"/> </a>
-        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_sub_playerdata.png" class="w_120"/>
-        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_sub_playerdata.png" class="w_120"/>
+            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_on.png" class="submenu_selected"/> </a>
+        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_sub_playerdata.png" class="w_120"/>
+        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_sub_playerdata.png" class="w_120"/>
     </div>
 
-    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/title_photo_album.png" class="title m_10"/>
+    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/title_photo_album.png" class="title m_10"/>
     {% for data in playerData_album %}
         <div class=" m_10 p_5 f_0">
             <div class="music_{{ data.level_img_s | my_split('_', 1) }}_score_back p_r p_5">
-                <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/{{ data.dx_img_s }}.png"
+                <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/{{ data.dx_img_s }}.png"
                      class="music_kind_icon f_r"/>
                 <div class="block_info p_3 f_11 white">{{ data.play_dt }}</div>
-                <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/{{ data.level_img_s }}.png"
+                <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/{{ data.level_img_s }}.png"
                      class="h_16 f_l"><br>
                 <div class="clearfix"></div>
                 <div class="black_block w_430 m_3 m_b_5 p_5 t_l f_15 break">
                     ID：{{ data.id }}，缓存时间：{{ data.create_time }}<br>{{ data.name }}</div>
-                <img src="https://i1.yuangezhizao.cn/maimai-archive/img/photo/user/{{ data.img }}.jpg!webp"
+                <img src="https://i1.yuangezhizao.cn/maimai-archive/1.20/img/photo/user/{{ data.img }}.jpg!webp"
                      onerror="imgLost(this)"
                      class="w_430"/>
                 <div class="col2 f_l">
@@ -129,23 +132,23 @@
                 {#                          fill="#7cbc29"></path>#}
                 {#                </svg>#}
                 {#				<div class="m_15 m_t_0 f_13">#}
-                {#					<div class="m_5"><a href="https://i1.yuangezhizao.cn/maimai-mobile/termsOfService/" target="_blank" class="white" rel="noopener">使用条款</a></div>#}
-                {#					<div class="m_5"><a href="https://i1.yuangezhizao.cn/maimai-mobile/sitePolicy/" target="_blank" class="white" rel="noopener">使用须知</a></div>#}
+                {#					<div class="m_5"><a href="https://i1.yuangezhizao.cn/maimai-mobile/1.20/termsOfService/" target="_blank" class="white" rel="noopener">使用条款</a></div>#}
+                {#					<div class="m_5"><a href="https://i1.yuangezhizao.cn/maimai-mobile/1.20/sitePolicy/" target="_blank" class="white" rel="noopener">使用须知</a></div>#}
                 {#					<div class="m_5"><a href="https://sega-group.co.jp/english/privacypolicy/" target="_blank" class="white" rel="noopener">私隐政策</a></div>#}
                 {#				</div>#}
-                {#				<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/line_02.png" class="w_430 m_b_10" />#}
+                {#				<img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/line_02.png" class="w_430 m_b_10" />#}
                 {#                <div class="f_l m_15 m_l_30 p_l_10">#}
                 {#                    <a href="http://sega.jp" target="_blank" rel="noopener"><img#}
-                {#                            src="https://i1.yuangezhizao.cn/maimai-mobile/img/logo_sega.png"/></a>#}
+                {#                            src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/logo_sega.png"/></a>#}
                 {#					<div class="f_15 p_5">© SEGA</div>#}
                 {#                </div>#}
                 {#                <div class="m_15">#}
-                {#                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/logo_wahlap.png"/></a>#}
+                {#                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/logo_wahlap.png"/></a>#}
                 {#					<div class="f_11 p_3"><a href="http://www.miitbeian.gov.cn" style="text-decoration:none; color: #fff" target="_blank" rel="noopener">粤ICP备05005783号</a></div>#}
                 {#                </div>#}
                 <div class="p_10">
                     <div class="f_12 l_h_12">© SEGA & WAHLAP</div>
-                    <div class="f_12 l_h_12">Modified for personal use，yuangezhizao © 2020 - 2021</div>
+                    <div class="f_12 l_h_12">Modified for personal use，yuangezhizao © 2020 - 2023</div>
                     <div class="f_12 l_h_12"></div>
                 </div>
             </div>

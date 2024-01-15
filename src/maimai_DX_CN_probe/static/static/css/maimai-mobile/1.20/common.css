@@ -82,7 +82,7 @@ select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background: #fff url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_select.png) no-repeat right center;
+    background: #fff url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_select.png) no-repeat right center;
 }
 
 select::-ms-expand {
@@ -654,7 +654,7 @@ ol.bracket li:before {
 
 /* ---------- 箱 ---------- */
 .main_wrapper {
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_base.png) repeat-y;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_base.png) repeat-y;
 }
 
 .wrapper {
@@ -722,7 +722,7 @@ ol.bracket li:before {
 }
 
 .town_block {
-    background: #fff url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_town_01.png) bottom no-repeat;
+    background: #fff url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_town_01.png) bottom no-repeat;
     background-size: 485px;
     box-shadow: 1px 3px 0px rgba(0, 0, 0, 0.4);
     border-radius: 5px;
@@ -737,10 +737,10 @@ ol.bracket li:before {
 
 .screw_block {
     padding: 15px 17px;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/icon_screw.png) left top no-repeat,
-    url(https://lab.yuangezhizao.cn/maimai-mobile/img/icon_screw.png) right top no-repeat,
-    url(https://lab.yuangezhizao.cn/maimai-mobile/img/icon_screw.png) left bottom no-repeat,
-    url(https://lab.yuangezhizao.cn/maimai-mobile/img/icon_screw.png) right bottom no-repeat, #fff;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_screw.png) left top no-repeat,
+    url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_screw.png) right top no-repeat,
+    url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_screw.png) left bottom no-repeat,
+    url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_screw.png) right bottom no-repeat, #fff;
     box-shadow: 1px 3px 0px rgba(0, 0, 0, 0.4);
     border: 1px solid #b3b3b3;
     border-radius: 5px;
@@ -772,7 +772,7 @@ ol.bracket li:before {
     width: 260px;
     height: 34px;
     line-height: 38px;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/info_base_01.png) bottom no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/info_base_01.png) bottom no-repeat;
 }
 
 .basic_btn {
@@ -791,7 +791,7 @@ input[type=text].pager {
 
 /* ---------- エリア ---------- */
 .town_area {
-    background: #f0f0f0 url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_town_02.png) bottom no-repeat;
+    background: #f0f0f0 url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_town_02.png) bottom no-repeat;
 }
 
 .see_through_area {
@@ -833,7 +833,7 @@ input[type=text].pager {
 
 /* ---------- アニメーション ---------- */
 .footer_marquee {
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_area_dx.png) repeat-x;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_area_dx.png) repeat-x;
     background-size: 480px auto;
     background-position: 0 0;
     animation: marquee 30s linear infinite;
@@ -948,23 +948,23 @@ footer {
 }
 
 .trophy_Normal {
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/trophy_normal.png) no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/trophy_normal.png) no-repeat;
 }
 
 .trophy_Bronze {
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/trophy_bronze.png) no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/trophy_bronze.png) no-repeat;
 }
 
 .trophy_Silver {
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/trophy_silver.png) no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/trophy_silver.png) no-repeat;
 }
 
 .trophy_Gold {
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/trophy_gold.png) no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/trophy_gold.png) no-repeat;
 }
 
 .trophy_Rainbow {
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/trophy_rainbow.png) no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/trophy_rainbow.png) no-repeat;
 }
 
 .name_block {
@@ -973,7 +973,7 @@ footer {
     margin: 3px 0;
     padding: 3px 5px;
     border: 1px solid #dedede;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_dx.png) right center no-repeat, #fff;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_dx.png) right center no-repeat, #fff;
     background-size: 34px;
     box-shadow: 1px 3px 0px rgba(0, 0, 0, 0.4);
     border-radius: 5px;
@@ -1064,7 +1064,7 @@ footer {
 }
 
 .em_space {
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_em_space.png) center no-repeat #1477e6;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_em_space.png) center no-repeat #1477e6;
 }
 
 .option_select {
@@ -1104,7 +1104,7 @@ footer {
 
 .musiccount_counter_block {
     padding: 0 10px 0 0;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/ranking/back.png), #f5feff;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/ranking/back.png), #f5feff;
     line-height: 37px;
     border-radius: 3px;
 }
@@ -1140,7 +1140,7 @@ footer {
     width: 450px;
     height: 94px;
     margin: 0 auto;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_friend_vs.png) no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_friend_vs.png) no-repeat;
     box-shadow: 1px 3px 0px rgba(0, 0, 0, 0.4);
     border: 2px solid #fff;
     border-radius: 5px;
@@ -1320,7 +1320,7 @@ footer {
     min-height: 122px;
     margin: 5px 0 0 0;
     display: inline-block;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/playlog/back_character.png) no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/back_character.png) no-repeat;
     background-position: 8px 15px;
     background-size: 73px;
 }
@@ -1491,7 +1491,7 @@ footer {
     width: 45px;
     height: 43px;
     padding: 17px 0 0 0;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_music_level.png);
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_music_level.png);
     border-radius: 5px;
 }
 
@@ -1499,7 +1499,7 @@ footer {
     width: 45px;
     height: 43px;
     padding: 17px 0 0 0;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_music_level.png);
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_music_level.png);
     border-radius: 5px;
 }
 
@@ -1514,7 +1514,7 @@ footer {
 
 .music_basic_score_back {
     position: relative;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_music_basic.png) no-repeat 0 5px, #6fe163;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_music_basic.png) no-repeat 0 5px, #6fe163;
     border: 2px solid #000;
     box-shadow: 1px 3px 0px #025235;
     border-radius: 5px;
@@ -1536,7 +1536,7 @@ footer {
 
 .music_advanced_score_back {
     position: relative;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_music_advanced.png) no-repeat 0 5px, #f8df3a;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_music_advanced.png) no-repeat 0 5px, #f8df3a;
     border: 2px solid #c7450c;
     box-shadow: 1px 3px 0px #c7450c;
     border-radius: 5px;
@@ -1558,7 +1558,7 @@ footer {
 
 .music_expert_score_back {
     position: relative;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_music_expert.png) no-repeat 0 5px, #ff828e;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_music_expert.png) no-repeat 0 5px, #ff828e;
     border: 2px solid #c02138;
     box-shadow: 1px 3px 0px #c02138;
     border-radius: 5px;
@@ -1580,7 +1580,7 @@ footer {
 
 .music_master_score_back {
     position: relative;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_music_master.png) no-repeat 0 5px, #c27ff4;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_music_master.png) no-repeat 0 5px, #c27ff4;
     border: 2px solid #67148d;
     box-shadow: 1px 3px 0px #67148d;
     border-radius: 5px;
@@ -1602,7 +1602,7 @@ footer {
 
 .music_remaster_score_back {
     position: relative;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_music_remaster.png) no-repeat 0 5px, #e5ddea;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_music_remaster.png) no-repeat 0 5px, #e5ddea;
     border: 2px solid #8c2cd5;
     box-shadow: 1px 3px 0px #8c2cd5;
     border-radius: 5px;
@@ -1624,7 +1624,7 @@ footer {
 
 .music_all_score_back {
     position: relative;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_music_all.png) no-repeat 0 5px, #fff;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_music_all.png) no-repeat 0 5px, #fff;
     border: 2px solid #000;
     box-shadow: 1px 3px 0px #023e52;
     border-radius: 5px;
@@ -1703,7 +1703,7 @@ footer {
 
 /* ---------- ちほー ---------- */
 .map_img_block {
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_map.png) bottom no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_map.png) bottom no-repeat;
     background-size: 175px 130px;
 }
 
@@ -1720,7 +1720,7 @@ footer {
     width: 280px;
     height: 36px;
     line-height: 38px;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/info_base_02.png) bottom no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/info_base_02.png) bottom no-repeat;
     background-size: 280px;
 }
 
@@ -1728,7 +1728,7 @@ footer {
     width: 250px;
     height: 32px;
     line-height: 37px;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/info_base_02.png) bottom no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/info_base_02.png) bottom no-repeat;
     background-size: 250px;
 }
 
@@ -1753,7 +1753,7 @@ footer {
 .eventmap_container {
     margin: 10px 0 15px 0;
     padding: 0 10px;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_eventmap.png) top 140px left -3px no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_eventmap.png) top 140px left -3px no-repeat;
     background-size: 205px;
 }
 
@@ -1762,14 +1762,14 @@ footer {
     height: 40px;
     margin: 15px auto 0 auto;
     line-height: 38px;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/info_base_02.png) bottom no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/info_base_02.png) bottom no-repeat;
     background-size: 360px;
 }
 
 .mapdetail_map_block {
     position: relative;
     min-height: 391px;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_mapdetail.png) bottom no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_mapdetail.png) bottom no-repeat;
 }
 
 .mapdetail_map_img {
@@ -1791,7 +1791,7 @@ footer {
 }
 
 .mapdetail_img_block {
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_map.png) bottom no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_map.png) bottom no-repeat;
     background-size: 254px 130px;
 }
 
@@ -1840,7 +1840,7 @@ footer {
 
 .mapdetail_load_block {
     padding: 0 0 5px 0;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_map_load.png) bottom repeat-x;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_map_load.png) bottom repeat-x;
     background-size: 10px;
 }
 
@@ -1869,7 +1869,7 @@ footer {
 
 .eventmapdetail_img_block {
     height: 350px;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/back_eventmap.png) bottom no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/back_eventmap.png) bottom no-repeat;
     background-size: 254px 130px;
 }
 
@@ -2115,7 +2115,7 @@ footer {
     width: 450px;
     margin: 5px 15px 0 15px;
     padding: 5px;
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/ranking/back_rank_top.png) right bottom no-repeat;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/ranking/back_rank_top.png) right bottom no-repeat;
 }
 
 .ranking_top_block {
@@ -2136,7 +2136,7 @@ footer {
 }
 
 .ranking_top_inner_block {
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/ranking/back.png), #f5f8fb;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/ranking/back.png), #f5f8fb;
     border: 2px solid #fff;
     border-radius: 5px;
 }
@@ -2148,7 +2148,7 @@ footer {
 }
 
 .ranking_you {
-    background: url(https://lab.yuangezhizao.cn/maimai-mobile/img/ranking/back.png), #fff9ca;
+    background: url(https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/ranking/back.png), #fff9ca;
 }
 
 .ranking_rank_block {

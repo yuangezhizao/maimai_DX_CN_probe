@@ -45,9 +45,9 @@
     <meta name="theme-color" content="#51bcf3">
 
     <title>微信存档 - 详细</title>
-    <link rel="stylesheet" href="https://i1.yuangezhizao.cn/maimai-mobile/css/common.css?ver=1.00"/>
-    <link rel="apple-touch-icon-precomposed" href="https://i1.yuangezhizao.cn/maimai-mobile/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="https://i1.yuangezhizao.cn/maimai-mobile/apple-touch-icon.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/css/maimai-mobile/1.20/common.css') }}"/>
+    <link rel="apple-touch-icon-precomposed" href="https://i1.yuangezhizao.cn/maimai-mobile/1.20/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="https://i1.yuangezhizao.cn/maimai-mobile/1.20/apple-touch-icon.png">
     <script src="https://s1.yuangezhizao.cn/npm/highcharts/highcharts.min.js"></script>
     <script src="https://s1.yuangezhizao.cn/npm/highcharts/modules/exporting.js"></script>
     <script src="https://s1.yuangezhizao.cn/npm/highcharts/modules/series-label.js"></script>
@@ -70,15 +70,17 @@
                       fill="#7ed3ff"></path>
             </svg>
             <div class="menu">
-                <a href="{{ url_for('main.wechat_archive', _external=True) + '?home' }}" class="d_ib col4 p_4"><img
-                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_home.png" class="w_112"/></a>
-                <a href="{{ url_for('main.wechat_archive', _external=True) + '?playerData' }}"
+                <a href="{{ url_for('main.wechat_archive_1_20', _external=True) + '?home' }}" class="d_ib col4 p_4"><img
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_home.png" class="w_112"/></a>
+                <a href="{{ url_for('main.wechat_archive_1_20', _external=True) + '?playerData' }}"
                    class="d_ib col4 p_4"><img
-                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_playerdata.png" class="w_112"/></a>
-                <a href="{{ url_for('main.wechat_archive', _external=True) + '?record' }}" class="d_ib col4 p_4"><img
-                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_record_on.png" class="w_112"/></a>
-                <a href="{{ url_for('main.wechat_archive', _external=True) + '?ranking' }}" class="d_ib col4 p_4"><img
-                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_ranking.png" class="w_112"/></a>
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_playerdata.png" class="w_112"/></a>
+                <a href="{{ url_for('main.wechat_archive_1_20', _external=True) + '?record' }}"
+                   class="d_ib col4 p_4"><img
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_record_on.png" class="w_112"/></a>
+                <a href="{{ url_for('main.wechat_archive_1_20', _external=True) + '?ranking' }}"
+                   class="d_ib col4 p_4"><img
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_ranking.png" class="w_112"/></a>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 480 10"
                  preserveAspectRatio="none" style="height:10px">
@@ -89,26 +91,27 @@
     </header>
 
     <div class="m_t_5 m_b_10 t_l f_0">
-        <a href="{{ url_for('main.wechat_archive', _external=True) + '?record' }}" class="p_r d_ib">
-            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_sub_record_playlog.png?ver=1.00"
+        <a href="{{ url_for('main.wechat_archive_1_20', _external=True) + '?record' }}" class="p_r d_ib">
+            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_sub_record_playlog.png?ver=1.00"
                  class="w_120"/>
-            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_on.png" class="submenu_selected"/> </a>
-        <a href="{{ url_for('main.wechat_archive', _external=True) + '?record_musicGenre' }}" class="p_r d_ib">
-            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_sub_record_music.png?ver=1.00" class="w_120"/>
+            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_on.png" class="submenu_selected"/> </a>
+        <a href="{{ url_for('main.wechat_archive_1_20', _external=True) + '?record_musicGenre' }}" class="p_r d_ib">
+            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_sub_record_music.png?ver=1.00"
+                 class="w_120"/>
         </a>
-        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_sub_record.png" class="w_120"/>
-        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/menu_sub_record.png" class="w_120"/>
+        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_sub_record.png" class="w_120"/>
+        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/menu_sub_record.png" class="w_120"/>
     </div>
 
-    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/title_playlog.png" class="title m_10"/>
+    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/title_playlog.png" class="title m_10"/>
 
     <div class="p_10 t_l f_0 v_b">
         <div class="playlog_top_container">
-            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/{{ record_data.level_img_s }}.png"
+            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/{{ record_data.level_img_s }}.png"
                  class="playlog_diff v_b">
             {% if record_data.vs_img_s %}
-                <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/vs.png" class="playlog_vs v_b">
-                <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/{{ record_data.vs_img_s }}.png"
+                <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/vs.png" class="playlog_vs v_b">
+                <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/{{ record_data.vs_img_s }}.png"
                      class="playlog_vs_result v_b">
             {% endif %}
             <div class="sub_title t_c f_r f_11">
@@ -121,47 +124,47 @@
             <div class="basic_block m_5 p_5 p_l_10 f_13 break">
                 {% if record_data.clear %}
                     <img
-                            src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/clear.png"
+                            src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/clear.png"
                             class="w_80 f_r">
                 {% endif %}
                 ID：{{ record_data.id }} ★ {{ record_data.name }}
             </div>
             <div class="p_r f_0">
-                <img src="{{ record_data.img_s | replace("maimai.wahlap.com", "i1.yuangezhizao.cn") }}"
+                <img src="{{ record_data.img_s | replace("maimai.wahlap.com", "i1.yuangezhizao.cn") | replace("maimai-mobile/", "maimai-mobile/1.20/") }}"
                      class="music_img m_5 m_r_0 f_l">
-                <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/{{ record_data.dx_img_s }}.png"
+                <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/{{ record_data.dx_img_s }}.png"
                      class="playlog_music_kind_icon">
                 <div class="playlog_result_block m_t_5 f_l">
                     <div class="playlog_achievement_label_block">
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/achievement.png">
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/achievement.png">
                     </div>
                     {% if record_data.score_rank_new %}
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/newrecord.png"
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/newrecord.png"
                              class="playlog_achievement_newrecord">
                     {% endif %}
                     <div class="playlog_achievement_txt t_r">{{ record_data.achievement | int }}<span
                             class="f_20">.{{ record_data.achievement | my_split('.', 1) }}%</span></div>
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/{{ record_data.score_rank_img_s }}.png"
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/{{ record_data.score_rank_img_s }}.png"
                          class="playlog_scorerank">
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/line_02.png"
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/line_02.png"
                          class="playlog_scoreline f_r">
                     <div class="playlog_result_innerblock basic_block p_5 f_13">
                         <div class="playlog_score_block f_0">
-                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/deluxscore.png"
+                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/deluxscore.png"
                                  class="w_80">
                             {% if record_data.delux_new %}
-                                <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/newrecord.png"
+                                <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/newrecord.png"
                                      class="playlog_deluxscore_newrecord">
                             {% endif %}
                             <div class="white p_r_5 f_15 f_r">{{ record_data.delux_score }}</div>
                         </div>
 
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/{{ record_data.fc_img_s }}.png"
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/{{ record_data.fc_img_s }}.png"
                              class="h_35 m_5 f_l">
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/{{ record_data.fs_img_s }}.png"
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/{{ record_data.fs_img_s }}.png"
                              class="h_35 m_5 f_l">
                         {% if record_data.rate_img_s %}
-                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/{{ record_data.rate_img_s }}.png"
+                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/{{ record_data.rate_img_s }}.png"
                                  class="h_35 m_5 f_r"/>
                         {% endif %}
                         <div class="clearfix"></div>
@@ -176,36 +179,37 @@
     {% if record_playlogDetail.vs_rank %}
         <div class="see_through_block m_10 m_t_0  p_l_10 t_l f_0 break" id="vsUser">
 		<span class="m_t_5 d_ib">
-			<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/vs.png" class="f_l"/>
+			<img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/vs.png" class="f_l"/>
 			<div class="p_l_5 p_r_5 f_l f_14 l_h_10">{{ record_playlogDetail.vs_rank }}<br><span
                     class="f_r f_11">{{ record_playlogDetail.vs_achievement }}%</span></div>
 			<div class="basic_block w_120 f_l p_5 t_r f_0">
-				<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/deluxrating.png" class="h_20 f_l"/><span
+				<img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/deluxrating.png"
+                     class="h_20 f_l"/><span
                     class="f_14">{{ record_playlogDetail.vs_rating }}</span>
 			</div>
-			<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/{{ record_playlogDetail.vs_grade }}.png"
+			<img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/{{ record_playlogDetail.vs_grade }}.png"
                  class="h_25 m_3"/>
 
 		</span>
             <div class="p_5 f_r d_ib f_0" id="vsUserCtrl">
-                <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/btn_off.png" class="h_30"/>
+                <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/btn_off.png" class="h_30"/>
             </div>
             <div class="clearfix"></div>
         </div>
     {% endif %}
 
     <div class="gray_block m_10 m_t_0 p_b_5 f_0">
-        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/character.png" class="m_t_5 f_l"/>
+        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/character.png" class="m_t_5 f_l"/>
         <div class="clearfix"></div>
         <div class="playlog_chara_container">
             <div class="playlog_chara_block">
                 <div class="chara_cycle_trim">
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/Chara/{{ record_playlogDetail.chara_0_img_s }}.png"
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/Chara/{{ record_playlogDetail.chara_0_img_s }}.png"
                          class="chara_cycle_img"/>
                 </div>
             </div>
             <div class="playlog_chara_star_block f_12"><img
-                    src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_star.png"
+                    src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_star.png"
                     class="v_b"/>×{{ record_playlogDetail.chara_0_star }}
             </div>
             <div class="playlog_chara_lv_block f_13">Lv{{ record_playlogDetail.chara_0_lv }}</div>
@@ -213,12 +217,12 @@
         <div class="playlog_chara_container">
             <div class="playlog_chara_block">
                 <div class="chara_cycle_trim">
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/Chara/{{ record_playlogDetail.chara_1_img_s }}.png"
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/Chara/{{ record_playlogDetail.chara_1_img_s }}.png"
                          class="chara_cycle_img"/>
                 </div>
             </div>
             <div class="playlog_chara_star_block f_12"><img
-                    src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_star.png"
+                    src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_star.png"
                     class="v_b"/>×{{ record_playlogDetail.chara_1_star }}
             </div>
             <div class="playlog_chara_lv_block f_13">Lv{{ record_playlogDetail.chara_1_lv }}</div>
@@ -226,12 +230,12 @@
         <div class="playlog_chara_container">
             <div class="playlog_chara_block">
                 <div class="chara_cycle_trim">
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/Chara/{{ record_playlogDetail.chara_2_img_s }}.png"
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/Chara/{{ record_playlogDetail.chara_2_img_s }}.png"
                          class="chara_cycle_img"/>
                 </div>
             </div>
             <div class="playlog_chara_star_block f_12"><img
-                    src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_star.png"
+                    src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_star.png"
                     class="v_b"/>×{{ record_playlogDetail.chara_2_star }}
             </div>
             <div class="playlog_chara_lv_block f_13">Lv{{ record_playlogDetail.chara_2_lv }}</div>
@@ -239,12 +243,12 @@
         <div class="playlog_chara_container">
             <div class="playlog_chara_block">
                 <div class="chara_cycle_trim">
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/Chara/{{ record_playlogDetail.chara_3_img_s }}.png"
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/Chara/{{ record_playlogDetail.chara_3_img_s }}.png"
                          class="chara_cycle_img"/>
                 </div>
             </div>
             <div class="playlog_chara_star_block f_12"><img
-                    src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_star.png"
+                    src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_star.png"
                     class="v_b"/>×{{ record_playlogDetail.chara_3_star }}
             </div>
             <div class="playlog_chara_lv_block f_13">Lv{{ record_playlogDetail.chara_3_lv }}</div>
@@ -252,24 +256,24 @@
         <div class="playlog_chara_container">
             <div class="playlog_chara_block">
                 <div class="chara_cycle_trim">
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/Chara/{{ record_playlogDetail.chara_4_img_s }}.png"
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/Chara/{{ record_playlogDetail.chara_4_img_s }}.png"
                          class="chara_cycle_img"/>
                 </div>
             </div>
             <div class="playlog_chara_star_block f_12"><img
-                    src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_star.png"
+                    src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_star.png"
                     class="v_b"/>×{{ record_playlogDetail.chara_4_star }}
             </div>
             <div class="playlog_chara_lv_block f_13">Lv{{ record_playlogDetail.chara_4_lv }}</div>
         </div>
-        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/line_01.png" class="w_450 m_b_5"/>
-        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/detail.png" class="f_l"/>
+        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/line_01.png" class="w_450 m_b_5"/>
+        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/detail.png" class="f_l"/>
         <div class="playlog_fl_block m_b_5 f_r f_12">
-            <div class="w_96 f_l t_r"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/fast.png"
+            <div class="w_96 f_l t_r"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/fast.png"
                                            class="h_10 m_3 m_l_10 f_l"/>
                 <div class="p_t_5">{{ record_playlogDetail.fast }}</div>
             </div>
-            <div class="w_96 f_l t_r"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/late.png"
+            <div class="w_96 f_l t_r"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/late.png"
                                            class="h_10 m_3 m_l_10 f_l"/>
                 <div class="p_t_5">{{ record_playlogDetail.late }}</div>
             </div>
@@ -280,16 +284,19 @@
                 <tr>
                     <th></th>
                     <td class="t_c f_0"><img
-                            src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/criticalperfect.png"/></td>
-                    <td class="t_c f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/perfect.png"/>
+                            src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/criticalperfect.png"/></td>
+                    <td class="t_c f_0"><img
+                            src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/perfect.png"/>
                     </td>
-                    <td class="t_c f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/great.png"/>
+                    <td class="t_c f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/great.png"/>
                     </td>
-                    <td class="t_c f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/good.png"/></td>
-                    <td class="t_c f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/miss.png"/></td>
+                    <td class="t_c f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/good.png"/>
+                    </td>
+                    <td class="t_c f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/miss.png"/>
+                    </td>
                 </tr>
                 <tr>
-                    <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/tap.png"/></th>
+                    <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/tap.png"/></th>
                     <td>{{ record_playlogDetail.notes_tap_cp if record_playlogDetail.notes_tap_cp != None }}</td>
                     <td>{{ record_playlogDetail.notes_tap_p if record_playlogDetail.notes_tap_p != None }}</td>
                     <td>{{ record_playlogDetail.notes_tap_great if record_playlogDetail.notes_tap_great != None }}</td>
@@ -297,7 +304,7 @@
                     <td>{{ record_playlogDetail.notes_tap_miss if record_playlogDetail.notes_tap_miss != None }}</td>
                 </tr>
                 <tr>
-                    <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/hold.png"/></th>
+                    <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/hold.png"/></th>
                     <td>{{ record_playlogDetail.notes_hold_cp if record_playlogDetail.notes_hold_cp != None }}</td>
                     <td>{{ record_playlogDetail.notes_hold_p if record_playlogDetail.notes_hold_p != None }}</td>
                     <td>{{ record_playlogDetail.notes_hold_great if record_playlogDetail.notes_hold_great != None }}</td>
@@ -305,7 +312,8 @@
                     <td>{{ record_playlogDetail.notes_hold_miss if record_playlogDetail.notes_hold_miss != None }}</td>
                 </tr>
                 <tr>
-                    <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/slide.png"/></th>
+                    <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/slide.png"/>
+                    </th>
                     <td>{{ record_playlogDetail.notes_slide_cp if record_playlogDetail.notes_slide_cp != None }}</td>
                     <td>{{ record_playlogDetail.notes_slide_p if record_playlogDetail.notes_slide_p != None }}</td>
                     <td>{{ record_playlogDetail.notes_slide_great if record_playlogDetail.notes_slide_great != None }}</td>
@@ -313,7 +321,8 @@
                     <td>{{ record_playlogDetail.notes_slide_miss if record_playlogDetail.notes_slide_miss != None }}</td>
                 </tr>
                 <tr>
-                    <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/touch.png"/></th>
+                    <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/touch.png"/>
+                    </th>
                     <td>{{ record_playlogDetail.notes_touch_cp if record_playlogDetail.notes_touch_cp != None }}</td>
                     <td>{{ record_playlogDetail.notes_touch_p if record_playlogDetail.notes_touch_p != None }}</td>
                     <td>{{ record_playlogDetail.notes_touch_great if record_playlogDetail.notes_touch_great != None }}</td>
@@ -321,7 +330,8 @@
                     <td>{{ record_playlogDetail.notes_touch_miss if record_playlogDetail.notes_touch_miss != None }}</td>
                 </tr>
                 <tr>
-                    <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/break.png"/></th>
+                    <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/break.png"/>
+                    </th>
                     <td>{{ record_playlogDetail.notes_break_cp if record_playlogDetail.notes_break_cp != None }}</td>
                     <td>{{ record_playlogDetail.notes_break_p if record_playlogDetail.notes_break_p != None }}</td>
                     <td>{{ record_playlogDetail.notes_break_great if record_playlogDetail.notes_break_great != None }}</td>
@@ -332,14 +342,14 @@
             <div class="playlog_rating_detail_block f_r t_l">
                 <table class="playlog_grade_block m_t_5 f_0">
                     <tr>
-                        <td class="v_t"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/grade.png"
+                        <td class="v_t"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/grade.png"
                                              class="h_14"/></td>
                         <td class="t_r f_12">
                             <div class="playlog_rating_val_block">{{ record_playlogDetail.grade }}</div>
                             <span class="f_11">{{ record_playlogDetail.grade_diff }}</span></td>
                     </tr>
                     <tr>
-                        <td class="v_t"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/rating.png"
+                        <td class="v_t"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/rating.png"
                                              class="h_12"/></td>
                         <td class="t_r f_12">
                             <div class="playlog_rating_val_block">{{ record_playlogDetail.rating }}</div>
@@ -347,19 +357,19 @@
                     </tr>
                 </table>
                 <div class="basic_block m_t_5 p_3 t_r f_0">
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/deluxrating.png"
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/deluxrating.png"
                          class="h_20 f_l"/><span class="f_14">{{ record_playlogDetail.delux_rating }}</span>
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/{{ record_playlogDetail.delux_rating_diff }}.png"
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/{{ record_playlogDetail.delux_rating_diff }}.png"
                          class="h_20 f_r"/>
                 </div>
                 <div class="t_r f_0">
                     {% if record_playlogDetail.grade_pic_s == 'grade_rankup' %}
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/{{ record_playlogDetail.grade_pic_s }}.png"
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/{{ record_playlogDetail.grade_pic_s }}.png"
                              class="h_25 m_b_5"/>
-                        {#                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/{{  }}.png"#}
+                        {#                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/{{  }}.png"#}
                         {#                             class="h_25 m_t_10 m_b_5"/>#}
                     {% else %}
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/{{ record_playlogDetail.grade_pic_s }}.png"
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/{{ record_playlogDetail.grade_pic_s }}.png"
                              class="h_25 m_t_10 m_b_5"/>
                     {% endif %}
                 </div>
@@ -367,13 +377,13 @@
             <div class="clearfix m_b_5"></div>
             <div class="col2 f_l t_l f_0">
                 <div class="playlog_score_block p_5">
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/maxcombo.png" class="h_20"/>
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/maxcombo.png" class="h_20"/>
                     <div class="f_r f_14 white">{{ record_playlogDetail.maxcombo }}</div>
                 </div>
             </div>
             <div class="col2 p_l_5 f_l t_l f_0">
                 <div class="playlog_score_block p_5">
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/maxsync.png" class="h_20"/>
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/maxsync.png" class="h_20"/>
                     <div class=" f_r f_14 white">{{ record_playlogDetail.maxsync }}</div>
                 </div>
             </div>
@@ -384,23 +394,23 @@
     {% if record_playlogDetail.name %}
         <div class="see_through_block m_10 p_5 t_l f_14" id="matching">
 												<span class="playlog_{{ record_playlogDetail.level_img_s | my_split('_', 1) }}_container w_120 p_3 d_ib f_0">
-				<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/{{ record_playlogDetail.level_img_s }}.png"
+				<img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/{{ record_playlogDetail.level_img_s }}.png"
                      class="h_16"/>
-				<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_each.png" class="h_14 f_r"/>
+				<img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_each.png" class="h_14 f_r"/>
 				<div class="basic_block p_3 t_c f_11">{{ record_playlogDetail.name }}</div>
 			</span>
             <span class="gray_block w_120 p_3 d_ib f_0 ">
-				<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_each.png" class="h_16 f_r"/>
+				<img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_each.png" class="h_16 f_r"/>
 				<div class="clearfix"></div>
 				<div class="basic_block p_3 t_c f_11">―</div>
 			</span>
             <span class="gray_block w_120 p_3 d_ib f_0 ">
-				<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_each.png" class="h_16 f_r"/>
+				<img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_each.png" class="h_16 f_r"/>
 				<div class="clearfix"></div>
 				<div class="basic_block p_3 t_c f_11">―</div>
 			</span>
             <div class="f_r p_t_10 d_ib f_0" id="matchingCtrl">
-                <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/btn_off.png" class="h_30 m_t_5 m_b_5"/>
+                <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/btn_off.png" class="h_30 m_t_5 m_b_5"/>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -410,49 +420,50 @@
         <div class="basic_block p_3 t_c f_11">
             {% if all_levels | int == 1 %}
                 <a class="black"
-                   href="{{ url_for('main.wechat_archive') }}?record_playlogDetail&idx={{ record_data.id }}&all_levels=0">查看当前等级</a>
+                   href="{{ url_for('main.wechat_archive_1_20') }}?record_playlogDetail&idx={{ record_data.id }}&all_levels=0">查看当前等级</a>
             {% else %}
                 <a class="black"
-                   href="{{ url_for('main.wechat_archive') }}?record_playlogDetail&idx={{ record_data.id }}&all_levels=1">查看全部等级</a>
+                   href="{{ url_for('main.wechat_archive_1_20') }}?record_playlogDetail&idx={{ record_data.id }}&all_levels=1">查看全部等级</a>
             {% endif %}
         </div>
         <br>
         {% if record_data.id > 1 %}
             <span class="pointer w_96 m_r_5 p_5 t_c f_12 f_b white">上一曲：{{ record_data.id - 1 }}</span>
-            <form action="{{ url_for('main.wechat_archive', _external=True) }}" method="get" accept-charset="utf-8"
+            <form action="{{ url_for('main.wechat_archive_1_20', _external=True) }}" method="get" accept-charset="utf-8"
                   class="h_40 d_ib v_t">
                 <input type="hidden" name="record_playlogDetail" value="">
                 <input type="hidden" name="idx" value="{{ record_data.id - 1 }}">
                 <input type="hidden" name="all_levels" value="{{ all_levels }}">
-                <button type="submit"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/rating_up.png"
+                <button type="submit"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/rating_up.png"
                                            class="h_40 pointer"></button>
             </form>
         {% else %}
             <span class="pointer w_96 m_r_5 p_5 t_c f_12 f_b white">上一曲不可用</span>
             <button type="submit"><img
-                    src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/rating_down.png"
+                    src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/rating_down.png"
                     class="h_40 pointer" style="cursor:not-allowed "></button>
         {% endif %}
 
         <span class="pointer w_96 m_r_5 p_5 t_c f_12 f_b white">下一曲：{{ record_data.id + 1 }}</span>
-        <form action="{{ url_for('main.wechat_archive', _external=True) }}" method="get" accept-charset="utf-8"
+        <form action="{{ url_for('main.wechat_archive_1_20', _external=True) }}" method="get" accept-charset="utf-8"
               class="h_40 d_ib v_t">
             <input type="hidden" name="record_playlogDetail" value="">
             <input type="hidden" name="idx" value="{{ record_data.id + 1 }}">
             <input type="hidden" name="all_levels" value="{{ all_levels }}">
-            <button type="submit"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/rating_down.png"
+            <button type="submit"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/rating_down.png"
                                        class="h_40 pointer"></button>
         </form>
 
-        <form action="https://i1.yuangezhizao.cn/maimai-mobile/record/musicDetail/" method="get" accept-charset="utf-8"
+        <form action="https://i1.yuangezhizao.cn/maimai-mobile/1.20/record/musicDetail/" method="get"
+              accept-charset="utf-8"
               class="h_40 d_ib v_t">
             <input type="hidden" name="idx"
                    value="68eabff9a05187bd3edf5ed0e20795dac3dfcb141ad92f94d3e4ab1fc8895d7c9ba61886f0b8b89cc5a5ba264e0ae04dd1783e66de0a03e8e76d0e4e7447f6b3SJV5Sjjszz2lxyvRTwFRG81dtMipe8yqkiypT4nB6EM=">
             <button disabled type="submit"><img
-                    src="https://i1.yuangezhizao.cn/maimai-mobile/img/btn_myrecord.png"
+                    src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/btn_myrecord.png"
                     class="h_40 pointer"></button>
         </form>
-        <form action="https://i1.yuangezhizao.cn/maimai-mobile/ranking/musicRankingDetail/" method="get"
+        <form action="https://i1.yuangezhizao.cn/maimai-mobile/1.20/ranking/musicRankingDetail/" method="get"
               accept-charset="utf-8" class="d_ib v_t">
             <input type="hidden" name="diff" value="3"/>
             <input type="hidden" name="idx"
@@ -464,10 +475,10 @@
         </form>
     </div>
 
-    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/line_02.png" class="w_450"/>
+    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/line_02.png" class="w_450"/>
     <div class="t_c">
         <button type="button" onclick="JavaScript:history.back();" class="f_0"><img
-                src="https://i1.yuangezhizao.cn/maimai-mobile/img/btn_back.png" class="w_80 m_t_10"/></button>
+                src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/btn_back.png" class="w_80 m_t_10"/></button>
     </div>
 
     <div class="basic_block p_3 t_c f_11">★ 单曲游戏次数：{{ count }} ★</div>
@@ -479,11 +490,11 @@
     {% for record_data_history in record_data_history_all %}
         <div class="p_10 t_l f_0 v_b">
             <div class="playlog_top_container">
-                <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/{{ record_data_history.level_img_s }}.png"
+                <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/{{ record_data_history.level_img_s }}.png"
                      class="playlog_diff v_b">
                 {% if record_data_history.vs_img_s %}
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/vs.png" class="playlog_vs v_b">
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/{{ record_data_history.vs_img_s }}.png"
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/vs.png" class="playlog_vs v_b">
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/{{ record_data_history.vs_img_s }}.png"
                          class="playlog_vs_result v_b">
                 {% endif %}
                 <div class="sub_title t_c f_r f_11">
@@ -496,47 +507,47 @@
                 <div class="basic_block m_5 p_5 p_l_10 f_13 break">
                     {% if record_data.clear %}
                         <img
-                                src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/clear.png"
+                                src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/clear.png"
                                 class="w_80 f_r">
                     {% endif %}
                     ID：{{ record_data_history.id }} ★ {{ record_data_history.name }}
                 </div>
                 <div class="p_r f_0">
-                    <img src="{{ record_data.img_s | replace("maimai.wahlap.com", "i1.yuangezhizao.cn") }}"
+                    <img src="{{ record_data.img_s | replace("maimai.wahlap.com", "i1.yuangezhizao.cn") | replace("maimai-mobile/", "maimai-mobile/1.20/") }}"
                          class="music_img m_5 m_r_0 f_l">
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/{{ record_data_history.dx_img_s }}.png"
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/{{ record_data_history.dx_img_s }}.png"
                          class="playlog_music_kind_icon">
                     <div class="playlog_result_block m_t_5 f_l">
                         <div class="playlog_achievement_label_block">
-                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/achievement.png">
+                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/achievement.png">
                         </div>
                         {% if record_data_history.score_rank_new %}
-                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/newrecord.png"
+                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/newrecord.png"
                                  class="playlog_achievement_newrecord">
                         {% endif %}
                         <div class="playlog_achievement_txt t_r">{{ record_data_history.achievement | int }}<span
                                 class="f_20">.{{ record_data_history.achievement | my_split('.', 1) }}%</span></div>
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/{{ record_data_history.score_rank_img_s }}.png"
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/{{ record_data_history.score_rank_img_s }}.png"
                              class="playlog_scorerank">
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/line_02.png"
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/line_02.png"
                              class="playlog_scoreline f_r">
                         <div class="playlog_result_innerblock basic_block p_5 f_13">
                             <div class="playlog_score_block f_0">
-                                <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/deluxscore.png"
+                                <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/deluxscore.png"
                                      class="w_80">
                                 {% if record_data_history.delux_new %}
-                                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/newrecord.png"
+                                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/newrecord.png"
                                          class="playlog_deluxscore_newrecord">
                                 {% endif %}
                                 <div class="white p_r_5 f_15 f_r">{{ record_data_history.delux_score }}</div>
                             </div>
 
-                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/{{ record_data_history.fc_img_s }}.png"
+                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/{{ record_data_history.fc_img_s }}.png"
                                  class="h_35 m_5 f_l">
-                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/{{ record_data_history.fs_img_s }}.png"
+                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/{{ record_data_history.fs_img_s }}.png"
                                  class="h_35 m_5 f_l">
                             {% if record_data_history.rate_img_s %}
-                                <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/{{ record_data_history.rate_img_s }}.png"
+                                <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/{{ record_data_history.rate_img_s }}.png"
                                      class="h_35 m_5 f_r"/>
                             {% endif %}
                             <div class="clearfix"></div>
@@ -557,36 +568,37 @@
         {% if record_playlogDetail_history.vs_rank %}
             <div class="see_through_block m_10 m_t_0  p_l_10 t_l f_0 break" id="vsUser">
 		<span class="m_t_5 d_ib">
-			<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/vs.png" class="f_l"/>
+			<img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/vs.png" class="f_l"/>
 			<div class="p_l_5 p_r_5 f_l f_14 l_h_10">{{ record_playlogDetail_history.vs_rank }}<br><span
                     class="f_r f_11">{{ record_playlogDetail_history.vs_achievement }}%</span></div>
 			<div class="basic_block w_120 f_l p_5 t_r f_0">
-				<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/deluxrating.png" class="h_20 f_l"/><span
+				<img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/deluxrating.png"
+                     class="h_20 f_l"/><span
                     class="f_14">{{ record_playlogDetail_history.vs_rating }}</span>
 			</div>
-			<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/{{ record_playlogDetail_history.vs_grade }}.png"
+			<img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/{{ record_playlogDetail_history.vs_grade }}.png"
                  class="h_25 m_3"/>
 
 		</span>
                 <div class="p_5 f_r d_ib f_0" id="vsUserCtrl">
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/btn_off.png" class="h_30"/>
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/btn_off.png" class="h_30"/>
                 </div>
                 <div class="clearfix"></div>
             </div>
         {% endif %}
 
         <div class="gray_block m_10 m_t_0 p_b_5 f_0">
-            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/character.png" class="m_t_5 f_l"/>
+            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/character.png" class="m_t_5 f_l"/>
             <div class="clearfix"></div>
             <div class="playlog_chara_container">
                 <div class="playlog_chara_block">
                     <div class="chara_cycle_trim">
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/Chara/{{ record_playlogDetail_history.chara_0_img_s }}.png"
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/Chara/{{ record_playlogDetail_history.chara_0_img_s }}.png"
                              class="chara_cycle_img"/>
                     </div>
                 </div>
                 <div class="playlog_chara_star_block f_12"><img
-                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_star.png"
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_star.png"
                         class="v_b"/>×{{ record_playlogDetail_history.chara_0_star }}
                 </div>
                 <div class="playlog_chara_lv_block f_13">Lv{{ record_playlogDetail_history.chara_0_lv }}</div>
@@ -594,12 +606,12 @@
             <div class="playlog_chara_container">
                 <div class="playlog_chara_block">
                     <div class="chara_cycle_trim">
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/Chara/{{ record_playlogDetail_history.chara_1_img_s }}.png"
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/Chara/{{ record_playlogDetail_history.chara_1_img_s }}.png"
                              class="chara_cycle_img"/>
                     </div>
                 </div>
                 <div class="playlog_chara_star_block f_12"><img
-                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_star.png"
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_star.png"
                         class="v_b"/>×{{ record_playlogDetail_history.chara_1_star }}
                 </div>
                 <div class="playlog_chara_lv_block f_13">Lv{{ record_playlogDetail_history.chara_1_lv }}</div>
@@ -607,12 +619,12 @@
             <div class="playlog_chara_container">
                 <div class="playlog_chara_block">
                     <div class="chara_cycle_trim">
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/Chara/{{ record_playlogDetail_history.chara_2_img_s }}.png"
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/Chara/{{ record_playlogDetail_history.chara_2_img_s }}.png"
                              class="chara_cycle_img"/>
                     </div>
                 </div>
                 <div class="playlog_chara_star_block f_12"><img
-                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_star.png"
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_star.png"
                         class="v_b"/>×{{ record_playlogDetail_history.chara_2_star }}
                 </div>
                 <div class="playlog_chara_lv_block f_13">Lv{{ record_playlogDetail_history.chara_2_lv }}</div>
@@ -620,12 +632,12 @@
             <div class="playlog_chara_container">
                 <div class="playlog_chara_block">
                     <div class="chara_cycle_trim">
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/Chara/{{ record_playlogDetail_history.chara_3_img_s }}.png"
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/Chara/{{ record_playlogDetail_history.chara_3_img_s }}.png"
                              class="chara_cycle_img"/>
                     </div>
                 </div>
                 <div class="playlog_chara_star_block f_12"><img
-                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_star.png"
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_star.png"
                         class="v_b"/>×{{ record_playlogDetail_history.chara_3_star }}
                 </div>
                 <div class="playlog_chara_lv_block f_13">Lv{{ record_playlogDetail_history.chara_3_lv }}</div>
@@ -633,24 +645,24 @@
             <div class="playlog_chara_container">
                 <div class="playlog_chara_block">
                     <div class="chara_cycle_trim">
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/Chara/{{ record_playlogDetail_history.chara_4_img_s }}.png"
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/Chara/{{ record_playlogDetail_history.chara_4_img_s }}.png"
                              class="chara_cycle_img"/>
                     </div>
                 </div>
                 <div class="playlog_chara_star_block f_12"><img
-                        src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_star.png"
+                        src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_star.png"
                         class="v_b"/>×{{ record_playlogDetail_history.chara_4_star }}
                 </div>
                 <div class="playlog_chara_lv_block f_13">Lv{{ record_playlogDetail_history.chara_4_lv }}</div>
             </div>
-            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/line_01.png" class="w_450 m_b_5"/>
-            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/detail.png" class="f_l"/>
+            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/line_01.png" class="w_450 m_b_5"/>
+            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/detail.png" class="f_l"/>
             <div class="playlog_fl_block m_b_5 f_r f_12">
-                <div class="w_96 f_l t_r"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/fast.png"
+                <div class="w_96 f_l t_r"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/fast.png"
                                                class="h_10 m_3 m_l_10 f_l"/>
                     <div class="p_t_5">{{ record_playlogDetail_history.fast }}</div>
                 </div>
-                <div class="w_96 f_l t_r"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/late.png"
+                <div class="w_96 f_l t_r"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/late.png"
                                                class="h_10 m_3 m_l_10 f_l"/>
                     <div class="p_t_5">{{ record_playlogDetail_history.late }}</div>
                 </div>
@@ -661,19 +673,24 @@
                     <tr>
                         <th></th>
                         <td class="t_c f_0"><img
-                                src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/criticalperfect.png"/></td>
+                                src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/criticalperfect.png"/>
+                        </td>
                         <td class="t_c f_0"><img
-                                src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/perfect.png"/>
+                                src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/perfect.png"/>
                         </td>
-                        <td class="t_c f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/great.png"/>
+                        <td class="t_c f_0"><img
+                                src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/great.png"/>
                         </td>
-                        <td class="t_c f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/good.png"/>
+                        <td class="t_c f_0"><img
+                                src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/good.png"/>
                         </td>
-                        <td class="t_c f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/miss.png"/>
+                        <td class="t_c f_0"><img
+                                src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/miss.png"/>
                         </td>
                     </tr>
                     <tr>
-                        <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/tap.png"/></th>
+                        <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/tap.png"/>
+                        </th>
                         <td>{{ record_playlogDetail_history.notes_tap_cp if record_playlogDetail_history.notes_tap_cp != None }}</td>
                         <td>{{ record_playlogDetail_history.notes_tap_p if record_playlogDetail_history.notes_tap_p != None }}</td>
                         <td>{{ record_playlogDetail_history.notes_tap_great if record_playlogDetail_history.notes_tap_great != None }}</td>
@@ -681,7 +698,8 @@
                         <td>{{ record_playlogDetail_history.notes_tap_miss if record_playlogDetail_history.notes_tap_miss != None }}</td>
                     </tr>
                     <tr>
-                        <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/hold.png"/></th>
+                        <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/hold.png"/>
+                        </th>
                         <td>{{ record_playlogDetail_history.notes_hold_cp if record_playlogDetail_history.notes_hold_cp != None }}</td>
                         <td>{{ record_playlogDetail_history.notes_hold_p if record_playlogDetail_history.notes_hold_p != None }}</td>
                         <td>{{ record_playlogDetail_history.notes_hold_great if record_playlogDetail_history.notes_hold_great != None }}</td>
@@ -689,7 +707,7 @@
                         <td>{{ record_playlogDetail_history.notes_hold_miss if record_playlogDetail_history.notes_hold_miss != None }}</td>
                     </tr>
                     <tr>
-                        <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/slide.png"/>
+                        <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/slide.png"/>
                         </th>
                         <td>{{ record_playlogDetail_history.notes_slide_cp if record_playlogDetail_history.notes_slide_cp != None }}</td>
                         <td>{{ record_playlogDetail_history.notes_slide_p if record_playlogDetail_history.notes_slide_p != None }}</td>
@@ -698,7 +716,7 @@
                         <td>{{ record_playlogDetail_history.notes_slide_miss if record_playlogDetail_history.notes_slide_miss != None }}</td>
                     </tr>
                     <tr>
-                        <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/touch.png"/>
+                        <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/touch.png"/>
                         </th>
                         <td>{{ record_playlogDetail_history.notes_touch_cp if record_playlogDetail_history.notes_touch_cp != None else '\u3000' }}</td>
                         <td>{{ record_playlogDetail_history.notes_touch_p if record_playlogDetail_history.notes_touch_p != None }}</td>
@@ -707,7 +725,7 @@
                         <td>{{ record_playlogDetail_history.notes_touch_miss if record_playlogDetail_history.notes_touch_miss != None }}</td>
                     </tr>
                     <tr>
-                        <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/break.png"/>
+                        <th class="f_0"><img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/break.png"/>
                         </th>
                         <td>{{ record_playlogDetail_history.notes_break_cp if record_playlogDetail_history.notes_break_cp != None }}</td>
                         <td>{{ record_playlogDetail_history.notes_break_p if record_playlogDetail_history.notes_break_p != None }}</td>
@@ -719,34 +737,36 @@
                 <div class="playlog_rating_detail_block f_r t_l">
                     <table class="playlog_grade_block m_t_5 f_0">
                         <tr>
-                            <td class="v_t"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/grade.png"
-                                                 class="h_14"/></td>
+                            <td class="v_t"><img
+                                    src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/grade.png"
+                                    class="h_14"/></td>
                             <td class="t_r f_12">
                                 <div class="playlog_rating_val_block">{{ record_playlogDetail_history.grade }}</div>
                                 <span class="f_11">{{ record_playlogDetail_history.grade_diff }}</span></td>
                         </tr>
                         <tr>
-                            <td class="v_t"><img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/rating.png"
-                                                 class="h_12"/></td>
+                            <td class="v_t"><img
+                                    src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/rating.png"
+                                    class="h_12"/></td>
                             <td class="t_r f_12">
                                 <div class="playlog_rating_val_block">{{ record_playlogDetail_history.rating }}</div>
                             </td>
                         </tr>
                     </table>
                     <div class="basic_block m_t_5 p_3 t_r f_0">
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/deluxrating.png"
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/deluxrating.png"
                              class="h_20 f_l"/><span class="f_14">{{ record_playlogDetail_history.delux_rating }}</span>
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/{{ record_playlogDetail_history.delux_rating_diff }}.png"
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/{{ record_playlogDetail_history.delux_rating_diff }}.png"
                              class="h_20 f_r"/>
                     </div>
                     <div class="t_r f_0">
                         {% if record_playlogDetail.grade_pic_s == 'grade_rankup' %}
-                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/{{ record_playlogDetail.grade_pic_s }}.png"
+                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/{{ record_playlogDetail.grade_pic_s }}.png"
                                  class="h_25 m_b_5"/>
-                            {#                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/{{  }}.png"#}
+                            {#                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/{{  }}.png"#}
                             {#                             class="h_25 m_t_10 m_b_5"/>#}
                         {% else %}
-                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/{{ record_playlogDetail.grade_pic_s }}.png"
+                            <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/{{ record_playlogDetail.grade_pic_s }}.png"
                                  class="h_25 m_t_10 m_b_5"/>
                         {% endif %}
                     </div>
@@ -754,13 +774,13 @@
                 <div class="clearfix m_b_5"></div>
                 <div class="col2 f_l t_l f_0">
                     <div class="playlog_score_block p_5">
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/maxcombo.png" class="h_20"/>
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/maxcombo.png" class="h_20"/>
                         <div class="f_r f_14 white">{{ record_playlogDetail_history.maxcombo }}</div>
                     </div>
                 </div>
                 <div class="col2 p_l_5 f_l t_l f_0">
                     <div class="playlog_score_block p_5">
-                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/playlog/maxsync.png" class="h_20"/>
+                        <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/playlog/maxsync.png" class="h_20"/>
                         <div class=" f_r f_14 white">{{ record_playlogDetail_history.maxsync }}</div>
                     </div>
                 </div>
@@ -771,23 +791,23 @@
         {% if record_playlogDetail_history.name %}
             <div class="see_through_block m_10 p_5 t_l f_14" id="matching">
 												<span class="playlog_{{ record_playlogDetail_history.level_img_s | my_split('_', 1) }}_container w_120 p_3 d_ib f_0">
-				<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/{{ record_playlogDetail_history.level_img_s }}.png"
+				<img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/{{ record_playlogDetail_history.level_img_s }}.png"
                      class="h_16"/>
-				<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_each.png" class="h_14 f_r"/>
+				<img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_each.png" class="h_14 f_r"/>
 				<div class="basic_block p_3 t_c f_11">{{ record_playlogDetail_history.name }}</div>
 			</span>
                 <span class="gray_block w_120 p_3 d_ib f_0 ">
-				<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_each.png" class="h_16 f_r"/>
+				<img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_each.png" class="h_16 f_r"/>
 				<div class="clearfix"></div>
 				<div class="basic_block p_3 t_c f_11">―</div>
 			</span>
                 <span class="gray_block w_120 p_3 d_ib f_0 ">
-				<img src="https://i1.yuangezhizao.cn/maimai-mobile/img/icon_each.png" class="h_16 f_r"/>
+				<img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/icon_each.png" class="h_16 f_r"/>
 				<div class="clearfix"></div>
 				<div class="basic_block p_3 t_c f_11">―</div>
 			</span>
                 <div class="f_r p_t_10 d_ib f_0" id="matchingCtrl">
-                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/btn_off.png" class="h_30 m_t_5 m_b_5"/>
+                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/btn_off.png" class="h_30 m_t_5 m_b_5"/>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -803,27 +823,27 @@
                 {#                          fill="#7cbc29"></path>#}
                 {#                </svg>#}
                 {#                <div class="m_15 m_t_0 f_13">#}
-                {#                    <div class="m_5"><a href="https://i1.yuangezhizao.cn/maimai-mobile/termsOfService/" target="_blank"#}
+                {#                    <div class="m_5"><a href="https://i1.yuangezhizao.cn/maimai-mobile/1.20/termsOfService/" target="_blank"#}
                 {#                                        class="white" rel="noopener">使用条款</a></div>#}
-                {#                    <div class="m_5"><a href="https://i1.yuangezhizao.cn/maimai-mobile/sitePolicy/" target="_blank"#}
+                {#                    <div class="m_5"><a href="https://i1.yuangezhizao.cn/maimai-mobile/1.20/sitePolicy/" target="_blank"#}
                 {#                                        class="white" rel="noopener">使用须知</a></div>#}
                 {#                    <div class="m_5"><a href="https://sega-group.co.jp/english/privacypolicy/" target="_blank"#}
                 {#                                        class="white" rel="noopener">私隐政策</a></div>#}
                 {#                </div>#}
-                {#                <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/line_02.png" class="w_430 m_b_10"/>#}
+                {#                <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/line_02.png" class="w_430 m_b_10"/>#}
                 {#                <div class="f_l m_15 m_l_30 p_l_10">#}
                 {#                    <a href="http://sega.jp" target="_blank" rel="noopener"><img#}
-                {#                            src="https://i1.yuangezhizao.cn/maimai-mobile/img/logo_sega.png"/></a>#}
+                {#                            src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/logo_sega.png"/></a>#}
                 {#                    <div class="f_15 p_5">© SEGA</div>#}
                 {#                </div>#}
                 {#                <div class="m_15">#}
-                {#                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/img/logo_wahlap.png"/></a>#}
+                {#                    <img src="https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/logo_wahlap.png"/></a>#}
                 {#                    <div class="f_11 p_3"><a href="http://www.miitbeian.gov.cn"#}
                 {#                                             style="text-decoration:none; color: #fff" target="_blank" rel="noopener">粤ICP备05005783号</a>#}
                 {#                </div>#}
                 <div class="p_10">
                     <div class="f_12 l_h_12">© SEGA & WAHLAP</div>
-                    <div class="f_12 l_h_12">Modified for personal use，yuangezhizao © 2020 - 2021</div>
+                    <div class="f_12 l_h_12">Modified for personal use，yuangezhizao © 2020 - 2023</div>
                     <div class="f_12 l_h_12"></div>
                 </div>
             </div>
@@ -835,28 +855,28 @@
     $('#vsUserCtrl').click(function () {
         if ($('#vsUser span').is(':visible')) {
             $('#vsUser span').hide();
-            $(this).children('img').attr('src', 'https://i1.yuangezhizao.cn/maimai-mobile/img/btn_on.png');
+            $(this).children('img').attr('src', 'https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/btn_on.png');
         } else {
             $('#vsUser span').show();
-            $(this).children('img').attr('src', 'https://i1.yuangezhizao.cn/maimai-mobile/img/btn_off.png');
+            $(this).children('img').attr('src', 'https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/btn_off.png');
         }
     });
     $('#placeNameCtrl').click(function () {
         if ($('#placeName span').is(':visible')) {
             $('#placeName span').hide();
-            $(this).children('img').attr('src', 'https://i1.yuangezhizao.cn/maimai-mobile/img/btn_on.png');
+            $(this).children('img').attr('src', 'https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/btn_on.png');
         } else {
             $('#placeName span').show();
-            $(this).children('img').attr('src', 'https://i1.yuangezhizao.cn/maimai-mobile/img/btn_off.png');
+            $(this).children('img').attr('src', 'https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/btn_off.png');
         }
     });
     $('#matchingCtrl').click(function () {
         if ($('#matching span').is(':visible')) {
             $('#matching span').hide();
-            $(this).children('img').attr('src', 'https://i1.yuangezhizao.cn/maimai-mobile/img/btn_on.png');
+            $(this).children('img').attr('src', 'https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/btn_on.png');
         } else {
             $('#matching span').show();
-            $(this).children('img').attr('src', 'https://i1.yuangezhizao.cn/maimai-mobile/img/btn_off.png');
+            $(this).children('img').attr('src', 'https://i1.yuangezhizao.cn/maimai-mobile/1.20/img/btn_off.png');
         }
     });
 </script>
@@ -894,7 +914,7 @@
             text: ''
         },
         // subtitle: {
-        // 		text: 'Added by yuangezhizao © 2020 - 2021'
+        // 		text: 'Added by yuangezhizao © 2020 - 2023'
         // },
         xAxis: {
             labels: {

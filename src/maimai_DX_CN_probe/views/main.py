@@ -21,8 +21,8 @@ def site_index():
     return flask.render_template('index.html')
 
 
-@bp.route('/wechat_archive')
-def wechat_archive():
+@bp.route('/wechat_archive_1.20')
+def wechat_archive_1_20():
     if 'home' in flask.request.args:
         HOME_data = HOME.query.order_by(HOME.id.desc()).all()
 
@@ -34,7 +34,7 @@ def wechat_archive():
             star_data.append(data.star)
             create_time_data.append(data.create_time.strftime('%Y/%m/%d %H:%M:%S'))
 
-        return flask.render_template('maimai/wechat_archive/home.html', HOME_data=HOME_data, id_data=id_data,
+        return flask.render_template('maimai/wechat_archive/1.20/home.html', HOME_data=HOME_data, id_data=id_data,
                                      rating_data=rating_data, rating_max_data=rating_max_data, star_data=star_data,
                                      create_time_data=create_time_data)
     elif 'playerData' in flask.request.args:
@@ -66,7 +66,8 @@ def wechat_archive():
             fs_data.append(data.fs)
             create_time_data.append(data.create_time.strftime('%Y/%m/%d %H:%M:%S'))
 
-        return flask.render_template('maimai/wechat_archive/playerData.html', playerData=playerData, id_data=id_data,
+        return flask.render_template('maimai/wechat_archive/1.20/playerData.html', playerData=playerData,
+                                     id_data=id_data,
                                      music_count_data=music_count_data, total_count_data=total_count_data,
                                      sssp_data=sssp_data, sss_data=sss_data, ssp_data=ssp_data, ss_data=ss_data,
                                      sp_data=sp_data, s_data=s_data, clear_data=clear_data, app_data=app_data,
@@ -75,10 +76,11 @@ def wechat_archive():
                                      create_time_data=create_time_data)
     elif 'playerData_album' in flask.request.args:
         playerData_album = album.query.order_by(album.id.desc()).all()
-        return flask.render_template('maimai/wechat_archive/playerData_album.html', playerData_album=playerData_album)
+        return flask.render_template('maimai/wechat_archive/1.20/playerData_album.html',
+                                     playerData_album=playerData_album)
     elif 'record' in flask.request.args:
         record_data = Record.query.order_by(Record.id.desc()).all()
-        return flask.render_template('maimai/wechat_archive/record.html', record_data=record_data)
+        return flask.render_template('maimai/wechat_archive/1.20/record.html', record_data=record_data)
     elif 'record_playlogDetail' in flask.request.args:
         idx = int(flask.request.args.get('idx'))
         all_levels = flask.request.args.get('all_levels')
@@ -114,7 +116,7 @@ def wechat_archive():
             record_playlogDetail_history = playlogDetail.query.filter_by(id=id).all()[0]
             record_playlogDetail_history_all.append(record_playlogDetail_history)
 
-        return flask.render_template('maimai/wechat_archive/record_playlogDetail.html', record_data=record_data,
+        return flask.render_template('maimai/wechat_archive/1.20/record_playlogDetail.html', record_data=record_data,
                                      count=len(id_all), record_playlogDetail=record_playlogDetail,
                                      record_data_history_all=record_data_history_all,
                                      record_playlogDetail_history_all=record_playlogDetail_history_all,
@@ -122,7 +124,7 @@ def wechat_archive():
                                      fc_img_s_data=fc_img_s_data, fs_img_s_data=fs_img_s_data,
                                      play_dt_data=play_dt_data, all_levels=all_levels)
     else:
-        return flask.redirect(flask.url_for('main.wechat_archive', _external=True) + '?home')
+        return flask.redirect(flask.url_for('main.wechat_archive_1_20', _external=True) + '?home')
 
 
 @bp.route('/wechat_saver', methods=['GET', 'POST'])
@@ -363,7 +365,8 @@ def test():
         'userId': '',
         '_t': 'f3349161266657b57ffb0b565e3eb39f'
     }
-    get_wx_data_musicGenre(cookies)
+    ver = 'Ver.CN1.32-H'
+    get_wx_data_musicGenre(cookies, ver)
     update_wx_data_musicWord(cookies)
     update_wx_data_musicVersion(cookies)
     # new_info = musicInfo.query.all()
