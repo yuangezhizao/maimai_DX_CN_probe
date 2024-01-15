@@ -539,3 +539,51 @@ class musicInfo_2022(db.Model, HasId, HasTime):
     def update(self):
         db.session.commit()
         return self
+
+
+class musicInfo_2023(db.Model, HasId, HasTime):
+    __bind_key__ = 'maimai'
+    __tablename__ = 'musicinfo_Ver.CN1.32-H'
+
+    name = db.Column(db.VARCHAR(50), nullable=False)
+    level_img_s = db.Column(db.VARCHAR(50), nullable=False)
+    dx_img_s = db.Column(db.VARCHAR(50))
+
+    music_genre = db.Column(db.VARCHAR(50))
+    music_word = db.Column(db.VARCHAR(50))
+    music_level = db.Column(db.VARCHAR(50), nullable=False)
+    music_version = db.Column(db.VARCHAR(50))
+
+    ver = db.Column(db.VARCHAR(50))
+
+    def __init__(self, name, level_img_s, dx_img_s, music_genre, music_word, music_level, music_version, ver):
+        self.name = name,
+        self.level_img_s = level_img_s,
+        self.dx_img_s = dx_img_s,
+        self.music_genre = music_genre,
+        self.music_word = music_word,
+        self.music_level = music_level,
+        self.music_version = music_version,
+        self.ver = ver
+
+    def __repr__(self):
+        return '<musicInfo_2023 (%s, %s, %s, %s, %s, %s, %s, %s, %s)>' % (
+            self.id, self.name, self.level_img_s, self.dx_img_s, self.music_genre, self.music_word, self.music_level,
+            self.music_version, self.ver
+        )
+
+    def to_dict(self):
+        return {c.name: getattr(self, c.name, None) for c in self.__table__.columns}
+
+    def save(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+        except Exception as e:
+            print(e)
+            db.session.rollback()
+        return self
+
+    def update(self):
+        db.session.commit()
+        return self

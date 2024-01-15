@@ -8,7 +8,7 @@
 """
 import flask
 
-from maimai_DX_CN_probe.models.maimai import HOME, PlayerData, album, Record, playlogDetail, musicInfo_2022
+from maimai_DX_CN_probe.models.maimai import HOME, PlayerData, album, Record, playlogDetail, musicInfo_2023
 from maimai_DX_CN_probe.plugins.wechat_saver import save_home, save_playerData, save_playerData_album, save_record, \
     save_record_playlogDetail, save_to_aqua
 
@@ -202,7 +202,7 @@ def record():
                 Record.play_dt <= _play_dt).order_by(
                 Record.achievement.desc()).all()
 
-            _lv = musicInfo_2022.query.filter_by(name=_name, level_img_s=_level_img_s,
+            _lv = musicInfo_2023.query.filter_by(name=_name, level_img_s=_level_img_s,
                                                  dx_img_s=_dx_img_s).first()
             if _lv:
                 _lv = _lv.music_level
@@ -233,34 +233,34 @@ def info():
         filters = []
         name = flask.request.form.get('name')
         if name:
-            filters.append(musicInfo_2022.name.like('%' + name + '%'))
+            filters.append(musicInfo_2023.name.like('%' + name + '%'))
         level_img_s = flask.request.form.get('level_img_s')
         if level_img_s:
-            filters.append(musicInfo_2022.level_img_s == level_img_s)
+            filters.append(musicInfo_2023.level_img_s == level_img_s)
         dx_img_s = flask.request.form.get('dx_img_s')
         if dx_img_s:
-            filters.append(musicInfo_2022.dx_img_s == dx_img_s)
+            filters.append(musicInfo_2023.dx_img_s == dx_img_s)
 
         music_genre = flask.request.form.get('music_genre')
         if music_genre:
-            filters.append(musicInfo_2022.music_genre == music_genre)
+            filters.append(musicInfo_2023.music_genre == music_genre)
         music_word = flask.request.form.get('music_word')
         if music_word:
-            filters.append(musicInfo_2022.music_word == music_word)
+            filters.append(musicInfo_2023.music_word == music_word)
         music_level = flask.request.form.get('music_level')
         if music_level:
-            filters.append(musicInfo_2022.music_level == music_level)
+            filters.append(musicInfo_2023.music_level == music_level)
         music_version = flask.request.form.get('music_version')
         if music_version:
-            filters.append(musicInfo_2022.music_version == music_version)
+            filters.append(musicInfo_2023.music_version == music_version)
 
         ver = flask.request.form.get('ver')
         if ver:
-            filters.append(musicInfo_2022.ver == ver)
+            filters.append(musicInfo_2023.ver == ver)
         filters_fmt = [str(each) for each in filters]
         flask.flash(f'筛选：{filters_fmt}', 'success')
 
-        record_musicGenre_data = musicInfo_2022.query.filter(*filters).order_by(musicInfo_2022.id.asc()).all()
+        record_musicGenre_data = musicInfo_2023.query.filter(*filters).order_by(musicInfo_2023.id.asc()).all()
     return flask.render_template('maimai/info/list.html', record_musicGenre_data=record_musicGenre_data,
                                  size=len(record_musicGenre_data))
 
@@ -282,7 +282,7 @@ def rating():
         for music_record in music_record_data:
             if music_record.name == 'FREEDOM DiVE (tpz Overcute Remix)':
                 continue
-            _music_info = musicInfo_2022.query.filter_by(name=music_record.name,
+            _music_info = musicInfo_2023.query.filter_by(name=music_record.name,
                                                          level_img_s=music_record.level_img_s,
                                                          dx_img_s=music_record.dx_img_s).first()
             print(_music_info)
@@ -314,7 +314,7 @@ def rating():
         if music_dx_record.id in [279, 313, 521, 568, 622]:
             # 手动去重
             continue
-        _music_dx_info = musicInfo_2022.query.filter_by(name=music_dx_record.name,
+        _music_dx_info = musicInfo_2023.query.filter_by(name=music_dx_record.name,
                                                         level_img_s=music_dx_record.level_img_s,
                                                         dx_img_s='music_dx').first()
         # TODO：曲名有重复
@@ -334,7 +334,7 @@ def rating():
         if music_standard_record.id in [175, 182, 201, 205, 213, 310, 453, 245, 554, 578, 696, 713, 717, 719, 744]:
             # 手动去重
             continue
-        _music_standard_info = musicInfo_2022.query.filter_by(name=music_standard_record.name,
+        _music_standard_info = musicInfo_2023.query.filter_by(name=music_standard_record.name,
                                                               level_img_s=music_standard_record.level_img_s,
                                                               dx_img_s='music_standard').first()
         # TODO：曲名有重复
