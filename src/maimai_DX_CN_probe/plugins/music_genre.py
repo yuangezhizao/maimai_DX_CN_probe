@@ -13,7 +13,7 @@ from typing import Dict
 import requests
 from lxml import etree
 
-from maimai_DX_CN_probe.models.maimai import musicInfo_2023
+from maimai_DX_CN_probe.models.maimai import musicInfo_2024
 
 session = requests.Session()
 
@@ -39,6 +39,7 @@ def get_wx_data_musicGenre(cookies: Dict, version: str):
         2: 'expert',
         3: 'master',
         4: 'remaster',
+        # 10: 'utage'
     }
     for diff in diff_dict:
         for genre in genre_dict:
@@ -146,7 +147,8 @@ def update_wx_data_musicVersion(cookies: Dict):
         # 14: '其他',  # 暂无铺面
         15: '舞萌DX 2021',
         17: '舞萌DX 2022',
-        19: '舞萌DX 2023'
+        19: '舞萌DX 2023',
+        21: '舞萌DX 2024'
     }
     diff_dict = {
         0: 'basic',
@@ -207,7 +209,7 @@ def get_music_info(raw: str, music_genre: str, version: str):
         music_word = None
         music_version = None
 
-        new_maimai_Record = musicInfo_2023(name, level_img_s, dx_img_s, music_genre, music_word, music_level,
+        new_maimai_Record = musicInfo_2024(name, level_img_s, dx_img_s, music_genre, music_word, music_level,
                                            music_version, version)
         r = new_maimai_Record.save()
         print(r)
@@ -237,7 +239,7 @@ def update_music_info_musicWord(raw: str, music_word: str):
             print(f'{name},{level_img_s},{dx_img_s},{music_level} skipped')
             continue
         else:
-            old_maimai_Record = musicInfo_2023.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
+            old_maimai_Record = musicInfo_2024.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
                                                                music_level=music_level).first()
         if old_maimai_Record is not None:
             old_maimai_Record.music_word = music_word
@@ -265,7 +267,7 @@ def update_music_info_musicVersion(raw: str, music_version: str, music_diff: str
         name = selector.xpath(f'/html/body/div[2]/div[{i}]/form/div[3]/text()')[0]
         # 容错 +1
 
-        if music_version in ['舞萌DX', '舞萌DX 2021', '舞萌DX 2022', '舞萌DX 2023']:
+        if music_version in ['舞萌DX', '舞萌DX 2021', '舞萌DX 2022', '舞萌DX 2023', '舞萌DX 2024']:
             # DX only
             dx_img_s = 'music_dx'
         else:
@@ -275,7 +277,7 @@ def update_music_info_musicVersion(raw: str, music_version: str, music_diff: str
             print(f'{name},{level_img_s},{dx_img_s},{music_level} skipped')
             continue
         else:
-            old_maimai_Record = musicInfo_2023.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
+            old_maimai_Record = musicInfo_2024.query.filter_by(name=name, level_img_s=level_img_s, dx_img_s=dx_img_s,
                                                                music_level=music_level).first()
         if old_maimai_Record is not None:
             old_maimai_Record.music_version = music_version
@@ -312,7 +314,7 @@ if __name__ == '__main__':
             'userId': '',
             '_t': '32113aae470309d076209bb0d9ea66fa'
         }
-        ver = 'Ver.CN1.32-H'
+        ver = 'Ver.CN1.40-A'
         # get_wx_data_musicGenre(cookies, ver)
         # update_wx_data_musicWord(cookies)
         # update_wx_data_musicVersion(cookies)
