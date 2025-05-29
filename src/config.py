@@ -16,8 +16,12 @@ class BaseConfig:
     def init_app(app):
         pass
 
+    SECRET_KEY = os.getenv('SECRET_KEY', 'maimai_DX_CN_probe')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = 'maimai_DX_CN_probe'
+    SQLALCHEMY_BINDS = {
+        'maimai': os.getenv('SQLALCHEMY_BINDS_MAIMAI', None)
+    }
+    CACHE_TYPE = 'SimpleCache'
 
 
 class DevelopmentConfig(BaseConfig):

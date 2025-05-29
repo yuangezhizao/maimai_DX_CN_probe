@@ -10,7 +10,7 @@ import os
 import time
 
 import flask
-import yaml
+# import yaml
 
 from config import config
 
@@ -37,7 +37,7 @@ def create_app(config_name=None):
     app.wsgi_app = ReverseProxied(app.wsgi_app)
 
     app.config.from_object(config[config_name])
-    app.config.from_file(f'{config_name}.yaml', load=yaml.safe_load)
+    # app.config.from_file(f'{config_name}.yaml', load=yaml.safe_load)
 
     register_extensions(app)
     register_blueprints(app)
