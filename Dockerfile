@@ -9,7 +9,8 @@ COPY src/requirements.txt .
 #    venv/bin/pip3.13 install --disable-pip-version-check --no-cache-dir gunicorn[gevent] && \
 #    venv/bin/pip3.13 install --disable-pip-version-check --no-cache-dir -r requirements.txt
 RUN pip3.13 install --upgrade pip setuptools wheel && \
-    pip3.13 install --disable-pip-version-check --no-warn-script-location --no-cache-dir --user gunicorn[gevent] &&  \
+    pip3.13 install --disable-pip-version-check --no-warn-script-location --no-cache-dir --user gunicorn[gevent] && \
+    sed -i 's/^psycopg2\(.*\)$/psycopg2-binary\1/' requirements.txt && \
     pip3.13 install --disable-pip-version-check --no-warn-script-location --no-cache-dir --user -r requirements.txt
 
 #FROM gcr.io/distroless/python3-debian12:debug
