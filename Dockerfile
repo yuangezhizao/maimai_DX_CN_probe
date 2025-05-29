@@ -4,6 +4,10 @@ WORKDIR /app
 
 COPY src/requirements.txt .
 
+RUN apt update && \
+    apt install build-essential -y && \
+    rm -rf /var/lib/apt/lists/*
+
 #RUN python3.13 -m venv venv && \
 #    venv/bin/pip3.13 install --upgrade pip setuptools wheel && \
 #    venv/bin/pip3.13 install --disable-pip-version-check --no-cache-dir gunicorn[gevent] && \
